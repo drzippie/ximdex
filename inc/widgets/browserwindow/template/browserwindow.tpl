@@ -24,15 +24,42 @@
  *}
 
 <div id="%=id%" class="browser-window %=class%">
-	
-	<listview include="yes" />
-	<treeview include="yes" />
-	<contextmenu  initialize="mainmenu" selector="logo" trigger="left" />
-			
-	<!--<div class="browser-window-toolbar"></div>-->
 	<div class="browser-window-content">
-		<hbox class="browser-hbox" panels="2" />
+		
+		<div id="angular-tree" class="angular-panel hbox-panel-container-0">
+			<tabset class="ui-tabs ui-widget ui-widget-content ui-corner-all tabs-container">
+				<tab heading="projects">
+					<script type="text/ng-template"  id="tree_item_renderer.html">
+					    <div ng-class="{literal}{'xim-treeview-container-selected': selectednode.id == node.id}{/literal}">
+					    	<span class="ui-icon xim-actions-toggle-node" ng-class="{literal}{'ui-icon-triangle-1-se': node.showNodes, 'ui-icon-triangle-1-e': !node.showNodes, 'icon-hidden': !node.children}{/literal}" ng-click="toggleNode(node)"></span>
+					    	<span class="xim-treeview-icon icon-#/nodetypes[node.nodetypeid].name/#" ng-click="loadActions(node)"></span>
+					    	<span class="xim-treeview-branch" ng-click="selectNode(node, $event)">#/node.name/#</div>
+					    </div>
+					    <ul class="xim-treeview-branch" ng-show="node.showNodes">
+					        <li ng-repeat="node in node.collection" ng-include="'tree_item_renderer.html'" class="xim-treeview-node"></li>
+					    </ul>
+					    <ul class="xim-treeview-loading" id="treeloading-undefined" ng-show="node.showNodes && node.loading"><li></li><img src="http://localhost/xdx/actions/browser3/resources/images/loading.gif"></ul>
+					</script>
+					<ul ng-controller="XTreeCtrl" class="angular-tree xim-treeview-branch">
+					    <li ng-repeat="node in tree.collection" ng-include="'tree_item_renderer.html'" class="xim-treeview-node"></li>
+					</ul>
+				</tab>
+				<tab heading="ccenter">Contenido dos de la muerte</tab>
+				<tab heading="modules">Contenido tres del tardon</tab>
+			</tabset>
+		</div>
+		
+		<div id="angular-content" class="angular-panel">
+			<div class="test-box"></div>
+		</div>
+		
+		<div id="angular-tree-resizer" 
+		        xim-resizer
+		        xim-resizer-width="10" 
+		        xim-resizer-left="#angular-tree" 
+		        xim-resizer-right="#angular-content"
+		        xim-resizer-max="500"
+		        xim-resizer-min="220">
+		</div>
 	</div>
-	<!--<div class="browser-window-statusbar">statusbar</div>-->
-
 </div>

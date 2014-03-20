@@ -35,6 +35,11 @@
 }
 
 
+.ui-icon.icon-hidden {
+	cursor: default!important;
+	background: none!important;
+}
+
 .xim-treeview-icon, .xim-listview-icon{
 		background: url('../../../../../images/tree/treeview-icons.png') no-repeat left top;
 		width: 18px;

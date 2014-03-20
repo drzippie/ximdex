@@ -1,4 +1,4 @@
-{**
+ /**
  *  \details &copy; 2011  Open Ximdex Evolution SL [http://www.ximdex.org]
  *
  *  Ximdex a Semantic Content Management System (CMS)
@@ -21,6 +21,18 @@
  *
  *  @author Ximdex DevTeam <dev@ximdex.com>
  *  @version $Revision$
- *}
+ */
+angular.module('ximdex.common.directive')
+    .directive('ximMenu', ['$window', function ($window) {
+        return {
+            template: '<ul class="#/menuClass/#" style="position: absolute; top:50%; left:50%;">'+
+            	'<li ng-repeat="option in options" class="#/option[optionClass]/#" ng-click="select(option)">#/option[optionLabel]/#</li>'+
+            '</ul>',
+            restrict: 'E',
+            replace: true,
+            link: function (scope, element, attrs, ctrl) {
+                
 
-<xim-tree></xim-tree>
+            }
+        }
+    }]);
