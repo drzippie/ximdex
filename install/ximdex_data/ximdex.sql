@@ -3034,6 +3034,7 @@ CREATE TABLE `Versions` (
   `Date` int(14) unsigned default '0',
   `Comment` blob,
   `IdSync` int(12) unsigned default NULL,
+  `MimeType` varchar(255) DEFAULT NULL,
   PRIMARY KEY  (`IdVersion`),
   KEY `Version` (`SubVersion`,`IdNode`,`Version`),
   KEY `IdNode` (`IdNode`)

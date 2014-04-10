@@ -40,7 +40,8 @@ require_once(XIMDEX_ROOT_PATH . '/inc/sync/synchro.inc');
 require_once(XIMDEX_ROOT_PATH . '/inc/model/NodeProperty.class.php');
 include_once (XIMDEX_ROOT_PATH . "/inc/fsutils/FsUtils.class.php");
 require_once(XIMDEX_ROOT_PATH . '/inc/workflow/Workflow.class.php');
-ModulesManager::file('/inc/RelTagsNodes.inc', 'ximTAGS');
+
+ModulesManager::file('/inc/model/Trash.class.php', 'ximTRASH');
 
 define('DETAIL_LEVEL_LOW', 0);
 define('DETAIL_LEVEL_MEDIUM', 1);
@@ -392,7 +393,7 @@ class	Node extends Nodes_ORM{
 		if($this->get('IdNode') > 0) {
 			$childrenList = array();
 		    $sql = "select N.IdNode, N.Name as name,NT.System FROM Nodes as N inner join NodeTypes as NT on N.IdNodeType = NT.IdNodeType";
-		    $sql .= " WHERE NOT(NT.IsHidden) AND IdParent =". $this->get('IdNode');
+		    $sql .= " WHERE IdParent =". $this->get('IdNode');
 
 		    if ($idtype) {
       			$sql .= " AND IdNodeType = $idtype";
@@ -925,9 +926,11 @@ class	Node extends Nodes_ORM{
 	 * @param $parentID
 	 * @param $nodeTypeID
 	 * @param $stateID
+         * @param $subfolders
+         * @param $type If specified it contains the mimetype of the node (only for nodes which are files)
 	 * @return unknown_type
 	 */
-	function CreateNode($name, $parentID, $nodeTypeID, $stateID=null,$subfolders=array()){
+	function CreateNode($name, $parentID, $nodeTypeID, $stateID=null,$subfolders=array(), $type = null){
 	 	$this->set('IdParent', (int)$parentID);
 		$this->set('IdNodeType', (int)$nodeTypeID);
 		$this->set('Name', $name);
@@ -1075,7 +1078,40 @@ class	Node extends Nodes_ORM{
 			$this->messages->add(_('Node deletion was denied'), MSG_TYPE_WARNING);
 			return false;
 		}
+/*
+		if (ModulesManager::isEnabled('ximTRASH')) {
+			$this->messages->add(_('Moving file to trash'), MSG_TYPE_NOTICE);
+			$trash = new Trash();
+			// TODO Obtain the trash where sending it
+			$idProject = $this->GetProject();
+			if ($idProject > 0) {
+				$node = new Node($idProject);
+				$idTrash = $node->GetChildByName('Papelera');
+			}
 
+			$trash->set('id_trash', $idTrash);
+
+			$trash->set('id_node', $this->get('IdNode'));
+			$trash->set('id_old_parent', $this->get('IdParent'));
+			$trash->set('id_node', $this->get('IdNode'));
+			$trash->set('id_node_type', $this->get('IdNodeType'));
+			$trash->set('name', $this->get('Name'));
+
+			if (!$trash->add()) {
+				$this->messages->add(sprintf(_('The node %s could not be moved to trash'), $this->get('IdNode')), MSG_TYPE_ERROR);
+				reset($trash->messages->messages);
+				while (list(, $message) = each($trash->messages->messages)) {
+					$this->messages->add($message['message'], $message['type']);
+				}
+			}
+			reset($this->messages->messages);
+			while(list(, $message) = each($this->messages->messages)) {
+				XMD_Log::warning($message['message']);
+			}
+		} else {
+			XMD_Log::warning(_('Trash is deactivated'));
+		}
+*/
 		$this->ClearError();
 		if(!($this->get('IdNode') > 0)) {
 			$this->SetError(1);
@@ -1085,6 +1121,7 @@ class	Node extends Nodes_ORM{
 		$IdChildrens = $this->GetChildren();
 
 		if (!is_null($IdChildrens)) {
+
 			reset($IdChildrens);
 			while (list(, $IdChildren) = each($IdChildrens)) {
 				$childrenNode = new Node($IdChildren);
@@ -1125,8 +1162,6 @@ class	Node extends Nodes_ORM{
 		$dbObj = new DB();
 		$dbObj->Execute(sprintf("DELETE FROM NodeNameTranslations WHERE IdNode = %d", $this->get('IdNode')));
 		$dbObj->Execute(sprintf("DELETE FROM RelGroupsNodes WHERE IdNode = %d", $this->get('IdNode')));
-        //deleting potential entries on table NoActionsInNode
-		$dbObj->Execute(sprintf("DELETE FROM NoActionsInNode WHERE IdNode = %d", $this->get('IdNode')));
 
 		$nodeDependencies = new NodeDependencies();
 		$nodeDependencies->deleteBySource($this->get('IdNode'));
@@ -1138,13 +1173,9 @@ class	Node extends Nodes_ORM{
 		$dependencies=New Dependencies();
 		$dependencies->deleteDependentNode($this->get('IdNode'));
 
-        $rtn = new RelTagsNodes();
-        $rtn->deleteTags($this->nodeID);
-
 		XMD_Log::info("Node ".$this->nodeID." deleted.");
 		$this->nodeID	= null;
 		$this->class	= null;
-
 		return parent::delete();
 	}
 
@@ -2705,7 +2736,7 @@ class	Node extends Nodes_ORM{
 			return $nodeProperty->getProperty($this->get('IdNode'), $property);
 		}
 
-		XMD_Log::info(sprintf(_("Property %s not found for node %d"),$property,$this->get('IdNode')));
+		XMD_Log::info(sprintf(_("Property %s not found"),$property));
 
 		return NULL;
 	}
@@ -3073,7 +3104,6 @@ class	Node extends Nodes_ORM{
 		//$data=array('NodoCopia Id'=>$actionNodeId,'NodoCopia Tipo'=>$actionNodeType,'NodoDest Id'=>$destNodeId,'NodoDest Tipo'=>$destNodeType,'changeName'=>$changeName,'existing'=>$existing,'amount'=>$amount,'insert'=>$insert,'sentencia'=>$sql2);
 		return array('NodoDest Id'=>$destNodeId,'NodoDest Tipo'=>$destNodeType,'changeName'=>$changeName,'insert'=>$insert);
   }
-   
 }
 
 ?>

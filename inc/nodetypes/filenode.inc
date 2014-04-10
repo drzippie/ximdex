@@ -1,28 +1,37 @@
 <?php
-/**
- *  \details &copy; 2011  Open Ximdex Evolution SL [http://www.ximdex.org]
- *
- *  Ximdex a Semantic Content Management System (CMS)
- *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as published
- *  by the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Affero General Public License for more details.
- *
- *  See the Affero GNU General Public License for more details.
- *  You should have received a copy of the Affero GNU General Public License
- *  version 3 along with Ximdex (see LICENSE file).
- *
- *  If not, visit http://gnu.org/licenses/agpl-3.0.html.
- *
- *  @author Ximdex DevTeam <dev@ximdex.com>
- *  @version $Revision$
- */
+
+/******************************************************************************
+ *  Ximdex a Semantic Content Management System (CMS)    							*
+ *  Copyright (C) 2011  Open Ximdex Evolution SL <dev@ximdex.org>	      *
+ *                                                                            *
+ *  This program is free software: you can redistribute it and/or modify      *
+ *  it under the terms of the GNU Affero General Public License as published  *
+ *  by the Free Software Foundation, either version 3 of the License, or      *
+ *  (at your option) any later version.                                       *
+ *                                                                            *
+ *  This program is distributed in the hope that it will be useful,           *
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of            *
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *
+ *  GNU Affero General Public License for more details.                       *
+ *                                                                            *
+ * See the Affero GNU General Public License for more details.                *
+ * You should have received a copy of the Affero GNU General Public License   *
+ * version 3 along with Ximdex (see LICENSE).                                 *
+ * If not, see <http://gnu.org/licenses/agpl-3.0.html>.                       *
+ *                                                                            *
+ * @version $Revision: $                                                      *
+ *                                                                            *
+ *                                                                            *
+ ******************************************************************************/
+
+
+
+
+
+
+
+
+
 
 if (!defined('XIMDEX_ROOT_PATH')) {
 	define ('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
@@ -56,8 +65,8 @@ class FileNode extends Root {
 	*  @return unknown
 	*/
 
-	function RenderizeNode() {
-
+	function RenderizeNode($render = RENDERIZE_NODES) {
+            if($render) {
 		$parentID = $this->parent->GetParent();
 		$parent = new Node($parentID);
 
@@ -70,13 +79,14 @@ class FileNode extends Root {
 		$data = new DataFactory($this->nodeID);
 		$content = $data->GetContent();
 
-		// If exists, it would be deleted
-		if(file_exists($file)){
+		/// Si existia lo borramos
+		if(file_exists($file))
 			FsUtils::delete($file);
-        }
 
-		// and created again
+
+		/// Y lo volvemos a crear
 		FsUtils::file_put_contents($file, $content);
+            }
 	}
 
 	/**
@@ -87,6 +97,7 @@ class FileNode extends Root {
 	*/
 
 	function getRenderizedContent($channel = NULL, $content = NULL) {
+
 		return $this->GetContent();
 	}
 
@@ -97,14 +108,18 @@ class FileNode extends Root {
 	*  @param int nodeTypeID
 	*  @param int stateID
 	*  @param string sourcePath
+         * @param string mimetype
 	*  @return unknown
 	*/
 
-	function CreateNode($name = null, $parentID = null, $nodeTypeID = null, $stateID = null, $sourcePath = null) {
+	function CreateNode($name = null, $parentID = null, $nodeTypeID = null, $stateID = null, $sourcePath = null, $mimetype=null) {
+
 		$content = FsUtils::file_get_contents($sourcePath);
 		$data = new DataFactory($this->parent->get('IdNode'));
-		$ret = $data->SetContent($content);
+		$ret = $data->SetContent($content, null, null, null, $mimetype);
+
 		$this->updatePath();
+
 		return $ret;
 	}
 
@@ -117,14 +132,14 @@ class FileNode extends Root {
 	function SetContent($content, $commitNode = NULL) {
 
 		$data = new DataFactory($this->nodeID);
-
+                error_log(print_r($this->parent,true));
 		/// @todo: move this piece to Template nodetype
 		// Not neccesary up version here for template nodetypes (makes previously for insert correct idversion in xml wrapper)
 
 		if ($this->parent->nodeType->get('Name') == 'Template') {
 			$lastVersionID = $data->GetLastVersionId();
 			list($version, $subversion) = $data->GetVersionAndSubVersion($lastVersionID);
-			$data->SetContent($content, $version, $subversion, $commitNode);
+			$data->SetContent($content, $version, $subversion, $commitNode, isset($this->parent->mimetype) ? $this->parent->mimetype : null);
 		} else {
 			$data->SetContent($content, NULL, NULL, $commitNode);
 		}
