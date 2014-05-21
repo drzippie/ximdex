@@ -40,58 +40,42 @@ class Action_modifyserver extends ActionAbstract {
 
 		$actionParam = $actionID == 0 ? 'action=' . $this->request->getParam('action') : "actionid=$actionID";
 
-		$servers = new Node($idNode);
-		$list = $servers->class->GetPhysicalServerList();
+		$serverNode = new Node($idNode);
+		$list = $serverNode->class->GetPhysicalServerList();
 		$num_servers = sizeof($list);
 
-		$_server = array();
+		$servers = array();
 		if ($num_servers > 0) {
 			foreach($list as $id) {
-				$_server[] = array( "Id" => $id, "Description" => $servers->class->GetDescription($id) );
+				$servers[] = array(
+                    "id" => $id,
+                    "name" => $serverNode->GetNodeName(),
+                    'protocol' => strtoupper($serverNode->class->GetProtocol($id)),
+                    'encode' => strtoupper($serverNode->class->GetEncode($id)),
+                    'url' =>  $serverNode->class->GetURL($id),
+                    'host' => $serverNode->class->GetHost($id),
+                    'port' => $serverNode->class->GetPort($id),
+                    'directory' => $serverNode->class->GetInitialDirectory($id),
+                    'user' => $serverNode->class->GetLogin($id),
+                    'description' => $serverNode->class->GetDescription($id),
+                    'enable' => $serverNode->class->GetEnabled($id),
+                    'preview' => $serverNode->class->GetPreview($id),
+                    'path' => $serverNode->class->GetOverrideLocalPaths($id),
+                    'channels' => $this->_getServerChannels($idNode, $id)
+
+                );
 			}
-		}
-
-		//Get if otf is up
-		if (ModulesManager::isEnabled('ximOTF')){
-			$otfAvailable=true;
-			$s = new Server($serverID);
-			$isServerOTF = $s->get('otf');
-		}else{
-			$otfAvailable=false;
-			$isServerOTF=false;
-		}
-
-		if($servers) {
-			$server = array(
-				"id" => $serverID,
-				"name" => $servers->GetNodeName(),
-				'protocol' => strtoupper($servers->class->GetProtocol($serverID)),
-				'encode' => strtoupper($servers->class->GetEncode($serverID)),
-				'url' =>  $servers->class->GetURL($serverID),
-				'host' => $servers->class->GetHost($serverID),
-				'port' => $servers->class->GetPort($serverID),
-				'directory' => $servers->class->GetInitialDirectory($serverID),
-				'user' => $servers->class->GetLogin($serverID),
-				'description' => $servers->class->GetDescription($serverID),
-				'enable' => $servers->class->GetEnabled($serverID),
-				'preview' => $servers->class->GetPreview($serverID),
-				'path' => $servers->class->GetOverrideLocalPaths($serverID),
-				'isServerOTF' => $isServerOTF
-
-			);
 		}
 
 		//Getting encodes
 		$encodes = $this->_getEncodes();
-		$numEncodes = sizeof($encodes);
-
-		// Getting channels
-
-		$channels = $this->_getChannels($idNode, $serverID);
-		$numChannels = sizeof($channels);
+		$protocols = $this->_getProtocols();
 
 		//add a js for validation and hidden or display elements about the protocol selected
-		$this->addJs('/actions/modifyserver/resources/js/validate.js');
+		//$this->addJs('/actions/modifyserver/resources/js/validate.js');
+		$this->addJs('/actions/modifyserver/resources/js/XModifyServerCtrl.js');
+		$this->addJs('/actions/modifyserver/resources/js/ximServer.js');
+		$this->addJs('/actions/modifyserver/resources/js/init.js');
 /*		if (ModulesManager::isEnabled('ximDEMOS'))
 			$this->addJs('/actions/modifyserver/resources/js/tour.js');
 		if ($this->tourEnabled(XSession::get("userID")))
@@ -105,16 +89,17 @@ class Action_modifyserver extends ActionAbstract {
 			'params' => $params,
 			"nodeURL" => Config::getValue('UrlRoot')."/xmd/loadaction.php?$actionParam&nodeid={$idNode}",
 			"go_method" => "modify_server",
-			'servers' => $_server,
-			'num_servers' => $num_servers,
-			'server' => $server,
-			'protocols' => $this->_getProtocols(),
-			'encodes' => $this->_getEncodes(),
-			'channels' => $channels,
-			'numchannels' => $numChannels,
-			'otfAvailable' => $otfAvailable,
-			'id_server' => (int) $serverID,
-			'messages' => $this->messages->messages
+			"options" => json_encode(array(
+				'nodeId' => $idNode,
+				'nodeName' => $serverNode->getNodeName(),
+				'actionId' => $actionID,
+				"nodeURL" => Config::getValue('UrlRoot')."/xmd/loadaction.php?$actionParam&nodeid={$idNode}",
+				"go_method" => "modify_server",
+				"servers" => $servers,
+				"encodes" => $encodes,
+				"protocols" => $protocols,
+				"channels" => $this->_getNodeChannels($idNode)
+			))
 		);
 		$this->render($values, "index", 'default-3.0.tpl');
 	}
@@ -327,20 +312,29 @@ class Action_modifyserver extends ActionAbstract {
 		return $_protocols;
 	}
 
-	private function _getChannels($nodeID, $serverID) {
+	private function _getNodeChannels($nodeID) {
+
+		$server = new Node($nodeID);
+		$channel = new Channel();
+		$channels = $channel->getChannelsForNode($nodeID);
+		return count($channels) > 0 ? $channels : null;
+	}
+	private function _getServerChannels($nodeID, $serverID) {
 
 		$server = new Node($nodeID);
 		$channel = new Channel();
 		$channels = $channel->getChannelsForNode($nodeID);
 
+		$serverChannels = array();
 		if (is_array($channels)) {
 			foreach ($channels as &$channel) {
-				$ch = new Channel($channel['IdChannel']);
-				$channel['InServer'] = $server->class->HasChannel($serverID, $channel['IdChannel']);
+				if ($server->class->HasChannel($serverID, $channel['IdChannel'])) {
+					$serverChannels[] = $channel['IdChannel'];
+				}
 			}
 		}
 
-		return count($channels) > 0 ? $channels : null;
+		return $serverChannels;
 	}
 
 	private function _getLanguages($nodeID, $serverID) {

@@ -22,7 +22,27 @@
 *  @author Ximdex DevTeam <dev@ximdex.com>
 *  @version $Revision$
 *}
-<form method="post" id='mdfsv_form' name="formulario" action='{$action_url}'>
+
+<div ng-controller="XModifyServerCtrl"
+	xim-init-options='{$options}'>
+	<div class="action_header">
+		<h2>{t}Manage servers{/t}: <span>#/options.nodeName/#</span></h2>
+	</div>
+	<div class="action_content">
+	    <div class="servers">    
+	        <button type="button" class="add-button" id="new-server"
+	            ng-click="newServer()">
+	            {t}Add server{/t}
+	        </button>
+	        <xim-server ng-repeat="server in options.servers"
+	            xim-model="server"
+	            > 
+	        </xim-server> 
+		            
+		</div> 
+	</div>
+</div>
+<!-- <form method="post" id='mdfsv_form' name="formulario" action='{$action_url}'>
 	<input type="hidden" name="nodeid" value="{$id_node}">
 	<input type="hidden" name="actionid" value="{$id_action}">
 	<input type="hidden" id="nodeURL" name="nodeURL" value="{$nodeURL}">
@@ -152,4 +172,4 @@
 
 		</div>
 	</div>
-</form>
+</form> -->
