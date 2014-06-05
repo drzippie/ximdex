@@ -7,12 +7,12 @@
 	// ** Corporate colors
 	// **/
 
-		$c_main: rgb(0, 107, 108);
-		$c_mainlight: rgb(123, 202, 191);
-		$c_maininset: #3b8e8f;
-		$c_maindark: #2c4b4b;
-		$c_complementary: #cd4e36;
-		$c_complementarylight: #e8563b;
+		$c_main: 				rgb(0, 107, 108);
+		$c_mainlight: 			rgb(123, 202, 191);
+		$c_maininset: 			#3b8e8f;
+		$c_maindark: 			#2c4b4b;
+		$c_complementary: 		#cd4e36;
+		$c_complementarylight: 	#e8563b;
 
 
 	// /**
@@ -21,69 +21,109 @@
 		$almost-white-1: #f5f5f5;
 		$almost-white-2: #ececec;
 
+		$grey: 			#6e6e6e;
+		$grey-light-1: 	#707070;
+		$grey-light-2: 	#7b7b7b;
+		$grey-light-3: 	#4b4b4b;
+		$grey-light-4: 	#b3b3b3;
+		$grey-light-5: 	#e3e7e9;
+		$grey-dark-1: 	#676767;
+		$grey-dark-2: 	#515151;
 
-		$grey-light: #e3e7e9;
-		$c_grey-ll: #212121;
-		$c_grey-l: #464646;
-		$c_grey: #606060;
-		$c_grey-p: #888;
-		$c_grey-pp: #ccc;
-		$c_grey-ppp: #e1e1e1;
-		$c_greymain: #ACAFBB;
-		$c_dark-grey: #4C4C4C;
+		$c_grey-ll: 	#212121;
+		$c_grey-l: 		#464646;
+		$c_grey: 		#606060;
+		$c_grey-p: 		#888;
+		$c_grey-pp: 	#ccc;
+		$c_grey-ppp: 	#e1e1e1;
+		$c_greymain: 	#ACAFBB;
+		$c_dark-grey: 	#4C4C4C;
 
-		$orange: #CC3333;
-		$orange-light: #c56e50;
+		// New greys
 
-		$c_bluelight: #728ad7;
+		$grey: 			#4c4d57; 
+		$grey-dark-1: 	#85879a;
+		$grey-dark-2: 	#383943;
+		$grey-light-1: 	#d1d3e7;
+		$grey-light-2: 	#e6e7f1;
 
-		$green:  #43A1A2;
+
+		$orange: 			#CC3333;
+		$orange-light-1: 	#c56e50;
+		$orange-light-2: 	#ff684f;
 		
 
+		$c_bluelight: 	#728ad7;
+		$blue: 			#4271DD;
+
+		$green:  		#43A1A2; 
+		$green-light-1: #52ada0;
+		$green-light-2: #60b6aa;
+		$green-light-3: #66bbaf;
+		$green-light-4: #72c4b9;
+		$green-light-5: #74c6bb;
+		$green-light-6: #77c6bb;
+		$green-light-7: #7ccac0;
+		$green-dark-1: 	#2FB7A4;
+
+		$green2: 		#43C35B;
+		$green3: 		#57e3aa;
+
+
+		$yellow: 			#D1AC2A;
+		$yellow-light-1: 	#e5dc1e;
+
+		$turquoise: 	#22B8C1;
+
+		$pink: 			#D34579;
+		$pink-dark-1: 	#AF2B82;
+
+		$red: 			#e32e3f;
+		
+		
 	
 	// /**
-	// ** Color elements
+	// ** Elements (color)
 	// **/
 
-		$c_background:  $grey-light;
-		$c_warning: 	$orange;
-		$c_delete: 		$orange-light;
+		$c_background:  		$grey-light-5;
+		$c_warning: 			$orange;
+		$c_delete: 				$orange-light-1;
+		$c_selected: 			$green;
+		$c_bg-disabled: 		$almost-white-2;
+
+		$c_disabled: 			$grey-light-2;
+
+		$c_btn-grey1: 			$grey;
+		$c_btn-grey2: 			$grey-light-2;
+		$c_shadow: 				$grey-dark-2;
+
+		$c_btnh-grey1: 			$grey-light-3;
+		$c_btnh-grey2: 			$grey-light-1;
+		$c_btnh-border: 		$grey-dark-1;
+
+		$c_btnmain1: 			$green-light-4;
+		$c_btnmain2: 			$green-light-5;
+		$c_btnmain-border:  	$green-light-7;
+		$c_btnmain-tx-shadow: 	$green-light-2;
+
+		$c_btnmainh1: 			$green-light-1;
+		$c_btnmainh2: 			$green-light-6;
+		$c_btnmainh-border: 	$green-light-3;
+
+		$c_tag_custom: 			$green-dark-1;
+		$c_tag_dorganization: 	$green2;
+		$c_tag_dperson: 		$yellow;
+		$c_tag_dplace: 			$turquoise;
+		$c_tag_zLink: 			$pink;
+		$c_tag_zImage: 			$pink-dark-1;
+		$c_tag_zArticle: 		$blue;
+		$c_tag_ontology: 		$red;
 
 
-
-		$c_selected: $green;
-
+		$c-background: 			$grey-light-2;
 
 
-		$c_bg-disabled: $almost-white-2;
-
-		$c_disabled: #b3b3b3;
-
-		$c_btn-grey1:#6e6e6e;
-		$c_btn-grey2:#7b7b7b;
-		$c_shadow: #515151;
-
-		$c_btnh-grey1: #4b4b4b;
-		$c_btnh-grey2: #707070;
-		$c_btnh-border: #676767;
-
-		$c_btnmain1: #72c4b9;
-		$c_btnmain2: #7ccac0;
-		$c_btnmain-border:  #74c6bb;
-		$c_btnmain-tx-shadow: #60b6aa;
-
-		$c_btnmainh1: #52ada0;
-		$c_btnmainh2: #77c6bb;
-		$c_btnmainh-border:#66bbaf;
-
-		$c_tag_custom: #2FB7A4;
-		$c_tag_dorganization: #43C35B;
-		$c_tag_dperson: #D1AC2A;
-		$c_tag_dplace: #22B8C1;
-		$c_tag_zLink: #D34579;
-		$c_tag_zImage: #AF2B82;
-		$c_tag_zArticle: #4271DD;
-		$c_tag_ontology: #e32e3f;
 
 
 
@@ -97,18 +137,38 @@
 
 
 
-	//**************
-	// TYPO
-	//***************/
+//*------------------------------------*\
+//	TYPO
+//*------------------------------------*/
 
-		$t_title: 'Coustard';
+		$t_title: 'Crete Round';
 		$t_title-kupu: 'coustardregular';
 		$t_title-kupu-bold: 'coustardbold';
 		$t_text: 'Source Sans Pro'; // Source Sans Pro, Droid Sans, Ubuntu, Open Sans
 
-	//**************
-	// INCLUDES
-	//***************/
+	
+	// /**
+	// ** Font-size
+	// **/
+
+	@function calculateRem($size) {
+		$remSize: $size / 16px;
+		@return #{$remSize}rem;
+	}
+
+	@mixin fontSize($size) {
+		font-size: $size; 
+		font-size: calculateRem($size);
+	}
+
+
+
+//*------------------------------------*\
+//	GENERAL MIXINS
+//*------------------------------------*/
+
+
+
 		@mixin radius($rad){
 			-webkit-border-radius: $rad;
 			-moz-border-radius: $rad;
@@ -138,7 +198,7 @@
 		text-shadow: 0 -1px 0 $c_shadow, 0 1px 0 $s_black;
 		font-family: $t_title;
 		text-transform: uppercase;
-		color: $c_white;
+		color: #fff;
 		}
 		@mixin btn-hover(){
 			background-image: -webkit-gradient(linear, 0 0, 0 100%, from($c_btnh-grey1), to($c_btnh-grey2));

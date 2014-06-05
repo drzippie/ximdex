@@ -1,13 +1,18 @@
-<h2>Ximdex, making content management easy</h2>
-<ul>
-	<li><strong>{t}Faster{/t}</strong>
-	<p>{t}Drag&amp;Drop functionality to add and move elements, the new publication module ximPUBLISH 2.0, and more to make Ximdex faster!{/t}</p>
-	</li>
-	<li><strong>{t}Powerful{/t}</strong>
-	<p>{t}New node dependency manager, and projects and users predefined and preinstalled to start using Ximdex in a few clicks.{/t}</p>
-	</li>
-	<li><strong>{t}Easy{/t}</strong>
-	<p>{t}Easy XML edition with the WYSIWYG editor and easy semantic document tagging. Xedit and Xowl module rock!{/t}</p>
-	</li>
-</ul>
-<p class="more"><a href="http://www.ximdex.com">{t}Learn more{/t}</a></p>
+<h2>Ximdex</h2>
+<h3>making content management easy</h3>
+
+	<div class="features">
+		<div class="feature feature-xtag"><strong>{t}xtag{/t}</strong>
+		<p>{t}Give semantic to your pages in a easy way with xtags module.{/t}</p>
+		</div>
+		<div class="feature feature-security"><strong>{t}security{/t}</strong>
+		<p>{t}Use the decouple publishing to reforce the security and scalability of your site.{/t}</p>
+		</div>
+		<div class="feature feature-xlyre"><strong>{t}xlyre{/t}</strong>
+		<p>{t}Yes, we are open! Xlyre allow you to manage datasets and open data easily.{/t}</p>
+		</div>
+
+		<a href="http://wwww.ximdex.com" class="extended-info">Learn more</a>
+	</div>
+
+

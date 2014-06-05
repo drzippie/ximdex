@@ -139,7 +139,7 @@ div.search-button-label {
 }
 
 .destroy-on-click{
-	background: $c_white-l;
+	background: #fff-l;
 	border: 1px solid $c_grey-ppp;
 	@include radius(5px);
 	@include boxshadow(1px 1px 2px $s_grey)
@@ -175,7 +175,7 @@ div.search-button-label {
 	display: none;
 	position: absolute;
 	z-index: 80px;
-	color: $c_white;
+	color: #fff;
 	text-shadow: 1px 1px 0px $c_grey-l;
 	white-space: nowrap;
 	padding: 0 15px 1px 15px;

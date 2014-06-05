@@ -63,21 +63,21 @@ textarea {
   .metadata_action .empty_state span {
     text-align: center;
     display: block;
-    color: #4f5d65; }
+    color: #44497a; }
   .metadata_action .empty_state .title {
     text-transform: uppercase;
     position: relative;
     padding: .5em; }
     .metadata_action .empty_state .title::before, .metadata_action .empty_state .title::after {
       position: absolute;
-      color: #cfd6d9;
+      color: #cfd1e4;
       font-size: 3.4em;
       top: -1.3em;
       left: 20%;
-      text-shadow: 5px 0 0 #e3e7e9;
+      text-shadow: 5px 0 0 #e6e7f1;
       z-index: 2; }
     .metadata_action .empty_state .title::after {
-      color: #c6cfd3;
+      color: #c5c8df;
       -moz-transform: scaleX(-1);
       -o-transform: scaleX(-1);
       -webkit-transform: scaleX(-1);
@@ -99,7 +99,7 @@ textarea {
   position: relative;
   padding: 1.5em 1em; }
   .metadata_action .headline span {
-    background: #e3e7e9;
+    background: #e6e7f1;
     position: relative;
     z-index: 2;
     padding: 0 1em;

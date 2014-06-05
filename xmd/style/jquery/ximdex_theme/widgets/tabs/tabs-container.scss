@@ -63,7 +63,7 @@ li.browser-reports-view-item a{
 }
 
 li.browser-reports-view-item a:hover{
-	color: $c_white;
+	color: #fff;
 	background: $c_grey-ppp url('../../../../../images/tree/treeview-icons.png') no-repeat -20px -252px;
 	@include radius(3px); 
 }

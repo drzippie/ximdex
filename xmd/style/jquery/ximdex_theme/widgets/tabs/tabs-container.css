@@ -41,7 +41,7 @@ li.browser-modules-view-disabled {
   background: url("../../../../../images/tree/treeview-icons.png") no-repeat -23px -274px;
   cursor: default;
   padding-left: 20px;
-  color: #b3b3b3; }
+  color: #7b7b7b; }
 
 li.browser-modules-view-enabled {
   background: url("../../../../../images/tree/treeview-icons.png") no-repeat -23px -291px;
@@ -53,7 +53,7 @@ li.browser-reports-view-item a {
   padding-left: 25px; }
 
 li.browser-reports-view-item a:hover {
-  color: white;
+  color: #fff;
   background: #e1e1e1 url("../../../../../images/tree/treeview-icons.png") no-repeat -20px -252px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;

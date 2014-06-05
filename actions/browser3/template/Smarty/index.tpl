@@ -38,6 +38,7 @@
 			<link type="text/css" href="{$href}" rel="stylesheet" />
 		{/foreach}
 		<link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Crete+Round' rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
 		<!-- css widgets -->
 		%=css_widgets%
@@ -57,7 +58,7 @@
 		<div id="angular-event-relay"></div>
 		<div id="ximdex-splash">
 
-			<div class="loading"><p>{t}Loading...{/t}</p><span class="progress">&nbsp;</span></div>
+			<div class="loading"><span class="progress">&nbsp;</span></div>
 			<div class="ximdex_splash_content">
 				{if ($splash_content != null)}
 					{$splash_content}

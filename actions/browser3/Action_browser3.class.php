@@ -154,11 +154,11 @@ class Action_browser3 extends ActionAbstract {
 		$url = REMOTE_WELCOME."?lang=".strtolower(XSession::get("locale"));
 		//get remote content
 		$splash_content = @file_get_contents($url, 0, $ctx);
-		if(!empty($splash_content) ) {
+		if(false && !empty($splash_content) ) {
 			$values["splash_content"] = $splash_content;
 			$values["splash_file"] = null;
 		}elseif (file_exists(XIMDEX_ROOT_PATH."/actions/browser3/template/Smarty/splash/index.tpl")) {
-			$values["splash_content"] = null;
+			//$values["splash_content"] = null;
 			$values["splash_file"] = XIMDEX_ROOT_PATH."/actions/browser3/template/Smarty/splash/index.tpl" ;
 		}
 		else{
@@ -166,7 +166,6 @@ class Action_browser3 extends ActionAbstract {
                         $values["splash_file"] = null;
 		}
 		/* ************************************************************************************** */
-
 		$this->render($values, 'index', 'only_template.tpl');
 	}
 

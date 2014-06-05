@@ -151,7 +151,7 @@ fieldset{
 ***************/
 
 .action_header{
-	background: $c_white;
+	background: #fff;
 	@include boxshadow(inset 0 -1px 0 $s_black);
 	padding: 1em 4%;
 	@include radius(0 12px 0 0);
@@ -176,7 +176,7 @@ fieldset{
 	overflow-x: hidden;
 	padding:2em 4% 2em;
 	max-width: 100%;
-	border-top: 1px solid $c_white;
+	border-top: 1px solid #fff;
 	position: relative;
 
 	/*.message + &{
@@ -348,7 +348,7 @@ fieldset.buttons-form, div.buttonset, .ui-dialog .ui-dialog-buttonpane {
 }
 .action_container form fieldset>ol.numbered>li {
 	background: url('../../../../../images/action/fieldset-list.png') no-repeat left 3px;
-	color: $c_white;
+	color: #fff;
 	padding: 1px 10px;
 	margin-bottom: 2px;
 }
@@ -1002,7 +1002,7 @@ fieldset table th {
 	@include radius(2px);
 	background:$c_grey-ppp url('../../../../../images/browser/conf_icon.png') no-repeat 5px center;
 	position: relative;
-	@include boxshadow(inset 0 0 1px $c_white);
+	@include boxshadow(inset 0 0 1px #fff);
 	top: -7px;
 }
 
@@ -1036,7 +1036,7 @@ fieldset table th {
 	-moz-border-radius: 3px;
 	border-radius: 3px;
 	@include boxshadow( 0 1px 3px $s_black);
-	color: $c_white;
+	color: #fff;
 	text-align: center;
 	display: none;
 }
@@ -1062,7 +1062,7 @@ fieldset table th {
 	width: 20%;
 	visibility: hidden;
 	@include radius(2px);
-	color: $c_white;
+	color: #fff;
 	position: absolute;
 	z-index: 5;
 }

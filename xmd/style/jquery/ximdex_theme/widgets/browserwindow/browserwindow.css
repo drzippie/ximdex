@@ -116,7 +116,7 @@ div.search-button-label {
   margin-left: 15px; }
 
 .destroy-on-click {
-  background: whitesmoke;
+  background: white -l;
   border: 1px solid #e1e1e1;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -152,7 +152,7 @@ div.search-button-label {
   display: none;
   position: absolute;
   z-index: 80px;
-  color: white;
+  color: #fff;
   text-shadow: 1px 1px 0px #464646;
   white-space: nowrap;
   padding: 0 15px 1px 15px;
