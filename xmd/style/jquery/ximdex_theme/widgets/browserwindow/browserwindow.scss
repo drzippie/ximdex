@@ -49,7 +49,7 @@
 
 .xim-actions-menu-list{
 	z-index: 100;
-	font-size: 14px;font-size: 1.4rem;
+	@include fontSize(14px);
 }
 
 .list-icon-browser{
@@ -291,8 +291,9 @@ div.search-button-label {
 
 .xim-actions-menu-list {
 	padding: .5em 0;
-	font-size: 14px;font-size: 1.4rem;
+	@include fontSize(14px);
 	@include boxshadow(0 1px 2px  rgba(0,0,0,.3));
+	background:$almost-white-1;
 	@include radius(4px);
 	.icon{
 		padding: .7em 0;

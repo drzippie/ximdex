@@ -42,7 +42,7 @@
   white-space: nowrap;
   cursor: pointer;
   font-size: 13px;
-  font-size: 1.3rem; }
+  font-size: 0.8125rem; }
 
 .xim-treeview-container .xim-treeview-btnreload:hover {
   color: #006b6c; }
@@ -74,7 +74,7 @@ li.xim-listview-node:hover {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: white; }
+  color: #fff; }
 
 .xim-treeview-node .xim-treeview-selected:hover {
   padding: 0px; }
@@ -154,24 +154,24 @@ ul.xim-treeview-loading {
 
 .xim-listview-browser a.alpha:hover {
   background: url("../../../../../images/viewers/breadcrumb-alpha-over.png") no-repeat left center;
-  color: white; }
+  color: #fff; }
 
 .xim-listview-browser a:hover {
   background: url("../../../../../images/viewers/breadcrumb-over.png") no-repeat right center;
-  color: white; }
+  color: #fff; }
 
 .xim-listview-browser .path-separator {
   display: none; }
 
 .xim-listview-browser span {
-  background: #e3e7e9;
+  background: #e6e7f1;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   padding: 3px 5px; }
 
 a + span.path-separator + span {
-  background: #e3e7e9;
+  background: #e6e7f1;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;

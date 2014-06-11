@@ -47,7 +47,7 @@ h2, h3{
 }
 
 h2{
-	font-size: 18px;font-size: 1.8rem;
+	@include fontSize(18px);
 	color: $c_grey;
 	text-transform: none;
 }
@@ -69,6 +69,7 @@ a:hover {
 p{
 	margin-bottom: 1.2em;
 }
+.browser-window{
 input, select, textarea {
 	border: 1px solid $c_grey-pp;
 	padding: .5em .7em;
@@ -83,11 +84,13 @@ input:hover, select:hover {
 	@include boxshadow( 0 0 4px $s_grey);
 
 }
-input:focus, select:focus, textarea:focus, .checkbox-label:not(.reduced_label):focus, .hidden-focus:focus + label, .hidden-focus:checked:focus + label {
-	@include boxshadow(0 0  5px 1px darken($c_mainlight, 5%));
-	color: $c_grey;
-	outline: none;
-	border: 1px solid darken($c_mainlight, 5%);
+
+	input:focus, select:focus, textarea:focus, .checkbox-label:not(.reduced_label):focus, .hidden-focus:focus + label, .hidden-focus:checked:focus + label {
+		@include boxshadow(0 0  5px 1px darken($c_mainlight, 5%));
+		color: $c_grey;
+		outline: none;
+		border: 1px solid darken($c_mainlight, 5%);
+	}
 }
 
 input[type="text"]{
@@ -95,6 +98,12 @@ input[type="text"]{
 	@include placeholder{
 	  	font-style: italic;
 	  }	
+
+	  &:hover{
+	  	@include placeholder{
+	  		color: darken($grey-dark-2, 10%);
+	  	}
+	  }
 }
 .disabled{
 	opacity: .55;
@@ -179,13 +188,9 @@ fieldset{
 	border-top: 1px solid #fff;
 	position: relative;
 
-	/*.message + &{
-		padding-top: 1em;
-	}*/
 	p{
-		font-size: 1.8rem;
+		@include fontSize(18px);
 		position: relative;
-		// padding: 0 0 1em; // delete for combo input + select
 
 
 	}
@@ -221,7 +226,7 @@ h2.nodo_path{
 	text-transform: none;
 	position: relative;
 	padding: 1.5em 0 .8em;
-	font-size: 1.4rem;
+	@include fontSize(14px);
 }
 
 .info-node {
@@ -419,7 +424,7 @@ label {
 	color: $c_grey;
 	font-family: $t_text;
 	/*padding: 1em 0 .5em;*/
-	font-size: 1.8rem;
+	@include fontSize(18px);
 }
 
 
@@ -1296,7 +1301,7 @@ input:focus + .tooltip_info{
 		padding: 7px 14px 5px;
 		margin: 0 0 0 10px;
 		cursor: pointer;
-		font-size: 1.1rem;
+		@include fontSize(11px);
 	}
 
 
@@ -1327,7 +1332,7 @@ input:focus + .tooltip_info{
 	}
 	button.button_main_action {
 		@extend %button-main-action;
-		font-size: 1.1rem;
+		@include fontSize(11px);
 		font-weight: normal;
 		padding: 7px 14px;
 		font-family: "Coustard";
@@ -1449,7 +1454,7 @@ input:focus + .tooltip_info{
         padding: .7em 1em;
         text-transform: uppercase;
         font-size: .9em;
-        font-weight: bold;  
+        font-weight: 600;  
         -webkit-border-radius: 2px;
         -moz-border-radius: 2px;
         border-radius: 2px;

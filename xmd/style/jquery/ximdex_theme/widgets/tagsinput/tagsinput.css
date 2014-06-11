@@ -71,7 +71,7 @@
     left: 0;
     top: 0;
     text-align: center;
-    color: #e3e7e9;
+    color: #e6e7f1;
     line-height: 2; }
   .xim-tagsinput-taglist:hover, .xim-tagsinput-tag:hover, .ontology-browser-container a:hover {
     background: #f2f2f2; }
@@ -144,7 +144,7 @@
   background: #2fb7a4;
   cursor: pointer; }
   .selection::before {
-    color: #e3e7e9;
+    color: #e6e7f1;
     display: block;
     text-align: center;
     line-height: 2.05;

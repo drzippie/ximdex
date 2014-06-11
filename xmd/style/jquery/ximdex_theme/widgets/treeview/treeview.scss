@@ -46,7 +46,7 @@
 	color: $c_grey;
 	white-space: nowrap;
 	cursor: 	pointer;
-	font-size: 13px;font-size: 1.3rem;
+	@include fontSize(13px);
 }
 
 .xim-treeview-container .xim-treeview-btnreload:hover{

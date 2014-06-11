@@ -62,7 +62,7 @@
     padding-left: 1em; }
   .ximlink_manager input[type="text"] {
     border: none;
-    background: #e3e7e9;
+    background: #e6e7f1;
     width: 100%;
     margin-bottom: 1em; }
   .ximlink_manager .search_links {
@@ -80,7 +80,7 @@
     padding: 1em 1em 2em; }
 
 .links.icon, .descriptions.icon {
-  background: #e3e7e9;
+  background: #e6e7f1;
   padding-top: .3em;
   -webkit-border-radius: 5%;
   -moz-border-radius: 5%;

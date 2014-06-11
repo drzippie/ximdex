@@ -125,7 +125,7 @@
 
     %icon-positioned{
         position: absolute;
-        font-size: 2.44rem; 
+        @include fontSize(24px);
         top: 50%;
         left: .4em;
         color: lighten($c_grey, 20%);

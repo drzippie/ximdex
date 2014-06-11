@@ -30,7 +30,7 @@
   clear: both;
   position: absolute;
   width: 100%;
-  top: 65px;
+  top: 6em;
   bottom: 0px; }
 
 .browser-reports-view-list, .browser-modules-view-list {
@@ -41,7 +41,7 @@ li.browser-modules-view-disabled {
   background: url("../../../../../images/tree/treeview-icons.png") no-repeat -23px -274px;
   cursor: default;
   padding-left: 20px;
-  color: #7b7b7b; }
+  color: #e6e7f1; }
 
 li.browser-modules-view-enabled {
   background: url("../../../../../images/tree/treeview-icons.png") no-repeat -23px -291px;
@@ -96,4 +96,4 @@ ul.browser-modules-view-list {
 
 .browser-modules-view-list li {
   font-size: 14px;
-  font-size: 1.4rem; }
+  font-size: 0.875rem; }

@@ -91,7 +91,8 @@
 
 .input-select.document::before, .icon-positioned::before {
   position: absolute;
-  font-size: 2.44rem;
+  font-size: 24px;
+  font-size: 1.5rem;
   top: 50%;
   left: .4em;
   color: #939393;
@@ -130,11 +131,11 @@ h2, h3, h4, h5, h6 {
   font-weight: normal; }
 
 h2, h3 {
-  font-family: "Coustard"; }
+  font-family: "Crete Round"; }
 
 h2 {
   font-size: 18px;
-  font-size: 1.8rem;
+  font-size: 1.125rem;
   color: #606060;
   text-transform: none; }
 
@@ -152,7 +153,7 @@ a:hover {
 p {
   margin-bottom: 1.2em; }
 
-input, select, textarea {
+.browser-window input, .browser-window select, .browser-window textarea {
   border: 1px solid #cccccc;
   padding: .5em .7em;
   color: #606060;
@@ -161,13 +162,11 @@ input, select, textarea {
   -moz-border-radius: 3px;
   border-radius: 3px;
   background: #fff; }
-
-input:hover, select:hover {
+.browser-window input:hover, .browser-window select:hover {
   -webkit-box-shadow: 0 0 4px rgba(157, 157, 157, 0.2);
   -moz-box-shadow: 0 0 4px rgba(157, 157, 157, 0.2);
   box-shadow: 0 0 4px rgba(157, 157, 157, 0.2); }
-
-input:focus, select:focus, textarea:focus, .checkbox-label:not(.reduced_label):focus, .hidden-focus:focus + label, .hidden-focus:checked:focus + label {
+.browser-window input:focus, .browser-window select:focus, .browser-window textarea:focus, .browser-window .checkbox-label:not(.reduced_label):focus, .browser-window .hidden-focus:focus + label, .browser-window .hidden-focus:checked:focus + label {
   -webkit-box-shadow: 0 0 5px 1px #69c3b6;
   -moz-box-shadow: 0 0 5px 1px #69c3b6;
   box-shadow: 0 0 5px 1px #69c3b6;
@@ -185,6 +184,16 @@ input[type="text"]::-moz-placeholder {
   font-style: italic; }
 input[type="text"]:-ms-input-placeholder {
   font-style: italic; }
+input[type="text"]:hover::-webkit-input-placeholder {
+  color: #212127; }
+input[type="text"]:hover:-moz-placeholder {
+  /* Firefox 18- */
+  color: #212127; }
+input[type="text"]:hover::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #212127; }
+input[type="text"]:hover:-ms-input-placeholder {
+  color: #212127; }
 
 .disabled {
   opacity: .55;
@@ -253,12 +262,10 @@ fieldset {
   padding: 2em 4% 2em;
   max-width: 100%;
   border-top: 1px solid #fff;
-  position: relative;
-  /*.message + &{
-  	padding-top: 1em;
-  }*/ }
+  position: relative; }
   .action_content p {
-    font-size: 1.8rem;
+    font-size: 18px;
+    font-size: 1.125rem;
     position: relative; }
 
 .full {
@@ -266,7 +273,7 @@ fieldset {
   overflow-x: auto; }
 
 h2.nodo_path {
-  font: 1em/2.8 "Coustard";
+  font: 1em/2.8 "Crete Round";
   color: #606060;
   text-transform: none;
   display: inline-block;
@@ -281,7 +288,8 @@ h2.nodo_path {
   text-transform: none;
   position: relative;
   padding: 1.5em 0 .8em;
-  font-size: 1.4rem; }
+  font-size: 14px;
+  font-size: 0.875rem; }
 
 .info-node {
   padding-bottom: .5em; }
@@ -290,7 +298,7 @@ h2.nodo_path {
 
 .action_container .editable {
   border: none;
-  font-family: "Coustard";
+  font-family: "Crete Round";
   background: none;
   padding: 0;
   color: #464646; }
@@ -462,7 +470,8 @@ label {
   color: #606060;
   font-family: "Source Sans Pro";
   /*padding: 1em 0 .5em;*/
-  font-size: 1.8rem; }
+  font-size: 18px;
+  font-size: 1.125rem; }
 
 .label_title, .label_title_up {
   text-transform: uppercase;
@@ -1012,7 +1021,7 @@ fieldset table th {
 
 .tooltip_info {
   background: #7bcabf;
-  font-family: "Coustard";
+  font-family: "Crete Round";
   -webkit-box-shadow: 0 1px 0 rgba(157, 157, 157, 0.2);
   -moz-box-shadow: 0 1px 0 rgba(157, 157, 157, 0.2);
   box-shadow: 0 1px 0 rgba(157, 157, 157, 0.2);
@@ -1057,7 +1066,7 @@ input:focus + .tooltip_info {
   z-index: 5; }
 
 .actions a, .actions label {
-  font-family: "Coustard";
+  font-family: "Crete Round";
   padding: 0 5px 0 30px;
   color: #212121; }
 
@@ -1198,7 +1207,7 @@ input:focus + .tooltip_info {
   width: 100%; }
 
 .title-box {
-  font-family: "Coustard";
+  font-family: "Crete Round";
   font-size: 1.3rem; }
 
 /**************
@@ -1206,14 +1215,14 @@ input:focus + .tooltip_info {
 ***************/
 /* first class used to fight against jQuery ui classes!! */
 .browser-window .btn {
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6e6e6e), to(#7b7b7b));
-  background-image: -webkit-linear-gradient(#6e6e6e, #7b7b7b);
-  background-image: -moz-linear-gradient(#6e6e6e, #7b7b7b);
-  background-image: -o-linear-gradient(#6e6e6e, #7b7b7b);
-  background-image: linear-gradient(#6e6e6e, #7b7b7b);
-  border-color: #6e6e6e;
-  text-shadow: 0 -1px 0 #515151, 0 1px 0 rgba(0, 0, 0, 0.2);
-  font-family: "Coustard";
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4c4d57), to(#e6e7f1));
+  background-image: -webkit-linear-gradient(#4c4d57, #e6e7f1);
+  background-image: -moz-linear-gradient(#4c4d57, #e6e7f1);
+  background-image: -o-linear-gradient(#4c4d57, #e6e7f1);
+  background-image: linear-gradient(#4c4d57, #e6e7f1);
+  border-color: #4c4d57;
+  text-shadow: 0 -1px 0 #383943, 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-family: "Crete Round";
   text-transform: uppercase;
   color: #fff;
   -webkit-border-radius: 2px;
@@ -1222,14 +1231,15 @@ input:focus + .tooltip_info {
   padding: 7px 14px 5px;
   margin: 0 0 0 10px;
   cursor: pointer;
-  font-size: 1.1rem; }
+  font-size: 11px;
+  font-size: 0.6875rem; }
 .browser-window .btn:hover, .browser-window .btn:focus {
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4b4b4b), to(#707070));
-  background-image: -webkit-linear-gradient(#4b4b4b, #707070);
-  background-image: -moz-linear-gradient(#4b4b4b, #707070);
-  background-image: -o-linear-gradient(#4b4b4b, #707070);
-  background-image: linear-gradient(#4b4b4b, #707070);
-  border-color: #676767;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4b4b4b), to(#d1d3e7));
+  background-image: -webkit-linear-gradient(#4b4b4b, #d1d3e7);
+  background-image: -moz-linear-gradient(#4b4b4b, #d1d3e7);
+  background-image: -o-linear-gradient(#4b4b4b, #d1d3e7);
+  background-image: linear-gradient(#4b4b4b, #d1d3e7);
+  border-color: #85879a;
   -webkit-box-shadow: 1px 1px 2px rgba(157, 157, 157, 0.2);
   -moz-box-shadow: 1px 1px 2px rgba(157, 157, 157, 0.2);
   box-shadow: 1px 1px 2px rgba(157, 157, 157, 0.2); }
@@ -1262,7 +1272,8 @@ input:focus + .tooltip_info {
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
   border-width: 1px; }
 .browser-window button.button_main_action {
-  font-size: 1.1rem;
+  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: normal;
   padding: 7px 14px;
   font-family: "Coustard";
@@ -1353,7 +1364,7 @@ input:focus + .tooltip_info {
   padding: .7em 1em;
   text-transform: uppercase;
   font-size: .9em;
-  font-weight: bold;
+  font-weight: 600;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
   border-radius: 2px;
@@ -1504,7 +1515,7 @@ input:focus + .tooltip_info {
     .input-select.disabled h3, .input-select.disabled .folder-type {
       padding: .9em 2.8em .8em; }
     .input-select.disabled .folder-type {
-      border-left: 2px solid #e3e7e9;
+      border-left: 2px solid #e6e7f1;
       background: #e4e5e9;
       color: #686d7f;
       font-size: 1.3rem;

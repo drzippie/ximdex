@@ -55,10 +55,10 @@ button.hbox-panel-tie.tie::before {
   content: "\e60f"; }
 
 div.hbox {
-  height: 98.7%;
+  height: 100%;
   overflow: hidden;
   clear: both;
-  margin: 3px 7px 3px 7px; }
+  width: 100%; }
 
 div.hbox-panel-container {
   height: 100%;
@@ -80,29 +80,35 @@ div.hbox-panel-sep {
   height: 100%;
   float: right;
   overflow: hidden;
-  background: url("../../../../../images/browser/hbox/hbox-sep.png") no-repeat center center; }
+  background: #383943 url("../../../../../images/browser/hbox/hbox-sep.png") no-repeat center center; }
 
 div.hbox-panel-sep:hover {
-  cursor: w-resize; }
+  cursor: col-resize; }
 
 button.hbox-panel-tie {
   position: absolute;
   z-index: 2;
-  top: 2.1em;
-  right: .5em;
-  color: white;
-  background: #008486;
-  font-size: 2em;
+  top: 2.7em;
+  right: .8em;
+  color: #5b5c6d;
+  font-size: 20px;
+  font-size: 1.25rem;
   width: 1.1em;
+  height: 1.1em;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
   padding: 0;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
   -ms-transition: all 0.3s ease-in;
   -o-transition: all 0.3s ease-in;
   transition: all 0.3s ease-in; }
+  .hbox-panel-hidden button.hbox-panel-tie {
+    opacity: 0; }
   button.hbox-panel-tie:hover {
-    background: #47b1a3; }
+    background: #7bcabf; }
   button.hbox-panel-tie.hide::before {
-    line-height: 1.2; }
+    display: block; }
   button.hbox-panel-tie.tie::before {
-    line-height: 1.2; }
+    display: block; }

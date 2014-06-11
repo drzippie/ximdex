@@ -132,7 +132,7 @@
   font-size: 1.06em;
   margin-bottom: 1em;
   padding-bottom: .5em;
-  border-bottom: 2px solid #c6cfd3; }
+  border-bottom: 2px solid #c5c8df; }
 
 .main_content {
   width: 66%;
@@ -152,7 +152,7 @@
 
 .project_name {
   display: block;
-  font-family: "Coustard";
+  font-family: "Crete Round";
   font-size: 0.75em;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -275,7 +275,7 @@
   display: inline-block;
   width: calc(50% - 1em);
   margin-bottom: 1em;
-  font-family: "Coustard";
+  font-family: "Crete Round";
   vertical-align: top;
   font-size: 0.81em;
   position: relative;

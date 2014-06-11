@@ -22,103 +22,91 @@
  *  @author Ximdex DevTeam <dev@ximdex.com>
  *  @version $Revision$
  */
+/*******
+//	ICON GENERIC STYLES
+*******/
+/*******
+//	ICONS
+*******/
+.mini-spotlight-advanced::before {
+  content: "\e039"; }
+
+.mini-spotlight-advanced-no::before {
+  content: '\73'; }
+
+.mini-spotlight-advanced-no, .mini-spotlight-advanced {
+  display: block;
+  text-indent: 110%;
+  white-space: nowrap;
+  overflow: hidden; }
+
 .mini-spotlight {
-  position: absolute;
-  right: 1.2em;
-  top: 1.5em; }
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border-left: 1px solid #444551;
+  overflow: hidden;
+  height: calc(100% - 1px); }
 
 .ui-autocomplete-input, .mini-spotlight-advanced-no, .mini-spotlight-advanced {
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  height: 2em; }
+  background: none;
+  border: none;
+  height: 100%; }
 
 .mini-spotlight .ui-autocomplete-input {
   width: calc(100% - 3.5em);
-  padding: .3em .5em;
-  font-size: 1.3rem;
-  width: 13.5em; }
+  padding: 1em 1em;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  width: 13.5em;
+  vertical-align: bottom;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  color: white;
+  margin: 0 -0.2em 0 0; }
+  .mini-spotlight .ui-autocomplete-input:hover, .mini-spotlight .ui-autocomplete-input:focus {
+    width: 16em;
+    background: rgba(255, 255, 255, 0.83); }
+  .mini-spotlight .ui-autocomplete-input:focus {
+    background: white;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: #383943;
+    width: 25em; }
 
 .mini-spotlight-advanced-no, .mini-spotlight-advanced {
-  width: 2em;
+  display: inline-block;
+  width: 3em;
+  background: #444551;
+  padding: 1em 0.7em 1em 1em;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  vertical-align: bottom;
+  position: relative;
+  cursor: pointer;
+  	/*width: 2em;
   position: absolute;
   text-indent: 150%;
-  background: #7bcabf;
+  background:$c_mainlight;
   right: 0;
   top: 0;
-  font-size: 1.3rem;
+  @include fontSize(13px);
   cursor: pointer;
-  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  overflow: hidden; }
-
-.mini-spotlight-advanced {
-  -webkit-border-radius: 0 3px 3px 0;
-  -moz-border-radius: 0 3px 3px 0;
-  border-radius: 0 3px 3px 0; }
+  -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.1);
+  -moz-box-shadow: inset 0 0 5px rgba(0,0,0,.1);
+  box-shadow: inset 0 0 5px rgba(0,0,0,.1);
+  border: 1px solid rgba(255,255,255,.4);
+  overflow: hidden;*/ }
+  .mini-spotlight-advanced-no::before, .mini-spotlight-advanced::before {
+    color: white;
+    position: absolute;
+    left: -.4em;
+    font-size: 1.4em; }
 
 .mini-spotlight-advanced-no {
-  right: 2em;
-  background: #e8e8e8; }
-
-.mini-spotlight-advanced-no:hover {
-  background: #cfcfcf; }
-
-.mini-spotlight-advanced:hover {
-  background: #57bbad; }
-
-.mini-spotlight-advanced-no::before, .mini-spotlight-advanced::before {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  display: block;
-  text-indent: 0;
-  text-align: center;
-  line-height: 1.3rem;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-  line-height: 1.5em;
-  font-size: 1.6rem; }
-
-.mini-spotlight-advanced::before {
-  color: #edeeee;
-  font-size: 2.3rem;
-  line-height: 1; }
-
-.ui-autocomplete {
-  background: #e1e1e1;
-  border: 1px solid #e1e1e1;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  padding: 15px 15px 12px;
-  -webkit-box-shadow: 0 2px 0 rgba(157, 157, 157, 0.2);
-  -moz-box-shadow: 0 2px 0 rgba(157, 157, 157, 0.2);
-  box-shadow: 0 2px 0 rgba(157, 157, 157, 0.2);
-  top: 48px !important; }
-
-.ui-autocomplete:before {
-  background: url("../../../../../images/header/arrow-greyT.png") no-repeat scroll left 3px;
-  content: " ";
-  height: 15px;
-  left: 7px;
-  position: absolute;
-  top: -15px;
-  width: 32px; }
-
-.ui-autocomplete .ui-menu-item:first-child {
-  border-top: 1px solid transparent; }
-
-.ui-autocomplete .ui-menu-item {
-  border-top: 1px dotted #cccccc;
-  padding: 3px 5px; }
-
-.ui-autocomplete .ui-menu-item:hover a {
-  border: none;
-  background: none;
-  color: #7bcabf;
-  cursor: pointer;
-  padding: 2px 4px;
-  margin: 0; }
+  background: #7bcabf; }

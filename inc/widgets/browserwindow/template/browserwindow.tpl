@@ -24,7 +24,6 @@
  *}
 
 <div id="%=id%" class="browser-window %=class%">
-	
 	<listview include="yes" />
 	<treeview include="yes" />
 	<contextmenu  initialize="mainmenu" selector="logo" trigger="left" />

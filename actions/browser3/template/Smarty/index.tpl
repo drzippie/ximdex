@@ -73,9 +73,10 @@
 		<hbox include="yes" />
 
 		<div id="header">
-           <h1><img src="{$_URL_ROOT}/xmd/images/header/logo_xim.png" border="0" alt="{t}Ximdex logotype{/t}" title="{t}Semantic content management with Ximdex{/t}" id="logo" /></h1>
+           <h1 class="icon ximdex-logo">Ximdex CMS</h1>
             <div class="session-info">
-	           <!-- <img class="login-img" src="{$_URL_ROOT}/xmd/images/user_48.png" border="0" alt="Login" title="Login"/>-->
+				<spotlight id="mini-spotlight" />
+				
 	            <div class="language"><span class="current-language icon">{$user_locale.Lang}</span>
 	            <div class="selector_language">
 	            	<ul>
@@ -88,9 +89,10 @@
 	            </div>
 	            	<span class="session-info-text login-name">{$loginName}</span>
 	            </div>
-	            <a class="session-info-text session-logout" href="{$_URL_ROOT}/xmd/loadaction.php?action=logout">{t}Logout{/t}</a>
+	            <a class="session-info-text session-logout icon" href="{$_URL_ROOT}/xmd/loadaction.php?action=logout"><span class="tooltip">{t}Logout{/t}</span></a>
+
             </div>
-			<spotlight id="mini-spotlight" />
+
 		</div>
 		<div id="body">
 			<browserwindow id="bw1" />

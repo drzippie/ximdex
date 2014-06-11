@@ -28,6 +28,9 @@
 @import "../../../../xmd/style/jquery/ximdex_theme/widgets/themes/extends";
 @import "../../../../xmd/style/jquery/ximdex_theme/widgets/themes/icons";
 
+/*------------------------------------*\
+	RESET CSS
+\*------------------------------------*/
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
@@ -81,7 +84,8 @@ table {
 
 body {
 	font-family: $t_text;
-	background-color: $c_main;
+	//background-color: lighten($grey-dark-2, 5%);
+	background-color: $c_background;
 	color: $grey;
 	overflow: hidden;
 	height: 100%;
@@ -229,24 +233,40 @@ strong{
 \*------------------------------------*/
 
 	#header {
-		background: url('../../../../xmd/images/header/cabecera_fnd.png') repeat left top;
-		height: 38px;
-		/*float: left;*/
+		height: 3em;
+		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 0 lighten($c_background, 5%);
+		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 0 lighten($c_background, 5%);
+		box-shadow: inset 0 1px 0 rgba(255,255,255,.3), 0 1px 0 0 lighten($c_background, 5%); 
+		background-color: $grey-dark-2;
 
-		-webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
-		-moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
-		box-shadow: inset 0 1px 0 rgba(255,255,255,.3);
-		border-top: 1px solid #006b6c;
 	}
 
 	#header h1{
 		float: left;
-		margin-top: 3px;
+		@extend %hide-text;
+		width: 20%;
+		position: relative;
+		height: inherit;
+		&::before{
+			@extend %ximdex-logo;
+			position: absolute;
+			left: 0;
+			top: 0;
+			text-indent: 0;
+			width: 100%;
+			color: $c-white;
+			font-size: 10em;
+			line-height: .25;
+			/*display: block;
+			text-indent: 0;
+			color: $c-white;
+			font-size: 2em;*/
+		}
 	}
 
 	#body {
 		position: absolute;
-		top: 40px;
+		top: 3em;
 		bottom: 0px;
 		width: 100%;
 		margin: 0px;
@@ -277,32 +297,77 @@ strong{
 
 	.session-info{
 		float: right;
-		margin-right: 200px;
-		font-size: 1.3rem;
+		@include fontSize(13px);
 		text-transform: uppercase;
-		margin-top: 1.5em;
+		margin-top: 1px;
+		padding-left: 1em;
+		height: inherit;
 	}
 
-	.session-info .language, .session-logout{
+	.session-info .language{
 		display: inline-block;
 		vertical-align: top;
 		color: #e8e8e8;
 		position: relative;
-		margin-right: 1em;
+		margin-right: .5em;
 		z-index: 2;
+		padding: 1.3em .7em .7em 1em ;
+
 	}
 
-	.session-info .language::after{
-		content: ' | ';
-		padding-left: 1em;
+	.session-logout{
+		position: relative;
+		background-color: darken($grey-dark-2, 4%);
+		padding: 1em .7em .85em 1em ;
+		display: inline-block;
+
+		border-left: 1px solid lighten($grey-dark-2, 5%);
+		-webkit-transition: background .18s ease-in;
+		-moz-transition: background .18s ease-in;
+		-ms-transition: background .18s ease-in;
+		-o-transition: background .18s ease-in;
+		transition: background .18s ease-in;
+		height: calc(100% - 1px);
+		&::before{
+			@extend %logout;
+			font-size: 1.4em;
+			color: #e8e8e8;
+		}
+		.tooltip{
+			@extend %tooltip;
+			top: 3.3em;
+			right: 0em;
+			overflow: visible;
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+
+			&::before{
+				@include triangle(top,  rgba(35, 35, 35, 0.8), .5em);
+				right: 1.15em;
+				top: .1em;
+			}
+			-webkit-transition: none;
+			-moz-transition: none;
+			-ms-transition: none;
+			-o-transition: none;
+			transition: none;
+		}
+
+		&:hover {
+			background:$c_mainlight;
+			.tooltip{
+				opacity: 1;
+				height: auto;
+			}
+		}
 	}
 
 	.current-language{
 		position: relative;
 		top: -.7em;
-		color: $c_mainlight;	
+		color: $grey-dark-2;	
 		font-weight: bold;
-		margin-right: .8em;
 		display: inline-block;
 		width: 3em;
 

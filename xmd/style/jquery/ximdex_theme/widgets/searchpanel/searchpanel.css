@@ -225,9 +225,9 @@
         background: none;
         border: none; }
         .dialog_advanced_search .xim-search-dialog .results .t_fixed_header .xim-listview-item, .dialog_advanced_search .xim-search-dialog .simple_search .t_fixed_header .xim-listview-item {
-          border-bottom: 1px solid #c6cfd3;
-          border-right: 1px solid #c6cfd3;
-          border-top: 1px solid #d5dbde;
+          border-bottom: 1px solid #c5c8df;
+          border-right: 1px solid #c5c8df;
+          border-top: 1px solid #d6d7e8;
           margin-bottom: .5em; }
           .dialog_advanced_search .xim-search-dialog .results .t_fixed_header .xim-listview-item th, .dialog_advanced_search .xim-search-dialog .simple_search .t_fixed_header .xim-listview-item th {
             width: auto !important;
@@ -237,7 +237,7 @@
           /*border-left: none;
           border-top: none;*/
           border-width: 0 1px 1px 1px;
-          border-right: 1px solid #d5dbde; }
+          border-right: 1px solid #d6d7e8; }
       .dialog_advanced_search .xim-search-dialog .results .xim-listview-table, .dialog_advanced_search .xim-search-dialog .simple_search .xim-listview-table {
         padding: 0;
         margin: 0;
@@ -289,7 +289,7 @@
           .dialog_advanced_search .xim-search-dialog .results .xim-listview-table tr .xim-listview-actions-dropdown, .dialog_advanced_search .xim-search-dialog .simple_search .xim-listview-table tr .xim-listview-actions-dropdown {
             left: 5px; }
           .dialog_advanced_search .xim-search-dialog .results .xim-listview-table tr:first-child, .dialog_advanced_search .xim-search-dialog .simple_search .xim-listview-table tr:first-child {
-            border-top: 1px solid #c6cfd3; }
+            border-top: 1px solid #c5c8df; }
           .dialog_advanced_search .xim-search-dialog .results .xim-listview-table tr:hover .xim-actions-dropdown, .dialog_advanced_search .xim-search-dialog .simple_search .xim-listview-table tr:hover .xim-actions-dropdown {
             background: none; }
         .dialog_advanced_search .xim-search-dialog .results .xim-listview-table td, .dialog_advanced_search .xim-search-dialog .simple_search .xim-listview-table td {
@@ -429,9 +429,9 @@
         font-family: "Coustard"; }
     .dialog_advanced_search .xim-search-dialog .xim-listview-item:not(.xim-listview-selected):hover {
       border: none;
-      border-right: 1px solid #d5dbde;
-      border-bottom: 1px solid #e3e7e9;
-      border-top: 1px solid #d5dbde;
+      border-right: 1px solid #d6d7e8;
+      border-bottom: 1px solid #e6e7f1;
+      border-top: 1px solid #d6d7e8;
       background: #e1e1e1; }
     .dialog_advanced_search .xim-search-dialog thead .xim-listview-item {
       padding: .5em .5em .5em 5.5em;

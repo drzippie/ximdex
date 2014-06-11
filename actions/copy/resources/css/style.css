@@ -76,7 +76,7 @@
       display: block;
       cursor: pointer; }
       .copy_options div label:hover {
-        background: #d5dbde; }
+        background: #d6d7e8; }
       .copy_options div label::before {
         padding-right: .5em;
         color: #888888; }

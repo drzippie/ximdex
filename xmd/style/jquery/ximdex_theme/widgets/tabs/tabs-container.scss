@@ -33,7 +33,7 @@
 	clear: both;
 	position: absolute;
 	width: 100%;
-	top: 65px;
+	top: 6em;
 	bottom: 0px;
 
 }
@@ -114,5 +114,5 @@ ul.browser-modules-view-list{
 }
 
 .browser-modules-view-list li {
-	font-size: 14px;font-size: 1.4rem;
+	@include fontSize(14px);
 }

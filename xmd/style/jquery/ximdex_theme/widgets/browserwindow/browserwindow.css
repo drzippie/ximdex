@@ -43,7 +43,7 @@
 .xim-actions-menu-list {
   z-index: 100;
   font-size: 14px;
-  font-size: 1.4rem; }
+  font-size: 0.875rem; }
 
 .list-icon-browser {
   display: none; }
@@ -241,10 +241,11 @@ div.search-button-label {
 .xim-actions-menu-list {
   padding: .5em 0;
   font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 0.875rem;
   -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  background: whitesmoke;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px; }
