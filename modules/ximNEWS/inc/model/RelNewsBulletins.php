@@ -56,7 +56,7 @@ class RelNewsBulletins extends RelNewsBulletins_ORM  {
 			$this->set('IdNew', $idNew);
 		
 			if (!parent::add()) {
-				XMD_Log::info(_('Error inserting RelNewsBulletin'));
+				\XMD_Log::info(_('Error inserting RelNewsBulletin'));
 				return false;
 			}
 		}

@@ -227,7 +227,7 @@ class Auth {
 		unset($nodeType);
 
 		if (!$actionId > 0) {
-			XMD_Log::warning(sprintf(_("The nodetype %d has no create action associated"), $nodeTypeId));
+			\XMD_Log::warning(sprintf(_("The nodetype %d has no create action associated"), $nodeTypeId));
 			return false;
 		}
 

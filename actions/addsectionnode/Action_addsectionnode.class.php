@@ -104,7 +104,7 @@ class Action_addsectionnode extends ActionAbstract {
 		if ($sectionType->get('idSectionType') > 0) {
 			$idNodeType = $sectionType->get('idNodeType');
 		} else {
-			XMD_Log::warning(_('Error obtaining section type'));
+			\\XMD_Log::warning(_('Error obtaining section type'));
 			$idNodeType = 5015;
 		}
 		

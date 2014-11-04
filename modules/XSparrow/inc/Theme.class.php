@@ -26,7 +26,6 @@
  ******************************************************************************/
 
 ModulesManager::file('/conf/xsparrow.conf', 'XSparrow');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/xml/validator/XMLValidator.class.php');
 ModulesManager::file('/inc/xml/validator/XMLValidator_RNG.class.php');
 
@@ -71,7 +70,7 @@ class Theme {
 
 		if ($theme and !$xml){
 			//Param not valid. Log Message
-			XMD_Log::warning("XSPARROW: Unable to load $theme theme.");
+			\XMD_Log::warning("XSPARROW: Unable to load $theme theme.");
 		}else if ($xml){
 			$this->getThemeProperties();
 		}
@@ -142,12 +141,12 @@ class Theme {
 					}
 
 				}else{//if not exists theme-properties
-					XMD_Log::error("XSPARROW: /xsparrow-theme/theme-properties node not found. Please check the xml.");
+					\XMD_Log::error("XSPARROW: /xsparrow-theme/theme-properties node not found. Please check the xml.");
 				}
 
 			}else { //if error on load
 
-				XMD_Log::error("XSPARROW: Unable to load xml document to get its properties".$this->xml );
+				\XMD_Log::error("XSPARROW: Unable to load xml document to get its properties".$this->xml );
 			}
 
 		}
@@ -185,14 +184,14 @@ class Theme {
 
 		//If doesnt exist /xsparrow-theme node
 		if (!$xsparrowThemeNodes->length){
-			XMD_Log::warning("XSPARROW: The theme has not version number in xsparrow-theme node");
+			\XMD_Log::warning("XSPARROW: The theme has not version number in xsparrow-theme node");
 			return false;
 		}
 
 		$xsparrowThemeNode = $xsparrowThemeNodes->item(0);
 		//If doesnt exists version attribute.
 		if (!$xsparrowThemeNode->hasAttribute("version")){
-			XMD_Log::warning("XSPARROW: The theme has not version number in xsparrow-theme node");
+			\XMD_Log::warning("XSPARROW: The theme has not version number in xsparrow-theme node");
 			return false;
 		}
 
@@ -202,7 +201,7 @@ class Theme {
 
 		//if doesnt exist rng file.
 		if (!file_exists($rngFilePath)){
-			XMD_Log::warning("XSPARROW: scheme $rngFilePath not found");
+			\XMD_Log::warning("XSPARROW: scheme $rngFilePath not found");
 			return false;
 
 		}
@@ -213,7 +212,7 @@ class Theme {
 		if ($result && !$lazy){
 			$rngValidator = new XMLValidator_RNG();
 			if(!$rngValidator->validate($rngFileContent,$xml)){
-				XMD_Log::error("XSPARROW: The theme doesn't validate the relaxng $rngFilePath");
+				\XMD_Log::error("XSPARROW: The theme doesn't validate the relaxng $rngFilePath");
 				return false;
 			}
 		}

@@ -62,7 +62,7 @@ class ParsingRng {
 		$elements = $this->elementsForRender;
 
 		if (is_null($elements)) {
-			XMD_Log::error("Incorrect visual template $templateID for render a web form");
+			\XMD_Log::error("Incorrect visual template $templateID for render a web form");
 			return NULL;
 		}
 
@@ -128,7 +128,7 @@ class ParsingRng {
 			if ($pvdt->transform()) {
 				$content = htmlspecialchars_decode($pvdt->getRNG()->saveXML());
 			} else {
-				XMD_Log::error("Pvd $templateID not RNG compatible");
+				\XMD_Log::error("Pvd $templateID not RNG compatible");
 				return NULL;
 			}
 		}

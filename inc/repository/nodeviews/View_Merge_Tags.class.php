@@ -57,7 +57,7 @@ class View_Merge_Tags extends Abstract_View implements Interface_View {
 			
 	 		$mergeLength = $mergeItem->length;
 	 		if ($mergeLength != 1) {
-	 			XMD_Log::error('Wrong count of items detected, returning unmodified document');
+	 			\XMD_Log::error('Wrong count of items detected, returning unmodified document');
 	 			return $pointer;
 	 		}
 	 		

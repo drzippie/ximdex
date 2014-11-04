@@ -101,7 +101,7 @@ class SectionNode extends FolderNode {
 		$depsMngr = new DepsManager();
 		$depsMngr->deleteBySource(DepsManager::SECTION_XIMLET, $this->parent->get('IdNode'));
 
-		XMD_Log::info('Section dependencies deleted');
+		\XMD_Log::info('Section dependencies deleted');
 	}
 
 	/**

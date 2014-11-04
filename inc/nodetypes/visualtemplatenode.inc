@@ -24,6 +24,8 @@
  *                                                                            *
  ******************************************************************************/
 
+use \Ximdex\Helpers\Utils;
+
 
 if (!defined('XIMDEX_ROOT_PATH')) {
 	define ('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
@@ -55,12 +57,12 @@ class VisualTemplateNode extends FileNode {
 
 		$pvdt = new PVD2RNG();
 		if (!$pvdt->loadPVD($this->parent->get('IdNode'))) {
-			XMD_Log::error("(1) Pvd-schema " . $this->parent->get('IdNode') . " not compatible RNG");
+			\XMD_Log::error("(1) Pvd-schema " . $this->parent->get('IdNode') . " not compatible RNG");
 		} else {
 			if ($pvdt->transform()) {
 				$content = htmlspecialchars_decode($pvdt->getRNG()->saveXML());
 			} else {
-				XMD_Log::error("(2) Pvd " . $this->parent->get('IdNode') . " not compatible RNG");
+				\XMD_Log::error("(2) Pvd " . $this->parent->get('IdNode') . " not compatible RNG");
 			}
 		}
 
@@ -125,7 +127,7 @@ class VisualTemplateNode extends FileNode {
 		if ($pvdt->transform()) {
 			$content = htmlspecialchars_decode($pvdt->getRNG()->saveXML());
 		} else {
-			XMD_Log::error("Pvd $templateID not compatible RNG");
+			\XMD_Log::error("Pvd $templateID not compatible RNG");
 		}
 
 		$rngName = VisualTemplateNode::RNG_SUFFIX . $this->parent->get('Name');
@@ -165,11 +167,11 @@ class VisualTemplateNode extends FileNode {
 		$content = $this->GetContent();
 		$parts = explode('##########', $content);
 		if (count($parts) > 2) {
-			XMD_Log::error("El esquema PVD {$this->nodeID} tiene más de una vez la cadena ########## lo que hace que no se pueda obtener el contenido por defecto correctamente");
+			\XMD_Log::error("El esquema PVD {$this->nodeID} tiene mï¿½s de una vez la cadena ########## lo que hace que no se pueda obtener el contenido por defecto correctamente");
 			return false;
 		}
 		if (!(count($parts) == 2)) {
-			XMD_Log::error("El esquema PVD {$this->nodeID} parece que no tiene contenido por defecto");
+			\XMD_Log::error("El esquema PVD {$this->nodeID} parece que no tiene contenido por defecto");
 			return false;
 		}
 		return $parts[1];

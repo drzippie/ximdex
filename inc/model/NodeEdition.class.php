@@ -41,7 +41,7 @@ class NodeEdition extends NodeEdition_ORM {
 	public function create($idNode, $idUser, $startTime = null) {
 
 		if (is_null($idNode) || is_null($idUser)) {
-			XMD_Log::error(_('Params node and user are mandatory'));
+			\XMD_Log::error(_('Params node and user are mandatory'));
 			return false;
 		}
 
@@ -53,7 +53,7 @@ class NodeEdition extends NodeEdition_ORM {
 		$nodeEditionId = $this->get('Id');
 
 		if (!($nodeEditionId > 0)) {
-			XMD_Log::error(_("Error Adding NodeEdition"));
+			\XMD_Log::error(_("Error Adding NodeEdition"));
 			return false;
 		}
 
@@ -98,7 +98,7 @@ class NodeEdition extends NodeEdition_ORM {
 	function deleteByNodeAndUser($idNode = null, $idUser = null) {
 		
 		if (is_null($idNode) || is_null($idUser)) {
-			XMD_Log::error(_('Params node and user are mandatory'));
+			\XMD_Log::error(_('Params node and user are mandatory'));
 			return false;
 		}
 
@@ -119,7 +119,7 @@ class NodeEdition extends NodeEdition_ORM {
 	function deleteByUser($idUser = null) {
 		
 		if (is_null($idUser)) {
-			XMD_Log::error(_('Param user is mandatory'));
+			\XMD_Log::error(_('Param user is mandatory'));
 			return false;
 		}
 

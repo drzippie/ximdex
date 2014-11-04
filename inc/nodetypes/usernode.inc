@@ -48,7 +48,7 @@ class UserNode extends Root {
 		$idUser = $user->SetByLogin($login);
 
 		if ($idUser > 0) {
-			XMD_Log::error("Another user with the same login $login");
+			\XMD_Log::error("Another user with the same login $login");
 			return NULL;
 		}
 

@@ -114,7 +114,7 @@ class XimNewsList extends XimNewsList_ORM {
 			$relColectorList->set('IdList', $listID);
 
 			if(!$relColectorList->add()){			
-	        	XMD_Log::info("list $listID");
+	        	\XMD_Log::info("list $listID");
 				return false;
 			}
 	

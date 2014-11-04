@@ -42,7 +42,7 @@ class RelServersChannels extends RelServersChannels_ORM {
 		$channels = $this->find('IdChannel', 'IdServer = %s', array('IdServer' => $serverId), MONO);
 
 		if (!(sizeof($channels) > 0)) {
-			XMD_Log::info('Server without associated channels');
+			\XMD_Log::info('Server without associated channels');
 			return false;
 		}
 		

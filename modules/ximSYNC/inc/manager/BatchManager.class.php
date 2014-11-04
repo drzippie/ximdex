@@ -41,7 +41,6 @@ ModulesManager::file('/inc/dependencies/DepsManager.class.php');
 ModulesManager::file('/inc/model/RelServersChannels.class.php');
 ModulesManager::file('/inc/model/RelFramesPortal.class.php');
 ModulesManager::file('/inc/model/PortalVersions.class.php');
-ModulesManager::file('/inc/log/MN_log.class.php');
 
 
 /**
@@ -119,7 +118,7 @@ class BatchManager {
 			$docNode = new Node($idDoc);
 
 			if (!($docNode->get('IdNode') > 0)) {
-				XMD_Log::error(_("Unexisting node")." $idDoc");
+				\XMD_Log::error(_("Unexisting node")." $idDoc");
 				continue;
 			}
 
@@ -602,7 +601,7 @@ class BatchManager {
     	$db = new DB();
     	$db->execute($sql);
     	if ($db->numRows > 0) {
-    		XMD_Log::warning(sprintf(_('Found %s Batchs without Frames, were marked as NoFrames').".",  $db->numRows));
+    		\XMD_Log::warning(sprintf(_('Found %s Batchs without Frames, were marked as NoFrames').".",  $db->numRows));
     	}
     }
 
@@ -681,7 +680,7 @@ class BatchManager {
 				$prevState = $batchDown->get('State');
 
 				if ($totals == 0) {
-					XMD_Log::info(sprintf(_("Batch %d type down without associated batch type up"), $idBatch));
+					\XMD_Log::info(sprintf(_("Batch %d type down without associated batch type up"), $idBatch));
 
 					$generatorId = $batchDown->get('IdNodeGenerator');
 
@@ -884,7 +883,7 @@ class BatchManager {
 		} else if ($batchType == 'Down') {
 				$batchColumn = 'IdBatchDown';
 		} else {
-			XMD_Log::info(sprintf(_("ERROR: %s rare type of batch"), $batchType));
+			\XMD_Log::info(sprintf(_("ERROR: %s rare type of batch"), $batchType));
 			return false;
 		}
 
@@ -900,7 +899,7 @@ class BatchManager {
 
 		//Si s�lo quedan por procesar ServerFrames de servidores inactivos finalizo el Batch
 		if ($totalServerFrames == $numServerFramesFromInactiveServers + $sucessServerFrames) {
-			XMD_Log::info(sprintf(_("ERROR: %s rare type of batch"), $batchType));
+			\XMD_Log::info(sprintf(_("ERROR: %s rare type of batch"), $batchType));
 			$this->set('State','Ended');
 			$this->update();
 		}
@@ -1122,7 +1121,7 @@ class BatchManager {
 				$relFramePortal->addVersion($idPortalVersion, $nodeFrameId);
 			}
 		}else{
-			XMD_Log::error(_("Nodesframes to be added to the portal review do not exist"));
+			\XMD_Log::error(_("Nodesframes to be added to the portal review do not exist"));
 		}
 
 		return true;

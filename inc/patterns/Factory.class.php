@@ -26,7 +26,6 @@
 
 
 
-require_once(XIMDEX_ROOT_PATH . '/inc/log/XMD_log.class.php');
 
 class Factory {
 
@@ -68,7 +67,7 @@ class Factory {
 				require_once($class_path);
 			}else {
 				$this->_setError("Factory::instantiate(): El fichero $class_path no existe o no puede ser leido");
-				XMD_Log::error("Factory::instantiate(): El fichero $class_path no existe o no puede ser leido");
+				\XMD_Log::error("Factory::instantiate(): El fichero $class_path no existe o no puede ser leido");
 				return NULL;
 			}
 		}
@@ -83,14 +82,14 @@ class Factory {
 			$obj = new $class();
 		}
 		if (!is_object($obj)) {
-			XMD_Log::fatal("Could'nt instanciate the class $class");
+			\XMD_Log::fatal("Could'nt instanciate the class $class");
 		}
 		return $obj;
 	
 	}
 	
 	function _setError($msg) {
-		XMD_Log::warning($msg);
+		\XMD_Log::warning($msg);
 		$this->_error = $msg;
 	}
 	

@@ -35,7 +35,7 @@ class Action_modifylink extends ActionAbstract {
 		$node = new Node($idNode);
 		if (!(($link->get('IdLink') > 0) && ($node->get('IdNode') > 0))) {
 			$this->messages->add(_('Link could not be successfully loaded, contact with your administrator'), MSG_TYPE_ERROR);
-			XMD_Log::error("Error while loading link" . $idNode);
+			\\XMD_Log::error("Error while loading link" . $idNode);
 			$this->render(array('messages' => $this->messages->messages), NULL, 'messages.tpl');
 			return false;
 		}

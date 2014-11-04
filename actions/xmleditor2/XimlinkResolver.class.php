@@ -96,7 +96,7 @@ class ximlinkResolver {
 		}
 
 		//$query = sprintf($query, $idprj);
-		XMD_Log::info($query);
+		\XMD_Log::info($query);
 		$data = array();
 		$db = new DB();
 		$db->query($query);
@@ -192,9 +192,9 @@ class ximlinkResolver {
 		$result = $bio->build($data);
 
 		if ($result < 1) {
-			XMD_Log::error(_('A new ximlink could not be created: ') . $url);
+			\XMD_Log::error(_('A new ximlink could not be created: ') . $url);
 			foreach ($bio->messages->messages as $msg) {
-				XMD_Log::error(_('ximlink: ') . $msg['message']);
+				\XMD_Log::error(_('ximlink: ') . $msg['message']);
 			}
 		}
 

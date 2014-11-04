@@ -33,7 +33,6 @@ if (!defined('XIMDEX_ROOT_PATH'))
 	define('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . "/../../"));
 
 require_once(XIMDEX_ROOT_PATH . '/inc/cache/DexCacheDB.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 
 /**
  *  

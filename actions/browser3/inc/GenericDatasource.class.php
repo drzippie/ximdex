@@ -51,7 +51,7 @@ class GenericDatasource extends AbstractDatasource {
 		$factory = new Factory(XIMDEX_ROOT_PATH . '/actions/browser3/inc', 'Datasource_');
 		$ds = $factory->instantiate($datasource, $conf);
 		if (!is_object($ds)) {
-			XMD_Log::fatal(_('A class which does not exist is trying to be requested: Datasource_') . $datasource);
+			\\XMD_Log::fatal(_('A class which does not exist is trying to be requested: Datasource_') . $datasource);
 		}
 
 		return $ds;

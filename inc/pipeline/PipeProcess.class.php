@@ -64,7 +64,7 @@ class PipeProcess extends PipeProcess_ORM {
 	 */
 	function loadByName($name) {
 		if (empty($name)) {
-			XMD_Log::error('Se ha solicitado la carga de un proceso sin introducir su nombre');
+			\XMD_Log::error('Se ha solicitado la carga de un proceso sin introducir su nombre');
 			return false;
 		}
 		
@@ -82,13 +82,13 @@ class PipeProcess extends PipeProcess_ORM {
 	 * @return previous process id or null
 	 */
 	function getPreviousProcess() {
-		//Obtenemos la transición anterior
+		//Obtenemos la transiciï¿½n anterior
 		$result = $this->find('id', 'IdPipeline = %s AND IdTransitionTo = %s',
 					array($this->get('IdPipeline'), $this->get('IdTransitionFrom')), MONO);
 		$resultsCount = count($result);
 		//Si son muchas error (No previsto, creo que ni siquiera lo soporta el modelo)
 		if ($resultsCount > 1) {
-			XMD_Log::fatal('No se ha podido determinar el proceso anterior a uno dado');
+			\XMD_Log::fatal('No se ha podido determinar el proceso anterior a uno dado');
 			return false;
 		}
 		
@@ -106,8 +106,8 @@ class PipeProcess extends PipeProcess_ORM {
 	 */
 	function removeStatus($idStatus) {
 		if (!($this->get('id') > 0)) {
-			XMD_Log::error('No se ha podido encontrar el proceso de workflow');
-			$this->messages->add(_('Ha ocurrido un error no recuperable durante la gestión de estados de workflow, consulte con su administrador'), 
+			\XMD_Log::error('No se ha podido encontrar el proceso de workflow');
+			$this->messages->add(_('Ha ocurrido un error no recuperable durante la gestiï¿½n de estados de workflow, consulte con su administrador'), 
 				MSG_TYPE_ERROR);
 			return false;
 		}
@@ -126,8 +126,8 @@ class PipeProcess extends PipeProcess_ORM {
 		}
 
 		if (!(is_object($transitionFrom) && is_object($transitionTo))) {
-			$this->messages->add(_('No se han podido determinar las transiciones de un estado para su eliminación, esto es normal si el estado es estado inicial o final'), MSG_TYPE_WARNING);
-			XMD_Log::warning('No se han podido determinar las transiciones de un estado para su eliminación, esto es normal si el estado es estado inicial o final');
+			$this->messages->add(_('No se han podido determinar las transiciones de un estado para su eliminaciï¿½n, esto es normal si el estado es estado inicial o final'), MSG_TYPE_WARNING);
+			\XMD_Log::warning('No se han podido determinar las transiciones de un estado para su eliminaciï¿½n, esto es normal si el estado es estado inicial o final');
 			return false;
 		}
 		

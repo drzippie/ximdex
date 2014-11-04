@@ -24,7 +24,6 @@
  *  @version $Revision$
  */
 
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 
 class BuildParser {
 

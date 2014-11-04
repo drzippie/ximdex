@@ -153,6 +153,10 @@ class DB
 	 */
 	var $workingEncoding='';
 
+    /**
+     * @var PDO
+     */
+    private $pdo = null ;
 	/**
 	 * Constructor
 	 * @return unknown_type
@@ -436,7 +440,7 @@ class DB
 		}
 
 		if (!(strlen($value) > 0)) {
-			XMD_Log::info("WARNING: A SQL statement is converting an empty string to NULL");
+			\XMD_Log::info("WARNING: A SQL statement is converting an empty string to NULL");
 			return 'NULL';
 		}
 

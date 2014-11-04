@@ -297,7 +297,7 @@ class Action_browser3 extends ActionAbstract {
 
 			return $nodes;
 		}else {
-			XMD_Log::info(_('Empty nodes in checkNodeAction [ browser3 ]'));
+			\\XMD_Log::info(_('Empty nodes in checkNodeAction [ browser3 ]'));
 			return null;
 		}
 	}
@@ -954,7 +954,7 @@ class Action_browser3 extends ActionAbstract {
 		// 2) Node groups
 		// If NodeType::CanAttachGroups == 0 find parent groups until CanAttachGroup == 1
 
-		XMD_Log::debug(sprintf(_('Debugging actions intersection with nodes - [%s]'), implode(', ', $nodes)));
+		\\XMD_Log::debug(sprintf(_('Debugging actions intersection with nodes - [%s]'), implode(', ', $nodes)));
 
 		for ($i=0; $i<count($nodes); $i++) {
 
@@ -977,7 +977,7 @@ class Action_browser3 extends ActionAbstract {
 				order by ft.depth';
 
 			$sqlNodeInfo = sprintf($sqlNodeInfo, $idNode);
-			XMD_Log::debug(sprintf('sqlNodeInfo - [%s]', $sqlNodeInfo));
+			\\XMD_Log::debug(sprintf('sqlNodeInfo - [%s]', $sqlNodeInfo));
 
 			$db->query($sqlNodeInfo);
 
@@ -1022,7 +1022,7 @@ class Action_browser3 extends ActionAbstract {
 		$arrNodes2 = array_unique($arrNodes2);
 		$sqlGroupsIntersection = sprintf($sqlGroupsIntersection, $idUser, implode(',', $arrNodes2));
 
-		XMD_Log::debug(sprintf('sqlGroupsIntersection - [%s]', $sqlGroupsIntersection));
+		\\XMD_Log::debug(sprintf('sqlGroupsIntersection - [%s]', $sqlGroupsIntersection));
 
 		$db->query($sqlGroupsIntersection);
 		while (!$db->EOF) {
@@ -1060,7 +1060,7 @@ class Action_browser3 extends ActionAbstract {
 			having c = %s";
 		$sqlCommandIntersection = sprintf($sqlCommandIntersection, $strNodeTypes, count($arrNodeTypes));
 
-		XMD_Log::debug(sprintf('sqlCommandIntersection - [%s]', $sqlCommandIntersection));
+		\\XMD_Log::debug(sprintf('sqlCommandIntersection - [%s]', $sqlCommandIntersection));
 
 		$db->query($sqlCommandIntersection);
 		while (!$db->EOF) {
@@ -1097,7 +1097,7 @@ class Action_browser3 extends ActionAbstract {
 			implode("','", $commands)
 		);
 
-		XMD_Log::debug(sprintf('sqlRolesActions - [%s]', $sqlRolesActions));
+		\\XMD_Log::debug(sprintf('sqlRolesActions - [%s]', $sqlRolesActions));
 
 		$db->query($sqlRolesActions);
 

@@ -95,7 +95,7 @@ class XimletNode extends AbstractStructuredDocument
 		$depsMngr->deleteBySource(DepsManager::STRDOC_TEMPLATE, $this->parent->get('IdNode'));
 		$depsMngr->deleteByTarget(DepsManager::BULLETIN_XIMLET, $this->parent->get('IdNode'));
 
-		XMD_Log::info('Ximlet dependencies deleted');
+		\XMD_Log::info('Ximlet dependencies deleted');
 
 
 	}
@@ -109,7 +109,7 @@ class XimletNode extends AbstractStructuredDocument
 	private function removeFromXml($documentId) {
 
 		if (is_null($documentId)) {
-			XMD_Log::error('Param documentId required');
+			\XMD_Log::error('Param documentId required');
 			return false;
 		}
 
@@ -145,7 +145,7 @@ class XimletNode extends AbstractStructuredDocument
     	// check the obtained node
     	$colector = new Node($idColector);
     	if ($colector->nodeType->get('Name') != 'XimNewsColector') {
-    		XMD_Log::fatal('Se ha estimado un tipo de nodo incorrecto');
+    		\XMD_Log::fatal('Se ha estimado un tipo de nodo incorrecto');
     		return false; // xmd::fatal must kill the process anyway, so dont wait any further trace 
     	} 
     	

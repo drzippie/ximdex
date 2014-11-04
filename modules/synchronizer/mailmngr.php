@@ -77,7 +77,7 @@ function GetMessageFromSync($idSync, $nodeID) {
 	$content = $pipeman->getCacheFromProcessAsContent($lv, 'StrDocToDexT', array('CHANNEL' => $channel));
 	
 	if ($content === null) {
-		XMD_Log::error("No se ha podido obtener el contenido del documento: NodeId: $nodeID, ChannelId: $channel, Process: StrDocToDexT");
+		\XMD_Log::error("No se ha podido obtener el contenido del documento: NodeId: $nodeID, ChannelId: $channel, Process: StrDocToDexT");
 		return null;
 	}
 
@@ -113,7 +113,7 @@ function GetToFromSync($idSync) {
 
 	$node = new Node($bulletinID);
 	$containerID = $node->GetParent();
-	XMD_Log::display("Contenedor " . $containerID);
+	\XMD_Log::display("Contenedor " . $containerID);
 
 	$dbObj->Query("SELECT IdColector FROM XimNewsBulletins WHERE IdContainer=" .$containerID);
 	$colectorID = $dbObj->GetValue('IdColector');
@@ -142,20 +142,20 @@ function main($argc, $argv) {
 
 	$mailmngr_pid = posix_getpid();
 
-        XMD_Log::display("---------------------------------------------------------------------");
-        XMD_Log::display("Executing: MailMngr (" . $mailmngr_pid . ")");
-        XMD_Log::display("---------------------------------------------------------------------");
-        XMD_Log::display("");
-        XMD_Log::display("Checking lock...");
+        \XMD_Log::display("---------------------------------------------------------------------");
+        \XMD_Log::display("Executing: MailMngr (" . $mailmngr_pid . ")");
+        \XMD_Log::display("---------------------------------------------------------------------");
+        \XMD_Log::display("");
+        \XMD_Log::display("Checking lock...");
 
 	$mutex = new Mutex(Config::getValue("AppRoot") . Config::getValue("TempRoot") . "/mailmngr.lck");
         if (!$mutex->acquire()) {
-                XMD_Log::display("Closing...");
-                XMD_Log::display("INFO: lock file exists, there is another process running.");
+                \XMD_Log::display("Closing...");
+                \XMD_Log::display("INFO: lock file exists, there is another process running.");
                 exit(1);
         }
 
-        XMD_Log::display("Lock acquired...");
+        \XMD_Log::display("Lock acquired...");
 	
 	$db = new DB();
 
@@ -173,7 +173,7 @@ function main($argc, $argv) {
 		$state_frame = SynchroFacade::getFrameState($bulletinFrame);
 
 		if (is_null($state_frame)) {
-			XMD_Log::error("Incorrect frame: $bulletinFrame");
+			\XMD_Log::error("Incorrect frame: $bulletinFrame");
 			continue;
 		}
 
@@ -196,7 +196,7 @@ function main($argc, $argv) {
 					continue;
 				}
 
-				XMD_Log::display("Sending mail " . $list);
+				\XMD_Log::display("Sending mail " . $list);
 
 				$mail = new Mail();
 
@@ -226,7 +226,7 @@ function main($argc, $argv) {
 
 	$mutex->release();
 
-	XMD_Log::display("PROCESS FINISHED");
+	\XMD_Log::display("PROCESS FINISHED");
 }
 	
 

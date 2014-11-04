@@ -38,7 +38,6 @@ require_once(XIMDEX_ROOT_PATH . "/inc/model/language.inc");
 require_once(XIMDEX_ROOT_PATH . "/inc/model/NodeDependencies.class.php");
 require_once(XIMDEX_ROOT_PATH . "/inc/persistence/Config.class.php");
 require_once(XIMDEX_ROOT_PATH . "/inc/cache/DexCache.class.php");
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/dependencies/DepsManager.class.php');
 ModulesManager::file('/inc/SolrViews.class.php', 'ximRAM');
 ModulesManager::file('/inc/RelTagsNodes.inc', 'ximTAGS');
@@ -422,7 +421,7 @@ class AbstractStructuredDocument extends FileNode  {
 		$depsMngr->deleteBySource(DepsManager::STRDOC_CSS, $this->parent->get('IdNode'));
 		$depsMngr->deleteBySource(DepsManager::STRDOC_SCRIPT, $this->parent->get('IdNode'));
 
-		XMD_Log::info('StrDoc dependencies deleted');
+		\XMD_Log::info('StrDoc dependencies deleted');
 	}
 
 	function RenameNode($name = null) {

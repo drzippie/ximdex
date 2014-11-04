@@ -171,7 +171,7 @@ class ActionAbstract extends IController {
 
 		if ($nodeid && $actionid) {
 			$action = new Action($actionid);
-			//XMD_Log::debug("MVC::ActionAbstract calling action $actionid (" . $action->get('Command') . ") in node $nodeid ");
+			//\XMD_Log::debug("MVC::ActionAbstract calling action $actionid (" . $action->get('Command') . ") in node $nodeid ");
 		}
 
 		$method = ($var = $request->getParam("method")) ? $var : 'index';
@@ -194,7 +194,7 @@ class ActionAbstract extends IController {
 			$this->logInitAction();
 			$this->$method();
 		} else {
-			XMD_Log::debug("MVC::ActionAbstract Metodo {$method} not found" );
+			\XMD_Log::debug("MVC::ActionAbstract Metodo {$method} not found" );
 		}
 
 	}

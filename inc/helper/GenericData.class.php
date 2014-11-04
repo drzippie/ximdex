@@ -262,7 +262,7 @@ class GenericData extends Overloadable {
 			if ($dbObj->numErr > 0) {
 				$this->messages->add($dbObj->desErr, MSG_TYPE_ERROR);
 				foreach ($this->messages->messages as $message) {
-					XMD_Log::error(sprintf("%s: [%s]", $message['message'], $query));
+					\XMD_Log::error(sprintf("%s: [%s]", $message['message'], $query));
 				}
 				return false;
 			} else {
@@ -282,7 +282,7 @@ class GenericData extends Overloadable {
 							array($this->{$this->_idField}),
 							MONO);
 					if (count($result) == 1) {
-						XMD_Log::warning('La tabla no tiene un campo autoincremental, devolviendo campo id');
+						\XMD_Log::warning('La tabla no tiene un campo autoincremental, devolviendo campo id');
 						$insertedId = $result[0];
 					}
 				}
@@ -298,9 +298,9 @@ class GenericData extends Overloadable {
 
 			}
 		} else {
-			XMD_Log::error('Integrity errors found while executing a SQL query');
+			\XMD_Log::error('Integrity errors found while executing a SQL query');
 			foreach ($this->messages->messages as $message) {
-				XMD_Log::error($message['message']);
+				\XMD_Log::error($message['message']);
 			}
 		}
 		$this->_applyFilter('afterAdd');
@@ -653,7 +653,7 @@ class GenericData extends Overloadable {
 		} else if(preg_match('/delete/i', $query) > 0) {
 			$this->_applyFilter('beforeDelete');
 		} else {
-			XMD_Log::warning('No pre-filter applied for query: ' . $query);
+			\XMD_Log::warning('No pre-filter applied for query: ' . $query);
 		}
 
 		$dbObj = new DB();
@@ -669,7 +669,7 @@ class GenericData extends Overloadable {
 		} else if(preg_match('/delete/i', $query) > 0) {
 			$this->_applyFilter('afterDelete');
 		} else {
-			XMD_Log::warning('No post-filter applied for query: ' . $query);
+			\XMD_Log::warning('No post-filter applied for query: ' . $query);
 		}
 		return $result;
 	}

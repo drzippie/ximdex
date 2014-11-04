@@ -45,14 +45,14 @@ class View_SQL extends Abstract_View implements Interface_View {
 		$version = new Version($idVersion);
 
 		if (!($version->get('IdVersion') > 0)) {
-			XMD_Log::error("Se ha cargado una versión incorrecta ($idVersion)");
+			\XMD_Log::error("Se ha cargado una versiï¿½n incorrecta ($idVersion)");
 			return NULL;
 		}
 
 		$node = new Node($version->get('IdNode'));
 
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error("El nodo que se está intentando convertir no existe: " . $version->get('IdNode'));
+			\XMD_Log::error("El nodo que se estï¿½ intentando convertir no existe: " . $version->get('IdNode'));
 			return NULL;
 		}
 
@@ -174,7 +174,7 @@ class View_SQL extends Abstract_View implements Interface_View {
 					$df= new DataFactory($nodeId);
 					$idVersion = $df->GetLastVersionId();
 					if (!$ximCache->CreateCache($nodeId,$idVersion,$pvdTemplate,$xslFile)){
-						XMD_Log::error("No se ha creado ximnewsCache para la noticia $nodeId");
+						\XMD_Log::error("No se ha creado ximnewsCache para la noticia $nodeId");
 					}
 					
 					//add pvd to the pvdArray
@@ -234,11 +234,11 @@ class View_SQL extends Abstract_View implements Interface_View {
 					$this->changeNodeProperties($colectorId);
 
 				}else{
-					XMD_Log::info("Is not sended the colector info for the new $nodeId in OTF");
+					\XMD_Log::info("Is not sended the colector info for the new $nodeId in OTF");
 				}
 			}
 		}else{
-			XMD_Log::error("Don't found colectors for idNew $nodeId");
+			\XMD_Log::error("Don't found colectors for idNew $nodeId");
 		}
 	}
 	/**
@@ -299,7 +299,7 @@ class View_SQL extends Abstract_View implements Interface_View {
 		$object = $factory->instantiate("_ORM");
 
 		if (!is_object($object)) {
-			XMD_Log::error("Error, la clase de orm especificada no existe");
+			\XMD_Log::error("Error, la clase de orm especificada no existe");
 			return NULL;
 		}
 

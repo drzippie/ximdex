@@ -34,7 +34,7 @@ include_once (XIMDEX_ROOT_PATH . "/inc/persistence/Config.class.php");
 include_once (XIMDEX_ROOT_PATH . "/actions/fileupload/baseIO.php");
 include_once (XIMDEX_ROOT_PATH . "/actions/workflow_forward/baseIO.php");
 require_once (XIMDEX_ROOT_PATH . "/actions/workflow_forward/baseIO.php");
-include_once (XIMDEX_ROOT_PATH . "/inc/fsutils/FsUtils.class.php");
+
 require_once (XIMDEX_ROOT_PATH . "/inc/model/RelTemplateContainer.class.php");
 require_once (XIMDEX_ROOT_PATH . "/inc/model/NodeDependencies.class.php");
 require_once(XIMDEX_ROOT_PATH . '/inc/dependencies/DepsManager.class.php');
@@ -180,7 +180,7 @@ class FileNode extends Root {
 		$this->dbObj->Query($query);
 
 		if (!$this->dbObj->numRows > 0) {
-			XMD_Log::error("***************** Version de archivo no encontrada -->" . $this->parent->get('IdNode'));
+			\XMD_Log::error("***************** Version de archivo no encontrada -->" . $this->parent->get('IdNode'));
 		} else {
 			$nodeFile = $this->dbObj->GetValue('File');
 
@@ -206,7 +206,7 @@ class FileNode extends Root {
 		$idActualState = $this->parent->GetState();
 
 		if ($idState == $idActualState) {
-			XMD_Log::warning('Se ha solicitado pasar a un estado y ya nos encontramos en ese estado');
+			\XMD_Log::warning('Se ha solicitado pasar a un estado y ya nos encontramos en ese estado');
 			return true;
 		}
 
@@ -241,7 +241,7 @@ class FileNode extends Root {
 		$depsMngr = new DepsManager();
 		$depsMngr->deleteByTarget(DepsManager::STRDOC_NODE, $this->parent->get('IdNode'));
 
-		XMD_Log::info('Filenode dependencies deleted');
+		\XMD_Log::info('Filenode dependencies deleted');
 
 		return true;
 	}

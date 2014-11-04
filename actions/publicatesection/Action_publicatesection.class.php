@@ -51,7 +51,7 @@ class Action_publicatesection extends ActionAbstract {
 			'publishabledtypes' => $publishabledNodeTypes,
 			'synchronizer_to_use' => ModulesManager::isEnabled('ximSYNC') ? 'ximSYNC' : 'default',
 			'ximpublish_tools_enabled' => ModulesManager::isEnabled('ximPUBLISHtools'),
-			"folderName" => in_array($nodeTypeName, array('XimNewsSection', 'Section', 'XimNewsImagesFolder', 'XimNewsImagesRootFolder', 'ImagesFolder', 'ImagesRootFolder', 'CssRootFolder', 'CssFolder', 'CommonFolder', 'CommonRootFolder','XimNewsImagesFolder')) ? 'sección' : 'servidor'
+			"folderName" => in_array($nodeTypeName, array('XimNewsSection', 'Section', 'XimNewsImagesFolder', 'XimNewsImagesRootFolder', 'ImagesFolder', 'ImagesRootFolder', 'CssRootFolder', 'CssFolder', 'CommonFolder', 'CommonRootFolder','XimNewsImagesFolder')) ? 'secciï¿½n' : 'servidor'
 		);
 
 		$serverID = $node->getServer();
@@ -81,7 +81,7 @@ class Action_publicatesection extends ActionAbstract {
 		$node = new Node($idNode);
 		$nodename = $node->get('Name');
 		$nodeTypeName = $node->nodeType->GetName();
-		$folderName = in_array($nodeTypeName, array('XimNewsSection','Section','XimNewsImagesRootFolder','XimNewsImagesFolder','ImagesFolder', 'ImagesRootFolder', 'CssFolder', 'CssRootFolder','CommonFolder','CommonRootFolder','XimNewsImagesFolder')) ? 'La sección' : 'El servidor';
+		$folderName = in_array($nodeTypeName, array('XimNewsSection','Section','XimNewsImagesRootFolder','XimNewsImagesFolder','ImagesFolder', 'ImagesRootFolder', 'CssFolder', 'CssRootFolder','CommonFolder','CommonRootFolder','XimNewsImagesFolder')) ? 'La secciï¿½n' : 'El servidor';
 
 
 		$otfPublication = $node->getSimpleBooleanProperty('otf');	
@@ -112,8 +112,7 @@ class Action_publicatesection extends ActionAbstract {
 		if (!defined('LOGGER_LEVEL_ERROR'))		define('LOGGER_LEVEL_ERROR',	0x0004);
 		if (!defined('LOGGER_LEVEL_FATAL'))		define('LOGGER_LEVEL_FATAL',	0x0005);
 		
-		ModulesManager::file('/inc/log/Log.class.php');
-		ModulesManager::file('/conf/install-modules.conf');
+ 		ModulesManager::file('/conf/install-modules.conf');
 				
 		$file = 'publication_logger';
 		$sort = 'DESC';

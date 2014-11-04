@@ -28,7 +28,6 @@ define('MODE_NODETYPE', 0);
 define('MODE_NODEATTRIB', 1);
 
 ModulesManager::file('/inc/io/BaseIOConstants.php');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/model/node.inc');
 ModulesManager::file('/inc/model/structureddocument.inc');
 ModulesManager::file('/inc/workflow/Workflow.class.php');
@@ -79,7 +78,7 @@ class BaseIO {
 		}
 
 		if (empty($data['NODETYPENAME'])) {
-			XMD_Log::error(_('Empty nodetype in baseIO'));
+			\XMD_Log::error(_('Empty nodetype in baseIO'));
 			$this->messages->add(_('Empty nodetype'), MSG_TYPE_ERROR);
 			return ERROR_INCORRECT_DATA;
 		}
@@ -93,7 +92,7 @@ class BaseIO {
 		if (empty($data['CLASS'])) {
 			$data['CLASS'] = $this->_infereNodeTypeClass($data['NODETYPENAME']);
 			if (empty($data['CLASS'])) {
-				XMD_Log::error(_('Nodetype could not be infered'));
+				\XMD_Log::error(_('Nodetype could not be infered'));
 				$this->messages->add(_('Nodetype could not be infered'), MSG_TYPE_ERROR);
 				return ERROR_INCORRECT_DATA;
 			}
@@ -111,7 +110,7 @@ class BaseIO {
 		$data = $this->dataToUpper($data);
 
 		if (!($this->_checkPermissions($nodeTypeName, $userid, WRITE) || $this->_checkName($data))) {
-			XMD_Log::error(_('Node could not be inserted due to lack of permits'));
+			\XMD_Log::error(_('Node could not be inserted due to lack of permits'));
 			$this->messages->add(_('Node could not be inserted due to lack of permits'),
 					MSG_TYPE_ERROR);
 			return ERROR_NO_PERMISSIONS;
@@ -121,7 +120,7 @@ class BaseIO {
 			$nodeType = new NodeType();
 			$nodeType->SetByName($data['NODETYPENAME']);
 			if (!$node->checkAllowedContent($nodeType->GetID(), $data['PARENTID'], false)) {
-				XMD_Log::error(_('Node could not be inserted due to it is not allowed in the folder'));
+				\XMD_Log::error(_('Node could not be inserted due to it is not allowed in the folder'));
 				$this->_dumpMessages($node->messages);
 				return ERROR_NOT_ALLOWED;
 			}
@@ -129,12 +128,12 @@ class BaseIO {
 
 		//general check
 		if (!array_key_exists('PARENTID', $data)) {
-			XMD_Log::error(_('Parentid was not specified'));
+			\XMD_Log::error(_('Parentid was not specified'));
 			$this->messages->add(_('Node parent was not specified'), MSG_TYPE_ERROR);
 			return ERROR_INCORRECT_DATA;
 		}
 		if (!array_key_exists('NAME', $data)) {
-			XMD_Log::error(_('Node name was not specified'));
+			\XMD_Log::error(_('Node name was not specified'));
 			$this->messages->add(_('Node name was not specified'), MSG_TYPE_ERROR);
 			return ERROR_INCORRECT_DATA;
 		}
@@ -359,7 +358,7 @@ class BaseIO {
 
 				$idNodetype = $nodeType->get('IdNodeType');
 				if (!($idNodetype > 0)) {
-					XMD_Log::error('Nodetype not found');
+					\XMD_Log::error('Nodetype not found');
 					return false;
 				}
 
@@ -507,7 +506,7 @@ class BaseIO {
 				if (!($result > 0)) {
 					reset($node->messages->messages);
 					while (list (, $message) = each($node->messages->messages)) {
-						XMD_Log::error($message['message']);
+						\XMD_Log::error($message['message']);
 					}
 				}
 				return ($result > 0) ? $result : ERROR_INCORRECT_DATA;
@@ -526,7 +525,7 @@ class BaseIO {
                 if (!($result > 0)) {
                     reset($node->messages->messages);
                     while (list (, $message) = each($node->messages->messages)) {
-                        XMD_Log::error($message['message']);
+                        \XMD_Log::error($message['message']);
                     }
                 }
                 return ($result > 0) ? $result : ERROR_INCORRECT_DATA;	
@@ -563,7 +562,7 @@ class BaseIO {
 			default :
 				// TODO: trigger error.
 				$this->messages->add(_('An error occurred trying to insert the node'),MSG_TYPE_ERROR);
-				XMD_Log::fatal(sprintf(_("The class %s does not exist in BaseIO"),$nodeTypeName));
+				\XMD_Log::fatal(sprintf(_("The class %s does not exist in BaseIO"),$nodeTypeName));
 				return ERROR_INCORRECT_DATA;
 		}
 	}
@@ -594,7 +593,7 @@ class BaseIO {
 		if (empty($data['CLASS'])) {
 			$data['CLASS'] = $this->_infereNodeTypeClass($data['NODETYPENAME']);
 			if (empty($data['CLASS'])) {
-				XMD_Log::error(_('Nodetype could not be infered'));
+				\XMD_Log::error(_('Nodetype could not be infered'));
 				$this->messages->add(_('Nodetype could not be infered'), MSG_TYPE_ERROR);
 				return ERROR_INCORRECT_DATA;
 			}
@@ -907,7 +906,7 @@ class BaseIO {
 
 			default :
 				// TODO: trigger error.
-				XMD_Log::error(sprintf(_("The class %s is no existing in BaseIO update"), $nodeTypeName));
+				\XMD_Log::error(sprintf(_("The class %s is no existing in BaseIO update"), $nodeTypeName));
 				$this->messages->add(_('A nodetype could not be determined for insertion'),
 						MSG_TYPE_ERROR);
 				return ERROR_INCORRECT_DATA;
@@ -1070,7 +1069,7 @@ class BaseIO {
 				return 1;
 
 			default :
-				XMD_Log::warning(sprintf(_("The class %s does not exist in BaseIO"), $nodeTypeName ));
+				\XMD_Log::warning(sprintf(_("The class %s does not exist in BaseIO"), $nodeTypeName ));
 				return 1;
 				break;
 		}
@@ -1343,7 +1342,7 @@ class BaseIO {
 	 */
 	function _dumpMessages(& $messages) {
 		if (strtolower(get_class($messages)) != 'messages') {
-			XMD_Log::error(_('Error obtaining object messages'));
+			\XMD_Log::error(_('Error obtaining object messages'));
 			return;
 		}
 		foreach ($messages->messages as $message) {

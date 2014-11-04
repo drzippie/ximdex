@@ -51,7 +51,7 @@ class BaseIO_ximPORTA {
 		if (count($uploader->insertedIds) == 1) {
 			return $uploader->insertedIds[0];
 		} elseif (count($uploader->insertedIds) > 1) {
-			XMD_Log::error('Ha ocurrido un error inesperado al importar un nodo ximPORTA, se han encontrado dos inserciones cuando se esperaba una');
+			\XMD_Log::error('Ha ocurrido un error inesperado al importar un nodo ximPORTA, se han encontrado dos inserciones cuando se esperaba una');
 		}
 		
 		return NULL;

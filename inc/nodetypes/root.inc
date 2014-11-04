@@ -108,14 +108,14 @@ class Root extends xObject {
 		$parentNode = new Node($idParentNode);
 
 		if (!($parentNode->get('IdNode') > 0)) {
-//			XMD_Log::error('No se ha podido obtener el nodo padre de ' . $parentNode->get('IdNode'));
+//			\XMD_Log::error('No se ha podido obtener el nodo padre de ' . $parentNode->get('IdNode'));
 			return "";
 		}
 
 		$parentPath = $parentNode->class->getPathList();
 
 		if (!$this->nodeType->GetIsRenderizable()) {
-			XMD_Log::warning('Se ha solicitado el path de un nodo no renderizable con id ' . $this->parent->get('IdNode'));
+			\XMD_Log::warning('Se ha solicitado el path de un nodo no renderizable con id ' . $this->parent->get('IdNode'));
 			return $parentPath;
 		}
 

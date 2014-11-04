@@ -93,7 +93,7 @@ class Connection_Local implements I_Connector {
 		try {
 			$result = chdir($dir);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		$localFolder = $this->pwd();
@@ -128,7 +128,7 @@ class Connection_Local implements I_Connector {
 			try {
 				return mkdir($dir, $mode, $recursive);
 			} catch (Exception $e) {
-				XMD_Log::error($e->getMessage());
+				\XMD_Log::error($e->getMessage());
 				return false;
 			}
 		}
@@ -149,11 +149,11 @@ class Connection_Local implements I_Connector {
 			try {
 				return chmod($target, $mode);
 			} catch (Exception $e) {
-				XMD_Log::error($e->getMessage());
+				\XMD_Log::error($e->getMessage());
 				return false;
 			}
 		}
-		XMD_Log::fatal("Not implemented yet LocalConnection::chmod with recursive = true");
+		\XMD_Log::fatal("Not implemented yet LocalConnection::chmod with recursive = true");
 		return false;
 	}
 	
@@ -169,7 +169,7 @@ class Connection_Local implements I_Connector {
 		try {
 			return rename($renameFrom, $renameTo);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -185,7 +185,7 @@ class Connection_Local implements I_Connector {
 		try {
 			return stat($file);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -231,7 +231,7 @@ class Connection_Local implements I_Connector {
 				return rmdir($path);
 			}
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -268,7 +268,7 @@ class Connection_Local implements I_Connector {
 	private function copy($sourceFile, $targetFile, $mode) {
 		$result = false;
 		if (is_dir($sourceFile)) {
-			XMD_Log::error("COPY: El primer argumento no puede ser un directorio: $sourceFile");
+			\XMD_Log::error("COPY: El primer argumento no puede ser un directorio: $sourceFile");
 		} else {
 			$result = copy($sourceFile, $targetFile);
 		}

@@ -54,12 +54,12 @@ if ($db->numRows != 0) {
 
 		$sync->DeleteSyncFile($frameID);
 
-		XMD_Log::info("Deleting frame $frameID dependencies");
+		\XMD_Log::info("Deleting frame $frameID dependencies");
 		echo "Deleting frame $frameID dependencies\n";
 		$db->Next();
 	}
 } else {
-	XMD_Log::info("Any OUT or OUTDATED frames");
+	\XMD_Log::info("Any OUT or OUTDATED frames");
 	echo "Any OUT or OUTDATED frames";
 }
 
@@ -67,6 +67,6 @@ $db->Execute("DELETE FROM Synchronizer WHERE State = 'OUT' OR State = 'OUTDATED'
 
 $numFrames = $db->numRows;
 
-XMD_Log::info("Frames deleted: $numFrames - Dependencies deleted: $numDep");
+\XMD_Log::info("Frames deleted: $numFrames - Dependencies deleted: $numDep");
 echo "Frames deleted: $numFrames - Dependencies deleted: $numDep\n";
 ?>

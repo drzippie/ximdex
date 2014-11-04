@@ -39,7 +39,6 @@ if (!defined('XIMDEX_ROOT_PATH')) {
  
 require_once(XIMDEX_ROOT_PATH . '/inc/cli/CliParser.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/cli/CliReader.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 
 define ('VIEWS_FOLDER', XIMDEX_ROOT_PATH . '/xmd/template/Smarty/views/');
 
@@ -61,7 +60,7 @@ $ormFile = $parameterCollector->getParameter('--entityFile');
 $className = $parameterCollector->getParameter('--className');
 
 if (!is_file($ormFile)) {
-	XMD_Log::display('Se ha solicitado generar las vistas de un archivo inexistente ' . $ormFile);
+	\XMD_Log::display('Se ha solicitado generar las vistas de un archivo inexistente ' . $ormFile);
 	die();
 }
 
@@ -73,8 +72,8 @@ if (is_null($obj->_metaData)) {
 
 $parcial = '';
 
-XMD_Log::display("File: " . realpath($ormFile));
-XMD_Log::display('Class: ' . $className);
+\XMD_Log::display("File: " . realpath($ormFile));
+\XMD_Log::display('Class: ' . $className);
 
 $longFieldTypes = array('K', 'V', 'I', 'C', 'M', 'R');
 $classNameForForm = str_replace('_ENTITY', '', $className);

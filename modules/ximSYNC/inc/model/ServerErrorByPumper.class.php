@@ -51,7 +51,7 @@ class ServerErrorByPumper extends ServerErrorByPumper_ORM {
 			$dbObj->Query($sql);
 
 			if($dbObj->numRows == 0){
-				XMD_Log::info(sprintf(_("Pumper %s does not exist"), $pumperId));
+				\XMD_Log::info(sprintf(_("Pumper %s does not exist"), $pumperId));
 				die();
 			}
 
@@ -80,7 +80,7 @@ class ServerErrorByPumper extends ServerErrorByPumper_ORM {
 			return $errorId;
 		}
 
-		XMD_Log::info(_("Creating serverError"));
+		\XMD_Log::info(_("Creating serverError"));
 		return NULL;
     }
 
@@ -92,7 +92,7 @@ class ServerErrorByPumper extends ServerErrorByPumper_ORM {
 		$counter = $this->get('UnactivityCycles');
 		$idServer = $this->get('ServerId');
 
-		XMD_Log::info(sprintf(_("Server %d has %d cycles inactive"), $idServer, $counter));
+		\XMD_Log::info(sprintf(_("Server %d has %d cycles inactive"), $idServer, $counter));
 
 		$this->set('UnactivityCycles',$counter + 1);
 		$this->update();

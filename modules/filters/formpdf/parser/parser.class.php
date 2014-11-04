@@ -99,7 +99,7 @@ class Parser {
 
 		if (!$exito) {
 			//echo "Error while loading XML";
-			XMD_Log::write("Error while loading XML", 8);
+			\XMD_Log::write("Error while loading XML", 8);
 		}
 		else {
 			$doc_element = $miDocumento->documentElement;

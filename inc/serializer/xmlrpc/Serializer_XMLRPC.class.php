@@ -34,7 +34,7 @@ class Serializer_XMLRPC {
 	public function encode($data) {
 
 		if (!is_array($data) || !isset($data['method']) || !isset($data['params'])) {
-			XMD_Log::error('Los parametros enviados no son validos: Serializer_XMLRPC::encode()');
+			\XMD_Log::error('Los parametros enviados no son validos: Serializer_XMLRPC::encode()');
 		}
 
 		$encoded = null;
@@ -43,7 +43,7 @@ class Serializer_XMLRPC {
 			// En PHP4 la extension esta habilitada por defecto
 			$encoded = @xmlrpc_encode_request($data['method'], $data['params']);
 		} else {
-			XMD_Log::warning('Se esta intentando serializar usando la funcion inexistente xmlrpc_encode_request()');
+			\XMD_Log::warning('Se esta intentando serializar usando la funcion inexistente xmlrpc_encode_request()');
 		}
 		return $encoded;
 	}
@@ -55,7 +55,7 @@ class Serializer_XMLRPC {
 			// En PHP4 la extension esta habilitada por defecto
 			$decoded = @xmlrpc_decode_request($xmlrpc, $method);
 		} else {
-			XMD_Log::warning('Se esta intentando deserializar usando la funcion inexistente xmlrpc_decode()');
+			\XMD_Log::warning('Se esta intentando deserializar usando la funcion inexistente xmlrpc_decode()');
 		}
 		return $decoded;
 	}

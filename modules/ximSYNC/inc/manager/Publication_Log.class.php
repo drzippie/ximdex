@@ -27,11 +27,11 @@
 
 
 
-include_once(XIMDEX_ROOT_PATH . "/inc/log/Loggeable.class.php");
+include_once 'Loggeable.class.php ' ;
 
 if (!defined('LOG_DIR'))
 {
-	
+
 	define('LOG_DIR', realpath(dirname(__FILE__) . "/logs"));
 }
 if (!defined('DEBUG'))

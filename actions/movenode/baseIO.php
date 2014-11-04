@@ -34,7 +34,7 @@ ModulesManager::file('/actions/movenode/baseIO.php');
 	
 function baseIO_MoveNode($nodeID, $targetParentNodeID) {
 
-	XMD_Log::info("IO-movenode -> nodeID=$nodeID, nodeID_destino=$targetParentNodeID");
+	\\XMD_Log::info("IO-movenode -> nodeID=$nodeID, nodeID_destino=$targetParentNodeID");
 	$messages = new Messages();
 	
 	$node = new Node($nodeID);
@@ -60,7 +60,7 @@ function baseIO_MoveNode($nodeID, $targetParentNodeID) {
 
 function baseIO_MoverNodos($nodeID, $targetParentNodeID) {
 
-	XMD_Log::info("IO-movenode -> nodeID=$nodeID, nodeID_destino=$targetParentNodeID");
+	\\XMD_Log::info("IO-movenode -> nodeID=$nodeID, nodeID_destino=$targetParentNodeID");
 	
 	$node = new Node($nodeID);
 	$target = new Node($targetParentNodeID);

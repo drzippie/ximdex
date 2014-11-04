@@ -44,14 +44,14 @@ class XimNewsImagesFolder extends FolderNode {
 		$this->setThumbnailsPath();
 
 		if (!mkdir($this->thumbnailsPath, 0755, true)) {
-			XMD_Log::error("Creating thumbnail folder");
+			\XMD_Log::error("Creating thumbnail folder");
 			return NULL;
 		}
 
 		if (!FsUtils::file_put_contents($this->thumbnailsPath . 'thumbnails.xml', Config::GetValue('EncodingTag') .
 			"\n<thumbnails>\n</thumbnails>")) {
 
-			XMD_Log::error("Creating thumbnail file");
+			\XMD_Log::error("Creating thumbnail file");
 			return NULL;
 		}
 
@@ -132,7 +132,7 @@ class XimNewsImagesFolder extends FolderNode {
 
 	/**
 		@deprecated
-	   Devuelve html con los thumbnails del lote de imágenes para el browser
+	   Devuelve html con los thumbnails del lote de imï¿½genes para el browser
 	 */
 
 	function getThumbnails($flag, $scale) {

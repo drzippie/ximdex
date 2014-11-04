@@ -70,7 +70,7 @@ class PipelineManager {
 		GraphManager::createSerieValue('PipelineGraph', 'Cache request', $idVersion, $idTransition);
 		if(!isset($args['DISABLE_CACHE']) || $args['DISABLE_CACHE'] === false) {
 			if (!($idVersion > 0)) {
-				XMD_Log::error('[PipelineManager:getCacheFromTransition] An unexistent version has been requested.');
+				\XMD_Log::error('[PipelineManager:getCacheFromTransition] An unexistent version has been requested.');
 				return false;
 			}
 			if (!$this->_checkChannelIsEnabled($idVersion, $args)) {
@@ -105,7 +105,7 @@ class PipelineManager {
 		// TODO Check that the requested process belongs to a registered pipeline for this node
 		if(!isset($args['DISABLE_CACHE']) || $args['DISABLE_CACHE'] === false) {
 			if (!($idVersion > 0)) {
-				XMD_Log::error('[PipelineManager:getCacheFromProcess] An unexistent version has been requested.');
+				\XMD_Log::error('[PipelineManager:getCacheFromProcess] An unexistent version has been requested.');
 				return false;
 			}
 		}	
@@ -115,10 +115,10 @@ class PipelineManager {
 			XMD_log::fatal('[PipelineManager:getCacheFromProcess] Process not found: ' .  $processName);
 		}
 		if (!$process->get('id') > 0) {
-			XMD_Log::fatal('[PipelineManager:getCacheFromProcess] Process not found with the given name: ' . $processName);
+			\XMD_Log::fatal('[PipelineManager:getCacheFromProcess] Process not found with the given name: ' . $processName);
 		}
 		if (!($process->transitions->count() > 0)) {
-			XMD_Log::fatal("[PipelineManager:getCacheFromProcess] The loaded process doesn't have any transition: ". $processName);
+			\XMD_Log::fatal("[PipelineManager:getCacheFromProcess] The loaded process doesn't have any transition: ". $processName);
 		}
 
 		$lastTransition = $process->transitions->last();
@@ -147,7 +147,7 @@ class PipelineManager {
 	function deleteCache($idVersion) {
 		$version = new Version($idVersion);
 		if (!($version->get('IdVersion') > 0)) {
-			XMD_Log::error("[PipelineManager:deleteCache] Can't delete version $idVersion. It doesn't exist.");
+			\XMD_Log::error("[PipelineManager:deleteCache] Can't delete version $idVersion. It doesn't exist.");
 			return false;
 		}
 		
@@ -155,7 +155,7 @@ class PipelineManager {
 		$result = $pipeCache->find('id', 'IdVersion = %s', array($idVersion), MONO);
 		
 		if (empty($result)) {
-			XMD_Log::info("[PipelineManager:deleteCache] Can't delete version $idVersion. It doesn't have associated caches.");
+			\XMD_Log::info("[PipelineManager:deleteCache] Can't delete version $idVersion. It doesn't have associated caches.");
 			return true;
 		}
 		
@@ -164,12 +164,12 @@ class PipelineManager {
 
 			$pipeCache = new PipeCache($idCache);
 			if (!($pipeCache->get('id') > 0)) {
-				XMD_Log::error("[PipelineManager:deleteCache] There is any cache for version: $idVersion");
+				\XMD_Log::error("[PipelineManager:deleteCache] There is any cache for version: $idVersion");
 				return false;
 			}
 		
 			if (!$pipeCache->delete()) {
-				XMD_Log::error("[PipelineManager:deleteCache] An error has ocurred while the cache $idCache was deleted.");
+				\XMD_Log::error("[PipelineManager:deleteCache] An error has ocurred while the cache $idCache was deleted.");
 				$result = false;
 			}
 		}
@@ -193,13 +193,13 @@ class PipelineManager {
 		$idNode = $version->get('IdNode');
 		
 		if (!($idNode > 0)) {
-			XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested which associated node doesn't exist.");
+			\XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested which associated node doesn't exist.");
 			return false;
 		}
 		
 		$node = new Node($idNode);
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested which asso    ciated node couldn't be created.");
+			\XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested which asso    ciated node couldn't be created.");
 			return false;
 		}
 		
@@ -207,7 +207,7 @@ class PipelineManager {
 		$server = new Server();
 		$result = $server->find('IdServer, Enabled','IdNode = %s',array($idServer));
         if (!(count($result) > 0)) {
-			XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested, but there are any logical servers defined.");
+			\XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] An unexistent cache version $idVersion has been requested, but there are any logical servers defined.");
 			return false;
 		}
 		
@@ -226,7 +226,7 @@ class PipelineManager {
 				return true;
 			}
 		}
-		XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] The cache won't be generated because there isn't any enabled channel for the version $idVersion");
+		\XMD_Log::error("[PipelineManager:_checkChannelIsEnabled] The cache won't be generated because there isn't any enabled channel for the version $idVersion");
 		return false;
 	}
 

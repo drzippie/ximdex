@@ -28,7 +28,7 @@
     define ('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
  }
 
-ModulesManager::file('/inc/log/XMD_log.class.php');
+
 ModulesManager::file('/inc/model/RelNodeMetadata.class.php');
 ModulesManager::file('/inc/model/RelNodeVersionMetadataVersion.class.php');
 ModulesManager::file('/inc/io/BaseIOInferer.class.php');
@@ -92,7 +92,7 @@ class MetadataManager{
                 $name=MetadataManager::DOCUMENT_METADATA_SCHEMA;
                 break;
             default:
-                XMD_Log::warning("Type not found: setting the schema to document-metadata.xml");
+                \XMD_Log::warning("Type not found: setting the schema to document-metadata.xml");
                 $name=MetadataManager::DOCUMENT_METADATA_SCHEMA;
         }
         $schema = new Node();
@@ -260,7 +260,7 @@ class MetadataManager{
         }
         else{
             //$this->updateMetadata(); ¿?
-            XMD_Log::warning("The metadata file $name already exists!");
+            \XMD_Log::warning("The metadata file $name already exists!");
         }
     }
 
@@ -354,7 +354,7 @@ class MetadataManager{
         $node = new Node($idNode);
         $idNode = $node->get('IdNode');
         if (!($idNode > 0)) {
-            XMD_Log::error("An error ocurred estimating parent node, operation will be aborted, contact with your administrator");
+            \XMD_Log::error("An error ocurred estimating parent node, operation will be aborted, contact with your administrator");
             $values = array('name' => 'Unknown');
             $result["error"] = $values;
             return $result;
@@ -366,7 +366,7 @@ class MetadataManager{
         $nodeType = new NodeType();
         $nodeType->SetByName($inferedNodeType['NODETYPENAME']);
         if (!($nodeType->get('IdNodeType') > 0)) {
-            XMD_Log::error("A nodetype could not be estimated to create the container folder, operation will be aborted, contact with your administrator");
+            \XMD_Log::error("A nodetype could not be estimated to create the container folder, operation will be aborted, contact with your administrator");
         }
 
         //Just the selected checks will be created.
@@ -393,7 +393,7 @@ class MetadataManager{
         $idContainer = $result = $baseIO->build($data);
 
         if (!($result > 0)) {
-            XMD_Log::error("An error ocurred creating the container node");
+            \XMD_Log::error("An error ocurred creating the container node");
             $values = array(
             'idNode' => $idNode,
             'nodeName' => $name
@@ -401,7 +401,7 @@ class MetadataManager{
             $result["error"] = $values;
             return $result;
         } else {
-            XMD_Log::info("Container $name has been successfully created");            
+            \XMD_Log::info("Container $name has been successfully created");
         }
         
         return true;
@@ -415,7 +415,7 @@ class MetadataManager{
         $rnm->set('IdMetadata', $idm);
         $res = $rnm->add();
         if($res<0){
-            XMD_Log::error("Relation between nodes not added.");
+            \XMD_Log::error("Relation between nodes not added.");
         }
         //TODO: move this logic to the RelNodeMetadata class
         //For structured documents, the association between versions have to be more accurate.
@@ -455,7 +455,7 @@ class MetadataManager{
                     $rnvmv->set('idMetadataVersion',$idMetadataVersion);
                     $res2 = $rnvmv->add();
                     if($res<0){
-                        XMD_Log::error("Relation between versions of nodes [".$nodes['nv']." - ".$nodes['mv']."] not added.");
+                        \XMD_Log::error("Relation between versions of nodes [".$nodes['nv']." - ".$nodes['mv']."] not added.");
                     }
                 }
             }
@@ -479,7 +479,7 @@ class MetadataManager{
                     $rnvmv->set('idMetadataVersion',$idMetadataVersion);
                     $res2 = $rnvmv->add();
                     if($res<0){
-                        XMD_Log::error("Relation between versions not added.");
+                        \XMD_Log::error("Relation between versions not added.");
                     }
                 }
             }
@@ -498,7 +498,7 @@ class MetadataManager{
         $rnm->set('idRel', $id[0]);
         $res = $rnm->delete();
         if($res<0){
-            XMD_Log::error("Relation between nodes not deleted.");
+            \XMD_Log::error("Relation between nodes not deleted.");
         }
         else{
             $rnvmv = new RelNodeVersionMetadataVersion();
@@ -508,7 +508,7 @@ class MetadataManager{
                     $rnvmv->set('id', $id);
                     $res2 = $rnvmv->delete();
                     if($res2<0){
-                        XMD_Log::error("Relation between versions not deleted.");
+                        \XMD_Log::error("Relation between versions not deleted.");
                     }
                 }
             }

@@ -26,7 +26,6 @@
  */
 
 require_once(XIMDEX_ROOT_PATH . '/inc/modules/ModulesManager.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/mvc/Request.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/persistence/Config.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/auth/Authenticator.class.php');

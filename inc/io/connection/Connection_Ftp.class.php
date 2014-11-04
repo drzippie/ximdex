@@ -56,7 +56,7 @@ class Connection_Ftp implements I_Connector {
 		if (empty($port)) {
 			$port = $this->defaultPort;
 		}
-		XMD_Log::info("Connecting to {$host}:{$port}");
+		\XMD_Log::info("Connecting to {$host}:{$port}");
 		if (!empty($host)) {
 			$this->host = $host;
 		}
@@ -66,13 +66,13 @@ class Connection_Ftp implements I_Connector {
 		try {
 			$handler = ftp_connect($this->host, $this->port, Connection_Ftp::TIMEOUT);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		
 		if (!$handler) {
 			$this->handler = false;
-			XMD_Log::error("Couldt connect to {$host}:{$port} using FTP protocol");
+			\XMD_Log::error("Couldt connect to {$host}:{$port} using FTP protocol");
 			return false;
 		}
 		// Ftp in passive mode
@@ -94,11 +94,11 @@ class Connection_Ftp implements I_Connector {
 		try {
 			$result = @ftp_close($this->handler);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		if (!$result) {
-			XMD_Log::error("Disconnect from {$host}:{$port} failed");
+			\XMD_Log::error("Disconnect from {$host}:{$port} failed");
 			return false;
 		}
 		$this->handler = NULL;
@@ -125,7 +125,7 @@ class Connection_Ftp implements I_Connector {
 	 * @return boolean
 	 */
 	public function login($username = 'anonymous', $password = 'john.doe@example.com') {
-		if ($this->handler === NULL) { // false en el handler es error de conexión
+		if ($this->handler === NULL) { // false en el handler es error de conexiï¿½n
 			if (!$this->connect()) {
 				return false;
 			}
@@ -142,7 +142,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return @ftp_login($this->handler, $username, $password);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		
@@ -163,7 +163,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return @ftp_chdir($this->handler, $dir);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		
@@ -181,7 +181,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return @ftp_pwd($this->handler);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		return false;
@@ -204,7 +204,7 @@ class Connection_Ftp implements I_Connector {
 		
 		$dirElements = explode('/', $dir);
 		if (!(count($dirElements) > 0)) {
-			XMD_Log::error('Invalid Path for FTP::mkdir ' . $dir);
+			\XMD_Log::error('Invalid Path for FTP::mkdir ' . $dir);
 			return false;
 		}
 		
@@ -240,7 +240,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			$result = (bool)ftp_mkdir($this->handler, $dir);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 			return false;
 		}
 		if ($result) {
@@ -263,11 +263,11 @@ class Connection_Ftp implements I_Connector {
 			try {
 				$var =  ftp_site($this->handler, "CHMOD " . $mode . " " . $target);
 			} catch (Exception $e) {
-				XMD_Log::error($e->getMessage());
+				\XMD_Log::error($e->getMessage());
 				return false;
 			}
 		}
-		XMD_Log::fatal("Not implemented yet FTPConnection::chmod with recursive = true");
+		\XMD_Log::fatal("Not implemented yet FTPConnection::chmod with recursive = true");
 		return false;
 	}
 	
@@ -288,7 +288,7 @@ class Connection_Ftp implements I_Connector {
                         }
                         return @ftp_rename($this->handler, $renameFrom, $renameTo);
                 } catch (Exception $e) {
-                        XMD_Log::error($e->getMessage());
+                        \XMD_Log::error($e->getMessage());
                 }
                 return false;
 	}
@@ -304,7 +304,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return @ftp_size($this->handler, $file);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -338,7 +338,7 @@ class Connection_Ftp implements I_Connector {
 				return @ftp_delete($this->handler, $path);
 			}
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -415,7 +415,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return ftp_get($this->handler, $targetFile, $sourceFile, $mode);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}
@@ -434,7 +434,7 @@ class Connection_Ftp implements I_Connector {
 		try {
 			return @ftp_put($this->handler, $targetFile, $localFile, $mode);
 		} catch (Exception $e) {
-			XMD_Log::error($e->getMessage());
+			\XMD_Log::error($e->getMessage());
 		}
 		return false;
 	}

@@ -96,7 +96,7 @@ class Module {
 
       //  $this->messages->add(sprintf(_("sys {%s} : Module instanciated (%s) (%s)"),
       //   __CLASS__, $this->name, $this->path), MSG_TYPE_NOTICE);
-		XMD_Log::info(sprintf(_("sys {%s} : Module instanciated (%s) (%s)"), __CLASS__, $this->name, $this->path));
+		\XMD_Log::info(sprintf(_("sys {%s} : Module instanciated (%s) (%s)"), __CLASS__, $this->name, $this->path));
 
 	}
 
@@ -164,7 +164,7 @@ class Module {
 			$this->sql_constructor = $data;
 			return true;
 		} else {
-			XMD_Log::error("Error loading module constructor $sql_file");
+			\XMD_Log::error("Error loading module constructor $sql_file");
 			return false;
 		}
 	}
@@ -264,7 +264,7 @@ class Module {
 
 		$ret = true;
 		if (!$this->preInstall()) {
-			echo "Se ha abortado la instalación por no cumplirse los prerequisitos\n";
+			echo "Se ha abortado la instalaciï¿½n por no cumplirse los prerequisitos\n";
 			$ret = false;
 		}
 		else {
@@ -272,8 +272,8 @@ class Module {
 			if (!empty($this->sql_constructor)) {
 				$this->injectSQLFile($this->sql_constructor_file);
 				//$this->messages->add(_("-- SQL constructor loaded"), MSG_TYPE_NOTICE);
-				//Añadimos aqui 
-			   XMD_Log::info(_("-- SQL constructor loaded"));
+				//Aï¿½adimos aqui 
+			   \XMD_Log::info(_("-- SQL constructor loaded"));
 			} else {
 				$this->messages->add(_("* ERROR: SQL constructor not loaded"), MSG_TYPE_ERROR);
 				$ret = false;
@@ -281,7 +281,7 @@ class Module {
 			// Actions Registration
 			// Actions Activation
 			if (!$this->postInstall()) {
-				echo "Ha fallado el proceso de post instalación, puede que el módulo no funcione correctamente\n";
+				echo "Ha fallado el proceso de post instalaciï¿½n, puede que el mï¿½dulo no funcione correctamente\n";
 				$ret = false;
 			}else {
 				$this->addStateFile();
@@ -382,7 +382,7 @@ class Module {
 	function log($priority, $string) {
 
 		if ($this instanceof Modules) {
-			XMD_Log::warning("Using $this->log in a class that is not an instance of Module.");
+			\XMD_Log::warning("Using $this->log in a class that is not an instance of Module.");
 			return false;
 		}
 
@@ -391,12 +391,12 @@ class Module {
 		switch ($priority) {
 			case self::SUCCESS:
 				//echo(" - [$module_name] (SUCCESS): $string\n");
-            XMD_Log::info(" - [$module_name] (SUCCESS): $string");
+            \XMD_Log::info(" - [$module_name] (SUCCESS): $string");
 				break;
 			case self::ERROR:
 			default:
 				echo(" * [$module_name] (ERROR): $string\n");
-				XMD_Log::error($string);
+				\XMD_Log::error($string);
 		}
 	}
 

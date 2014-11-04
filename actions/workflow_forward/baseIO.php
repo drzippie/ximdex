@@ -68,7 +68,7 @@ function Publicar($nodeID, $userID){
 	setlocale (LC_TIME, "es_ES");
 	if(sizeof($gaps)){
 		foreach($gaps as $gap){
-			//valor que se presentaría para elegir
+			//valor que se presentarï¿½a para elegir
 			strftime("%d/%m/%Y %H:%M:%S", $gap[0]).'-'.($gap[1] ? strftime("%d/%m/%Y %H:%M:%S", $gap[1]) : null);
 		}
 	} else {
@@ -100,9 +100,9 @@ function baseIO_CambiarEstado($nodeID, $stateID, $listausers=null, $uID=null, $t
 	//Changing the state of the indicated node
 	$node->SetState($stateID);
 	if (!$node->numErr) {
-		XMD_Log::info(_('State successfully changed'));
+		\XMD_Log::info(_('State successfully changed'));
 	} else {
-		XMD_Log::info(_('Error changing state: ').$node->msgErr);
+		\XMD_Log::info(_('Error changing state: ').$node->msgErr);
 	}
 
 	//Notifiying the selected users
@@ -118,7 +118,7 @@ function baseIO_CambiarEstado($nodeID, $stateID, $listausers=null, $uID=null, $t
 		}
 		//echo "debug: $to";
 
-		XMD_Log::info(_('Sending notification to the following users:  $to'));
+		\XMD_Log::info(_('Sending notification to the following users:  $to'));
 
 		$user->SetID($uID);
 		$from=$user->GetLogin();
@@ -128,7 +128,7 @@ function baseIO_CambiarEstado($nodeID, $stateID, $listausers=null, $uID=null, $t
 
 		$content =_('State forward notification.')."\n\n";
 
-		$content.=_('The user')." `". $user->GetRealName(). "´ "._('has changed the state of the document')." `".$jap_doc."´\n\n";
+		$content.=_('The user')." `". $user->GetRealName(). "ï¿½ "._('has changed the state of the document')." `".$jap_doc."ï¿½\n\n";
 		$content.=_('Full path')."  --> ". $node->GetPath() ."\n\n";
 
 		$content.=_('Initial state')." --> ". $jap_estadoprevio ."\n";
@@ -140,9 +140,9 @@ function baseIO_CambiarEstado($nodeID, $stateID, $listausers=null, $uID=null, $t
 		//echo "debug: imail: ($from), ($to), ($subject), ($content)";
 		$msg->Send();
 		if (!$msg->numErr) {
-			XMD_Log::info(_('Message sent successfully'));
+			\XMD_Log::info(_('Message sent successfully'));
 		} else {
-			XMD_Log::info(_('Error sending message').": ".$msg->msgErr);
+			\XMD_Log::info(_('Error sending message').": ".$msg->msgErr);
 		}
 
 		foreach($listausers as $userID){
@@ -151,9 +151,9 @@ function baseIO_CambiarEstado($nodeID, $stateID, $listausers=null, $uID=null, $t
 			$email=mail($user->GetEmail(),$subject, $content,$header);
 			//echo "debug: email to ".$user->GetEmail().", ($subject), ($content)";
 			if($email) {
-				XMD_Log::info(_('Message successfully sent to ').$user->GetEmail());
+				\XMD_Log::info(_('Message successfully sent to ').$user->GetEmail());
 			} else {
-				XMD_Log::info(_('Error sending e-mail').": ".$user->GetEmail());
+				\XMD_Log::info(_('Error sending e-mail').": ".$user->GetEmail());
 			}
 		}
 	}
@@ -167,14 +167,14 @@ function baseIO_PublicarDocumento($nodeID, $up, $down, $markEnd=null){
 
 	//The document $node->GetNodeName() is going to be published and go back to initial state
 	if ($sync->numErr) {
-		XMD_Log::info(_('Error sending to publish: ').$sync->msgErr);
+		\XMD_Log::info(_('Error sending to publish: ').$sync->msgErr);
 	} else {
-		XMD_Log::info(_('Sent to publish successfully'));
+		\XMD_Log::info(_('Sent to publish successfully'));
 		$node->SetState($node->nodeType->GetInitialState());
 		if (!$node->numErr) {
-			XMD_Log::info(_('State successfully changed'));
+			\XMD_Log::info(_('State successfully changed'));
 		} else {
-			XMD_Log::info(_('Error changing state'));
+			\XMD_Log::info(_('Error changing state'));
 		}
 	}
 }

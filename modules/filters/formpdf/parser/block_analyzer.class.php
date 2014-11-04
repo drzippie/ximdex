@@ -109,7 +109,7 @@ class Block_analyzer {
 			}
 		}
 		else {
-			XMD_Log::write("It could not be possible to load the renderer element (".$renderer.")",  9);
+			\XMD_Log::write("It could not be possible to load the renderer element (".$renderer.")",  9);
 		}
 		return $element;
 	}

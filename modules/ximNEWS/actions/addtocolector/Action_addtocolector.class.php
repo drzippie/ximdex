@@ -107,7 +107,7 @@ class Action_addtocolector extends ActionAbstract {
 				$alreadyHybrid=true;
 			}
 
-			XMD_Log::info(_('Adding news $nodeId to colector $colectorId'));
+			\XMD_Log::info(_('Adding news $nodeId to colector $colectorId'));
 
 			if (!$newsNode->class->addToColector($colectorId, $update, $downdate, $versions)) {
 				$this->messages->add(_("The association has NOT been performed successfully"), MSG_TYPE_ERROR);

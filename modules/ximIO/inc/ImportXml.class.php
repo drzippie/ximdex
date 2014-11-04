@@ -35,7 +35,6 @@ ModulesManager::file('/inc/io/BaseIORelations.class.php');
 ModulesManager::file('/inc/model/node.inc');
 ModulesManager::file('/inc/model/NodeProperty.class.php');
 ModulesManager::file('/inc/db/db.inc');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/persistence/Config.class.php');
 ModulesManager::file('/inc/persistence/XSession.class.php');
 
@@ -760,11 +759,11 @@ class ImportXml {
 		} else {
 			$idImportationNode = $baseIO->build($elementToInsert, $idUser);
 			if ($idImportationNode < 0) {
-				XMD_Log::error(_('Error inserting the node') . $elementToInsert['ID']);
+				\XMD_Log::error(_('Error inserting the node') . $elementToInsert['ID']);
 			}
 			reset($baseIO->messages->messages);
 			while(list(, $message) = each($baseIO->messages->messages)) {
-				XMD_Log::debug($message['message']);
+				\XMD_Log::debug($message['message']);
 			}
 		}
 		if ($idImportationNode > 0) {
@@ -1157,7 +1156,7 @@ class ImportXml {
 			$elementToInsert = array();
 			$this->_bindNode($template['ID'], $result, $elementToInsert['NULL'], $status, $path);
 		}
-		XMD_Log::warning(_('No pvd could be successfully estimated for the node ') . $parentElement['ID']);
+		\XMD_Log::warning(_('No pvd could be successfully estimated for the node ') . $parentElement['ID']);
 		return NULL;
 	}
 
@@ -1186,7 +1185,7 @@ class ImportXml {
 		if ($db->numRows == 1) {
 			return $db->getValue('IdNode');
 		}
-		XMD_Log::error(_('An inconsistency was found in database, there are several UUID in NodeProperties table with same value'));
+		\XMD_Log::error(_('An inconsistency was found in database, there are several UUID in NodeProperties table with same value'));
 		return NULL;
 	}
 

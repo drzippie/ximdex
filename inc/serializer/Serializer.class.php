@@ -29,7 +29,7 @@
 if (!defined('SZR_JSON')) define('SZR_JSON', 'json');
 if (!defined('SZR_XMLRPC')) define('SZR_XMLRPC', 'xmlrpc');
 
-ModulesManager::file('/inc/log/XMD_log.class.php');
+
 
 class Serializer {
 
@@ -55,7 +55,7 @@ class Serializer {
 		ModulesManager::file($class_path);
 
 		if (!class_exists($class)) {
-			XMD_Log::error(sprintf(_("Serializer :: The class {%s} could not be instanced."), $class));
+			\XMD_Log::error(sprintf(_("Serializer :: The class {%s} could not be instanced."), $class));
 			die;
 		}
 		$instance = new $class();

@@ -102,7 +102,7 @@ class XVFS_Backend_tol
 			$entity = $this->read($path);
 
 			if (empty($entity)) {
-				XMD_Log::warning('Empty entity detected for path ' . $path);
+				\XMD_Log::warning('Empty entity detected for path ' . $path);
 				continue;
 			}
 			

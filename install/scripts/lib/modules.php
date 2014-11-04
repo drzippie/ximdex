@@ -32,7 +32,6 @@ if (!defined('XIMDEX_ROOT_PATH'))
 if (!defined('CLI_MODE'))
 	define('CLI_MODE', 1);
 
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/modules/ModulesManager.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/install/managers/InstallModulesManager.class.php');
 

@@ -120,7 +120,7 @@ class Authenticator {
 		// factory Mech to authenticate, fallback to SQL if not selected
 		$mech =& $this->mech_factory->instantiate($this->mech_type);
 		if (!is_object($mech)) {
-			XMD_Log::error($this->mech_factory->getError());
+			\XMD_Log::error($this->mech_factory->getError());
 			return false;
 		}
 

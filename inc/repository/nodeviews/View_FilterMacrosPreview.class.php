@@ -126,7 +126,7 @@ class View_FilterMacrosPreview extends View_FilterMacros implements Interface_Vi
 
 		// Check Params:
 		if (!isset($this->_idSection) || !($this->_idSection > 0)) {
-			XMD_Log::error('VIEW FILTERMACROSPREVIEW: Node section not specified: ' . $args['NODENAME']);
+			\XMD_Log::error('VIEW FILTERMACROSPREVIEW: Node section not specified: ' . $args['NODENAME']);
 			return NULL;
 		}
 
@@ -159,7 +159,7 @@ class View_FilterMacrosPreview extends View_FilterMacros implements Interface_Vi
 				$sectionPath .= 'news/';
 			}
 		}else{
-			XMD_Log::error("VIEW FILTERMACROSPREVIEW:no se ha podido determinar si se trata de un node de tipo XimNewsNewLanguage");
+			\XMD_Log::error("VIEW FILTERMACROSPREVIEW:no se ha podido determinar si se trata de un node de tipo XimNewsNewLanguage");
 		}
 
 		$targetPath = $matches[1];

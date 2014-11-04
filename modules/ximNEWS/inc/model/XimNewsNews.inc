@@ -88,7 +88,7 @@ class XimNewsNew extends XimNewsNews_ORM {
 			$relNewsColector->set('SubVersion', 0);
 
 			if (!$relNewsColector->update()) {
-				XMD_Log::info(_('Updating version'));
+				\XMD_Log::info(_('Updating version'));
 			}
 
 			if($idCache > 0){
@@ -96,7 +96,7 @@ class XimNewsNew extends XimNewsNews_ORM {
 				$ximNewsCache->set('IdVersion',$newsVersionID);
 
 				if (!$ximNewsCache->update()) {
-					XMD_Log::info(_('Updating cache version'));
+					\XMD_Log::info(_('Updating cache version'));
 				}
 			}
 		}

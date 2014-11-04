@@ -69,7 +69,7 @@ class PoolerClient {
 				)
 			);
 		} catch (ErrorException $e) {
-			XMD_Log::error(sprintf('curl_error: %s', $e->getMessage()));
+			\XMD_Log::error(sprintf('curl_error: %s', $e->getMessage()));
 			throw new Exception($e->getMessage());
 		}
 

@@ -29,7 +29,6 @@ if (!defined("XIMDEX_ROOT_PATH")) {
 	define ("XIMDEX_ROOT_PATH", realpath(dirname(__FILE__)."/../../../"));
 }
 
-require_once(XIMDEX_ROOT_PATH."/inc/log/Loggeable.class.php" );
 
 class UpdateDb_log extends Loggeable {
 	public static 	function DB_Log() {

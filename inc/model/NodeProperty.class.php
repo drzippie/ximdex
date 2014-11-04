@@ -34,7 +34,7 @@ class NodeProperty extends NodeProperties_ORM {
 	function create($idNode, $property, $value = NULL) {
 
 		if (is_null($idNode) || is_null($property)) {
-			XMD_Log::error(_('Params node and property are mandatory'));
+			\XMD_Log::error(_('Params node and property are mandatory'));
 			return false;
 		}
 
@@ -46,7 +46,7 @@ class NodeProperty extends NodeProperties_ORM {
 		$propertyId = $this->get('IdNodeProperty');
 
 		if (!($propertyId > 0)) {
-			XMD_Log::error(_("Adding nodeproperty"));
+			\XMD_Log::error(_("Adding nodeproperty"));
 			return false;
 		}
 
@@ -64,7 +64,7 @@ class NodeProperty extends NodeProperties_ORM {
 	function getProperty($idNode, $property) {
 		
 		if (is_null($idNode) || is_null($property)) {
-			XMD_Log::error(_('Params node and property are mandatory'));
+			\XMD_Log::error(_('Params node and property are mandatory'));
 			return NULL;
 		}
 
@@ -82,7 +82,7 @@ class NodeProperty extends NodeProperties_ORM {
 	function deleteByNode($idNode) {
 		
 		if (is_null($idNode)) {
-			XMD_Log::error(_('Param nodeId is mandatory'));
+			\XMD_Log::error(_('Param nodeId is mandatory'));
 			return false;
 		}
 
@@ -105,7 +105,7 @@ class NodeProperty extends NodeProperties_ORM {
 	function deleteByNodeProperty($idNode, $property) {
 		
 		if (is_null($idNode) || is_null($property)) {
-			XMD_Log::error(_('Params nodeId and property are mandatories'));
+			\XMD_Log::error(_('Params nodeId and property are mandatories'));
 			return false;
 		}
 

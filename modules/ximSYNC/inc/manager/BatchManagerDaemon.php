@@ -71,7 +71,7 @@ function createBatchsForBlock($nodesToPublish) {
 	// If the node which trigger publication do not exists anymore return null and cancel.
 	$node = new Node($idNodeGenerator);
 	if (!($node->get('IdNode') > 0)) {
-		XMD_Log::error(_("Required node does not exist")." ". $idNodeGenerator);
+		\XMD_Log::error(_("Required node does not exist")." ". $idNodeGenerator);
 		return NULL;
 	}
 
@@ -105,7 +105,7 @@ function createBatchsForBlock($nodesToPublish) {
 
 	// Clean up caches, tmp files, etc...
 	if (is_null($docsPublicated)){
-		XMD_Log::error("PUSHDOCINPOOL - docsPublicated null");
+		\XMD_Log::error("PUSHDOCINPOOL - docsPublicated null");
 		return null;
 	}
 

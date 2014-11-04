@@ -35,12 +35,11 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 }
 
 require_once (XIMDEX_ROOT_PATH . '/inc/patterns/Factory.class.php');
-require_once (XIMDEX_ROOT_PATH . '/inc/log/XMD_log.class.php');
 
 class ConnectionManager {
 	private static $basePath = '/inc/io/connection/';
 	private static $baseName = 'Connection_'; 
-	// Emulacion de clase estática
+	// Emulacion de clase estï¿½tica
 	private function ConnectionManager() {}
 	
 	static function getConnection($type) {
@@ -58,10 +57,10 @@ class ConnectionManager {
 				$tmpType = $type;
 				$type = $fileRoutes[$type];
 				if (!is_file($connectionclass)) {
-					XMD_Log::fatal("Connection $type neither $tmpType not implemented yet");
+					\XMD_Log::fatal("Connection $type neither $tmpType not implemented yet");
 				}
 			} else {
-					XMD_Log::fatal("Connection $type not implemented yet");
+					\XMD_Log::fatal("Connection $type not implemented yet");
 				
 			}
 		}

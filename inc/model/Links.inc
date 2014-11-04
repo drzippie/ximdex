@@ -69,7 +69,7 @@ class Link extends Links_ORM {
 		$name = null;
 		$node = new Node($this->get('IdLink'));
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::warning('The name of the ximlink with ID ' . $this->get('IdLink').' could not be obtained');
+			\XMD_Log::warning('The name of the ximlink with ID ' . $this->get('IdLink').' could not be obtained');
 		} else {
 			$name = $node->get('Name');
 		}

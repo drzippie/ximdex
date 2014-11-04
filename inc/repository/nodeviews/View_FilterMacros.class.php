@@ -119,7 +119,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		if (!is_null($idVersion)) {
 			$version = new Version($idVersion);
 			if (!($version->get('IdVersion') > 0)) {
-				XMD_Log::error(
+				\XMD_Log::error(
 						'VIEW FILTERMACROS: Se ha cargado una versión incorrecta (' . $idVersion .
 								 ')');
 				return NULL;
@@ -127,7 +127,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 			
 			$this->_node = new Node($version->get('IdNode'));
 			if (!($this->_node->get('IdNode') > 0)) {
-				XMD_Log::error(
+				\XMD_Log::error(
 						'VIEW FILTERMACROS: El nodo que se está intentando convertir no existe: ' .
 								 $version->get('IdNode'));
 				return NULL;
@@ -150,7 +150,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		
 		// Check Params:
 		if (!isset($this->_idChannel) || !($this->_idChannel > 0)) {
-			XMD_Log::error(
+			\XMD_Log::error(
 					'VIEW FILTERMACROS: No se ha especificado el canal del nodo ' . $args['NODENAME'] .
 							 ' que quiere renderizar');
 			return NULL;
@@ -169,7 +169,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		if (array_key_exists('SERVER', $args)) {
 			$this->_server = new Server($args['SERVER']);
 			if (!($this->_server->get('IdServer') > 0)) {
-				XMD_Log::error(
+				\XMD_Log::error(
 						'VIEW FILTERMACROS: No se ha especificado el servidor en el que se quiere renderizar el nodo');
 				return NULL;
 			}
@@ -195,7 +195,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		
 		// Check Params:
 		if (!($this->_serverNode) || !is_object($this->_serverNode)) {
-			XMD_Log::error(
+			\XMD_Log::error(
 					'VIEW FILTERMACROS: No se ha especificado el servidor del nodo ' . $args['NODENAME'] .
 							 ' que quiere renderizar');
 			return NULL;
@@ -219,7 +219,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		
 		// Check Params:
 		if (!isset($this->_projectNode) || !($this->_projectNode > 0)) {
-			XMD_Log::error(
+			\XMD_Log::error(
 					'VIEW FILTERMACROS: No se ha especificado el proyecto del nodo ' . $args['NODENAME'] .
 							 ' que quiere renderizar');
 			return NULL;
@@ -243,7 +243,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		
 		// Check Param:
 		if (!isset($this->_depth) || !($this->_depth > 0)) {
-			XMD_Log::error(
+			\XMD_Log::error(
 					'VIEW FILTERMACROS: No se ha especificado la profundidad del nodo ' . $args['NODENAME'] .
 							 ' que quiere renderizar');
 			return NULL;
@@ -267,7 +267,7 @@ class View_FilterMacros extends Abstract_View implements Interface_View {
 		
 		// Check Param:
 		if (!isset($this->_nodeName) || $this->_nodeName == "") {
-			XMD_Log::error(
+			\XMD_Log::error(
 					'VIEW FILTERMACROS: No se ha especificado el nombre del nodo que quiere renderizar');
 			return NULL;
 		}

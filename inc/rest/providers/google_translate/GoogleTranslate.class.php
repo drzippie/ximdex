@@ -116,12 +116,12 @@ class GoogleTranslate extends REST_Provider {
 		$result = Serializer::decode(SZR_JSON, $response['data']);
 
 		if (is_null($result)) {
-			XMD_Log::error("Lost in translation: error code {$response['http_code']}");
+			\XMD_Log::error("Lost in translation: error code {$response['http_code']}");
 			return "{$response['data']}\n";
 		}
 
 		if ($result->responseStatus != 200) {
-			XMD_Log::error("Lost in translation: error {$result->responseDetails}");
+			\XMD_Log::error("Lost in translation: error {$result->responseDetails}");
 			return "Error: {$result->responseDetails}\n";
 		}
 

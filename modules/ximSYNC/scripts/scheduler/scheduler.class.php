@@ -242,7 +242,7 @@ class Scheduler {
 
 			if ($global_execution) {
 				if ($voidCycles > MAX_NUM_CICLOS_VACIOS_SCHEDULER) {
-					XMD_Log::info(sprintf(_("Exceding max. cycles (%d > %d). Exit scheduler"),$voidCycles, MAX_NUM_CICLOS_VACIOS_SCHEDULER) );
+					\XMD_Log::info(sprintf(_("Exceding max. cycles (%d > %d). Exit scheduler"),$voidCycles, MAX_NUM_CICLOS_VACIOS_SCHEDULER) );
 					break;
 				}
 			} else {

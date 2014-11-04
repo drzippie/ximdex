@@ -147,7 +147,7 @@ class Action_createcolector extends ActionAbstract {
 			if($currentFilter != $data['filter'] || $currentNewsPerBulletin != $data['newsperbull'] || $currentSorting != $data['sortnews'] || $currentName != $data['colector']){
 			    $forceTotal = 1;
 			    $data['forcetotalgeneration'] = 1;
-			    $oldValues = "Nombre del colector: $currentName;Tipo de colector: $currentType;Número de noticias por boletín: $currentNewsPerBulletin;Ordenación de noticias: $currentSorting";
+			    $oldValues = "Nombre del colector: $currentName;Tipo de colector: $currentType;Nï¿½mero de noticias por boletï¿½n: $currentNewsPerBulletin;Ordenaciï¿½n de noticias: $currentSorting";
 
 			    if($currentFilter != $data['filter']) {
 					$data['forcetotalgeneration'] = 2;
@@ -181,7 +181,7 @@ class Action_createcolector extends ActionAbstract {
 /*
 	    if ($mail->Send()) {
 
-			$this->messages->add(_("Se le ha enviado un email con los valores antiguos del colector para que pueda restaurarlos en caso de problemas durante la generación total"), MSG_TYPE_NOTICE);
+			$this->messages->add(_("Se le ha enviado un email con los valores antiguos del colector para que pueda restaurarlos en caso de problemas durante la generaciï¿½n total"), MSG_TYPE_NOTICE);
 	    }
 */
 		$this->render(array('goback' => true, 'messages' => $this->messages->messages), NULL, 'messages.tpl');
@@ -226,7 +226,7 @@ class Action_createcolector extends ActionAbstract {
 
 		if (!$ximNewsColector->update()) {
 			$this->messages->add(_("The colector has NOT been edited successfully."), MSG_TYPE_ERROR);
-			XMD_Log::error("Updating ximnewsColector table");
+			\XMD_Log::error("Updating ximnewsColector table");
 			return false;
 		}
 
@@ -239,14 +239,14 @@ class Action_createcolector extends ActionAbstract {
 
 		if (!$this->setChannels($idNode, $data["channels"])) {
 			$this->messages->add(_("Error updating channels."), MSG_TYPE_ERROR);
-			XMD_Log::error(_("Updating channels list for colector")." $idNode");
+			\XMD_Log::error(_("Updating channels list for colector")." $idNode");
 		}
 
 		if(isset($data["listName"])){
 			$ximNewsList = new XimNewsList();
 			if(!$ximNewsList->updateList($idNode,$data["listName"])){
 				$this->messages->add(_("Error updating mail list."), MSG_TYPE_ERROR);
-				XMD_Log::error(_("Updating channels list for colector")." $idNode");
+				\XMD_Log::error(_("Updating channels list for colector")." $idNode");
 			}
 		}
 
@@ -307,7 +307,7 @@ class Action_createcolector extends ActionAbstract {
 			$canalCorreo, $newstogenerate, $timetogenerate, $inactive,
 			$newsPerBulletin, $filter, $mailList, $idArea, $master)) {
 
-			XMD_Log::info(_("Error creating the colector index").":".$idColector."");
+			\XMD_Log::info(_("Error creating the colector index").":".$idColector."");
 			$this->messages->add(_("The colector has NOT been created successfully."), MSG_TYPE_ERROR);
 			$this->messages->add(_("Error creating the colector index"), MSG_TYPE_ERROR);
 			$this->messages->mergeMessages($adapter->messages);

@@ -43,7 +43,7 @@ class View_LinkParams extends Abstract_View implements Interface_View {
 		$version = new Version($idVersion);
 
 		if (!($version->get('IdVersion') > 0)) {
-			XMD_Log::error("Incorrect version $idVersion");
+			\XMD_Log::error("Incorrect version $idVersion");
 			return NULL;
 		}
 
@@ -53,7 +53,7 @@ class View_LinkParams extends Abstract_View implements Interface_View {
 		$nodeTypeName = $nodeType->get('Name');
 
 		if (!($nodeId > 0)) {
-			XMD_Log::error("Unexisting node: " . $version->get('IdNode'));
+			\XMD_Log::error("Unexisting node: " . $version->get('IdNode'));
 			return NULL;
 		}
 

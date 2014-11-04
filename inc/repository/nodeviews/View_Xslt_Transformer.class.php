@@ -41,7 +41,7 @@ class View_Xslt_Transformer extends Abstract_View implements Interface_View {
 		} 
 		
 		if (!is_file(XIMDEX_ROOT_PATH . $xsltFile)) {
-			XMD_Log::error('No se ha encontrado la xslt solicitada ' . $xsltFile);
+			\XMD_Log::error('No se ha encontrado la xslt solicitada ' . $xsltFile);
 			return $pointer;
 		}
 		

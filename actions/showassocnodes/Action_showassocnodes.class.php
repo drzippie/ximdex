@@ -92,7 +92,7 @@ class Action_showassocnodes extends ActionAbstract {
     		foreach ($sections as $idsection) {
     			$section = new Node($idsection);
     			if (!($section->get('IdNode') > 0)) {
-    				XMD_Log::warning(_("Ximlet with identity "). $idsection . _("has been deleted"));
+    				\XMD_Log::warning(_("Ximlet with identity "). $idsection . _("has been deleted"));
     				continue;
     			}
     			$ret[$idsection]['path'] = str_replace('/', ' / ', $section->GetPath());

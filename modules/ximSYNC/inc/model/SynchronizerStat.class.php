@@ -61,7 +61,7 @@ class SynchronizerStat extends SynchronizerStats_ORM {
 
 		if(strcmp(Config::getValue("SyncStats"),"1")==0){
 
-			// Según el valor del parametro $doLog se insertara en la tabla o no.
+			// Segï¿½n el valor del parametro $doLog se insertara en la tabla o no.
 			if ($doInsertSql) {
 				$this->set('IdStat', null);
 				$this->set('BatchId', $batchId);
@@ -81,7 +81,7 @@ class SynchronizerStat extends SynchronizerStats_ORM {
 				parent::add();
 			}
 
-			//XMD_Log::info($comment);
+			//\XMD_Log::info($comment);
 			Sync_Log::write($comment, $level);
 		}
 		return null;

@@ -25,6 +25,7 @@
  */
 
 
+use \Ximdex\Helpers\Utils;
 
 
 if (!defined ("XIMDEX_ROOT_PATH"))
@@ -126,7 +127,7 @@ class XimXmlWriter {
 			$this->xml .= $xmlSrc;
 		}
 		else {
-			XMD_Log::info("Fragmento XML no inyectado: ".$xmlSrc);
+			\XMD_Log::info("Fragmento XML no inyectado: ".$xmlSrc);
 		}
 		return $ret;
     }

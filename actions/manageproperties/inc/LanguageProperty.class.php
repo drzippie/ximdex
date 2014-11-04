@@ -154,7 +154,7 @@ class LanguageProperty extends InheritableProperty {
 			if (!($result > 0)) {
 				$messages = $baseIO->messages->messages;
 				foreach ($messages as $message) {
-					XMD_Log::error($message['message']);
+					\\XMD_Log::error($message['message']);
 				}
 			}
 		}

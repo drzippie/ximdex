@@ -162,7 +162,7 @@ class Connection_Ssh implements I_Connector {
 		$parentFolder = implode('/', $folderComponents);
 		if (!$this->folderExists($parentFolder)) {
 			if (!$recursive) {
-				XMD_Log::warning('Connection_Ssh::mkdir folder not found and recursive flag not set');
+				\XMD_Log::warning('Connection_Ssh::mkdir folder not found and recursive flag not set');
 				return false;
 			}
 			$isParentCreated = $this->mkdir($parentFolder, $mode, true);
@@ -206,7 +206,7 @@ class Connection_Ssh implements I_Connector {
 	 */
 	public function chmod($target, $mode = 0755, $recursive = false) {
 		if ($recursive) {
-			XMD_Log::fatal('Not implemented yet Connection_Ssh::chmod with recursive true');
+			\XMD_Log::fatal('Not implemented yet Connection_Ssh::chmod with recursive true');
 		}
 		
 		return $this->netSFTP->chmod($mode, $filename);
@@ -236,7 +236,7 @@ class Connection_Ssh implements I_Connector {
 	 * @return int
 	 */
 	public function size($file) {
-		XMD_Log::fatal('Not implemented yet Connection_Ssh::size');
+		\XMD_Log::fatal('Not implemented yet Connection_Ssh::size');
 	}
 	
 	/**

@@ -60,7 +60,7 @@ $ormFile = $parameterCollector->getParameter('--ormFile');
 $className = $parameterCollector->getParameter('--className');
 
 if (!is_file($ormFile)) {
-	XMD_Log::display('Se ha solicitado generar las vistas de un archivo inexistente ' . $ormFile);
+	\XMD_Log::display('Se ha solicitado generar las vistas de un archivo inexistente ' . $ormFile);
 	die();
 }
 
@@ -72,11 +72,11 @@ if (is_null($obj->_metaData)) {
 	var_dump($obj->_metaData);
 }
 
-XMD_Log::display("File: " . realpath($ormFile));
-XMD_Log::display('Class: ' . $className);
+\XMD_Log::display("File: " . realpath($ormFile));
+\XMD_Log::display('Class: ' . $className);
 $longFieldTypes = array('V', 'I', 'C', 'M', 'R');
 foreach ($obj->_metaData as $key => $fieldDescriptors) {
-	XMD_Log::display("\t Field: " . $key);
+	\XMD_Log::display("\t Field: " . $key);
 	$fieldType = CliReader::alert(array('V', 'I', 'C', 'M', 'R', 'v', 'i', 'c', 'm', 'r'), 
 		'Seleccione tipo de campo Visible (V), Invisible (I), CreationDate (C), ModificationDate (M), Relation (R):');
 	$obj->_metaData[$key]['TYPE'] = $longFieldTypes(strtoupper($fieldType));
@@ -97,9 +97,9 @@ foreach ($obj->_metaData as $key => $fieldDescriptors) {
 				break;		
 			case 3:
 				$tableDest = CliReader::getString('Introduzca la tabla que describe la otra parte N');
-				$relationTable = CliReader::getString('Introduzca la tabla de relación intermedia');
-				$idSource = CliReader::getString(sprintf('Introduzca el campo que referencia a %s en la tabla de relación %s', $className, $relationTable));
-				$idDest = CliReader::getString(sprintf('Introduzca el campo que referencia a %s en la tabla de relación %s', $tableDest, $relationTable));
+				$relationTable = CliReader::getString('Introduzca la tabla de relaciï¿½n intermedia');
+				$idSource = CliReader::getString(sprintf('Introduzca el campo que referencia a %s en la tabla de relaciï¿½n %s', $className, $relationTable));
+				$idDest = CliReader::getString(sprintf('Introduzca el campo que referencia a %s en la tabla de relaciï¿½n %s', $tableDest, $relationTable));
 				$obj->_metaData[$key]['RELATIONS'][] = 
 					array(	
 						'TYPE' => 'HAS_MANY_AND_BELONGS_TO', 

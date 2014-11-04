@@ -184,7 +184,7 @@ function getVersionColector($arr_colectors,$arr_news)
 				$version = $relNewsColector->get('Version');
 				$subversion = $relNewsColector->get('SubVersion');
 			} else {
-				XMD_Log::info(_('No relationship was found in the database'));
+				\XMD_Log::info(_('No relationship was found in the database'));
 			}
 
 			// This first case CANNOT BE GET unless the query fails or the relations didn't exist

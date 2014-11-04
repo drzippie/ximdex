@@ -31,7 +31,6 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 }
 
 require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/TarArchiver.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 require_once(XIMDEX_ROOT_PATH . "/inc/repository/nodeviews/View_SQL.class.php");
 require_once(XIMDEX_ROOT_PATH . '/inc/repository/nodeviews/Abstract_View.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/repository/nodeviews/Interface_View.class.php');
@@ -40,12 +39,12 @@ class View_UnpublishOTF extends Abstract_View implements Interface_View {
 
 	function transform($idVersion = NULL, $pointer = NULL, $args = NULL) {
 		if (!array_key_exists('CHANNEL', $args)) {
-			XMD_Log::error('channel is mandatory');
+			\XMD_Log::error('channel is mandatory');
 			return NULL;
 		}
 		
 		if (!array_key_exists('NODEID', $args)) {
-			XMD_Log::error('nodeid is mandatory');
+			\XMD_Log::error('nodeid is mandatory');
 			return NULL;
 		}
 

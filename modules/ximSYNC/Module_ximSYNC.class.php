@@ -28,7 +28,6 @@
 
 ModulesManager::file('/inc/modules/Module.class.php');
 ModulesManager::file('/inc/persistence/Config.class.php');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 
 class Module_ximSYNC extends Module {
 
@@ -50,8 +49,8 @@ class Module_ximSYNC extends Module {
 
         // Install logic.
 
-        // ¿get module from ftp, webdav, subversion, etc...?
-        // ¿need to be extracted?
+        // ï¿½get module from ftp, webdav, subversion, etc...?
+        // ï¿½need to be extracted?
         // extract and copy files to modules location.
 
         // get constructor SQL

@@ -127,7 +127,7 @@ class SyncManager {
 
 	function pushDocInPublishingPool($idNode, $up, $down = null) {
 		if (is_null($idNode)) {
-			XMD_Log::error(_("Pushdocinpool - Empty IdNode"));
+			\XMD_Log::error(_("Pushdocinpool - Empty IdNode"));
 			return NULL;
 		}
 
@@ -152,7 +152,7 @@ class SyncManager {
 
 		$node = new Node($idNode);
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error(sprintf(_("Node %s does not exist") , $idNode) );
+			\XMD_Log::error(sprintf(_("Node %s does not exist") , $idNode) );
 			return NULL;
 		}
 

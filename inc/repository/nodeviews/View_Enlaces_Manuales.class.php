@@ -41,7 +41,7 @@ class View_Enlaces_Manuales extends Abstract_View implements Interface_View {
 		$domDocument->validateOnParse = true;
 		$domDocument->loadXML($content);
 		if (!$domDocument) {
-			XMD_Log::error('Failed to load xml in View_Enlaces_Manuales');
+			\XMD_Log::error('Failed to load xml in View_Enlaces_Manuales');
 			return $pointer;
 		}
 		$xpathExp = new DOMXPath($domDocument);
@@ -72,7 +72,7 @@ class View_Enlaces_Manuales extends Abstract_View implements Interface_View {
 			
 	 		$mergeLength = $mergeItem->length;
 	 		if ($mergeLength != 1) {
-	 			XMD_Log::error('Wrong count of items detected');
+	 			\XMD_Log::error('Wrong count of items detected');
 	 			return $pointer;
 	 		}
 	 		
@@ -94,7 +94,7 @@ class View_Enlaces_Manuales extends Abstract_View implements Interface_View {
 			
 	 		$mergeLength = $updateItem->length;
 	 		if ($mergeLength != 1) {
-	 			XMD_Log::error('Wrong count of items detected');
+	 			\XMD_Log::error('Wrong count of items detected');
 	 			return $pointer;
 	 		}
 	 		

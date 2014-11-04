@@ -25,14 +25,7 @@
  */
 
 
-
-if (!defined('XIMDEX_ROOT_PATH')) {
-        define('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . '/../../'));
-}
-
 require_once(XIMDEX_ROOT_PATH . '/inc/patterns/Factory.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/log/Action_log.class.php');
-
 /**
  *
  * @brief Factory class to instantiate Actions
@@ -109,7 +102,7 @@ class ActionFactory {
 		$actionClass = "/Action_".$action.".class.php";
 		//Sino es el composer visualizamos los logs para que no se nos llenen
 		if($action != "composer")
-			XMD_Log::debug("MVC::ActionFactory Executing class Action: $actionClass | path Action: $actionPath | Method Action: ".$request->getParam ("method"));
+			\XMD_Log::debug("MVC::ActionFactory Executing class Action: $actionClass | path Action: $actionPath | Method Action: ".$request->getParam ("method"));
 
 		return array ($actionPath, $actionClass);
 	}

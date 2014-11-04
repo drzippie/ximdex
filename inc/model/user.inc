@@ -471,7 +471,7 @@ class User extends Users_ORM {
 	function CreateNewUser($realname, $login, $pass, $email, $locale, $roleID, $idUser) {
 
 		if (is_null($idUser)) {
-			XMD_Log::error(_("The node must be previously created"));
+			\XMD_Log::error(_("The node must be previously created"));
 			return NULL;
 		}
 
@@ -483,7 +483,7 @@ class User extends Users_ORM {
 		$this->set('Locale', $locale);
 
 		if (!parent::add()) {
-			XMD_Log::error(_("Error in User persistence for $idUser"));
+			\XMD_Log::error(_("Error in User persistence for $idUser"));
 			return NULL;
 		}
 

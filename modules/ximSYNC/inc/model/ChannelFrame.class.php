@@ -62,7 +62,7 @@ class ChannelFrame extends ChannelFrames_ORM {
 			return $idChannelFrame;
 		}
 
-		XMD_Log::info("ERROR Creando el channelFrame");
+		\XMD_Log::info("ERROR Creando el channelFrame");
 		return NULL;
     }
 

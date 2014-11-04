@@ -94,7 +94,7 @@ class Action_composer extends ActionAbstract {
 			$isDir = $selectedNode->nodeType->isFolder() ? '1' : '0';
 		} else {
 			$isDir = '0';
-			XMD_Log::warning(sprintf(_('A Node without NodeType was requested: idNode=%s, nodeType=%s'), $idNode, $selectedNode->nodeType));
+			\\XMD_Log::warning(sprintf(_('A Node without NodeType was requested: idNode=%s, nodeType=%s'), $idNode, $selectedNode->nodeType));
 		}
 
 		//Filtering by debufilter
@@ -692,7 +692,7 @@ class Action_composer extends ActionAbstract {
 		$action = new Action();
 		$contentToolBar = '';
 
-//		XMD_Log::debug("XMD:toolbar: Data for node($nodeID). BEGIN");
+//		\\XMD_Log::debug("XMD:toolbar: Data for node($nodeID). BEGIN");
 
 		$contentToolBar .= '<node nodeid="' . $node->GetID() . '" name="' . $node->GetNodeName() . '" path="' . $node->GetPath() . '">';
 
@@ -742,7 +742,7 @@ class Action_composer extends ActionAbstract {
 		$contentToolBar = XmlBase::recodeSrc($contentToolBar, $this->displayEncoding);
 
 		echo $contentToolBar;
-		XMD_Log::debug("XMD:toolbar: Data for node($nodeID). END");
+		\\XMD_Log::debug("XMD:toolbar: Data for node($nodeID). END");
 
 	}
 

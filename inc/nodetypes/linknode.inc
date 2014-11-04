@@ -90,7 +90,7 @@ class LinkNode extends Root {
 		$relDescription = !empty($description) ? $description : $this->link->get('Name');
 		$rel = RelLinkDescriptions::create($this->nodeID, $relDescription);
 		if ($rel->getIdRel() < 0) {
-			XMD_Log::warning(sprintf('No se ha podido crear la descripcion para el enlace %s en su tabla relacionada.', $link->get('IdLink')));
+			\XMD_Log::warning(sprintf('No se ha podido crear la descripcion para el enlace %s en su tabla relacionada.', $link->get('IdLink')));
 		}
 
 		$ret = $this->link->get('IdLink');
@@ -107,7 +107,7 @@ class LinkNode extends Root {
 	function DeleteNode() {
 
 		if (!($this->link->get('IdLink') > 0)) {
-			XMD_Log::error("Se ha solicitado eliminar el nodo {$this->nodeID} que actualmente no existe");
+			\XMD_Log::error("Se ha solicitado eliminar el nodo {$this->nodeID} que actualmente no existe");
 		}
 
 		$result = $this->link->delete();
@@ -124,7 +124,7 @@ class LinkNode extends Root {
 			$it = new I_LinkDescriptions('IdLink = %s', array($this->link->get('IdLink')));
 			while ($rel = $it->next()) {
 				if (!$rel->delete()) {
-					XMD_Log::warning(sprintf('No se ha podido eliminar la descripcion con id %s para el enlace %s.', $rel->getIdRel(), $this->link->get('IdLink')));
+					\XMD_Log::warning(sprintf('No se ha podido eliminar la descripcion con id %s para el enlace %s.', $rel->getIdRel(), $this->link->get('IdLink')));
 				}
 			}
 

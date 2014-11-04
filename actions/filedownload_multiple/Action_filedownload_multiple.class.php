@@ -60,7 +60,7 @@ class Action_filedownload_multiple extends ActionAbstract {
 		}
 
 		if (!is_file($tarFile)) {
-            XMD_Log::error('All selected documents could not be exported. Do you have zip installed?');
+            \\XMD_Log::error('All selected documents could not be exported. Do you have zip installed?');
 		}
 
 		$tarFile = preg_replace(sprintf('#^%s#', Config::getValue('AppRoot')), Config::getValue('UrlRoot'), $tarFile);
@@ -111,7 +111,7 @@ class Action_filedownload_multiple extends ActionAbstract {
     private function deleteContents($tmpFolder) {
        	$ret = FsUtils::deltree($tmpFolder);
 	    if (!$ret) {
-    		XMD_Log::info(_("Directory could not be deleted ").$tmpFolder);
+    		\\XMD_Log::info(_("Directory could not be deleted ").$tmpFolder);
     	}
     }
 

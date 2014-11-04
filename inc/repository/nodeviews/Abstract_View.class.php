@@ -26,7 +26,6 @@
 
 
 
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 
 
 abstract class Abstract_View {
@@ -41,7 +40,7 @@ abstract class Abstract_View {
 				return $basePath . $pointer;
 			}
 		}
-		XMD_Log::error('Ha sucedido un error al intentar almacenar contenido');
+		\XMD_Log::error('Ha sucedido un error al intentar almacenar contenido');
 		return NULL;
 	}
 	

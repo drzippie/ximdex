@@ -26,7 +26,6 @@
 
 
 
-include_once(XIMDEX_ROOT_PATH . "/inc/log/Loggeable.class.php");
 
 /**
  * @brief Logger for use in XVFS operations. 

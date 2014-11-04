@@ -56,7 +56,7 @@ class XimNewsBulletin extends XimNewsBulletins_ORM {
 			return true;
 		}
 
-		XMD_Log::info("InsertBulletinLanguage");
+		\XMD_Log::info("InsertBulletinLanguage");
 		return false;
 	}
 

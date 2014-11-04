@@ -393,7 +393,7 @@ public function checkEditionStatus() {
     // Creating the new edition for this user
     $res = $nodeEdition->create($idnode, $userID);    
     if(!$res) {
-        XMD_Log::error(_('Error creating a new Node Edition'));
+        \XMD_Log::error(_('Error creating a new Node Edition'));
     }
     $return = array('edition' => $edition,'data' => $extraEdition);
     echo json_encode($return);
@@ -407,7 +407,7 @@ public function removeNodeEdition() {
     $nodeEdition = new NodeEdition();
     $res = $nodeEdition->deleteByNodeAndUser($nodeid, $userid);
     if(!$res) {
-        XMD_Log::error("Error deleting Node Edition for node ".$nodeid." and user ".$userid);
+        \XMD_Log::error("Error deleting Node Edition for node ".$nodeid." and user ".$userid);
     }
 }
 

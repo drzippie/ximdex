@@ -67,7 +67,7 @@ class BaseIORelations {
 				
 				//var_dump($rnc->messages);
 				if (!($result > 0)) {
-					XMD_Log::warning(_('Error inserting information about relnewscolector relation (BaseIORelations)'));
+					\XMD_Log::warning(_('Error inserting information about relnewscolector relation (BaseIORelations)'));
 				}
 				break;
 		}

@@ -65,7 +65,7 @@ class Action_createnews extends ActionAbstract {
 				 $templates_list[] = array('id' => $templateId, 'name' => $template->get('Name'));
 			}
 		}else{
-			XMD_Log::info(_("There is not defined any template to create news"));
+			\XMD_Log::info(_("There is not defined any template to create news"));
 		}
 
 		$lotes_list = ximNEWS_Adapter::getLotes($idNode);

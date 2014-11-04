@@ -95,7 +95,7 @@ class ServerErrorManager {
 		$serverError->set('WithError',1);
 		$serverError->update();
 
-		XMD_Log::info(_("Disabling server")." $idServer");
+		\XMD_Log::info(_("Disabling server")." $idServer");
 
 		$serverNode = new Server($idServer);
 		$serverNode->set('ActiveForPumping',0);
@@ -109,7 +109,7 @@ class ServerErrorManager {
 
 	function enableServer($idServer, $idPumper) {
 
-		XMD_Log::info(_("Enabling server")." $idServer");
+		\XMD_Log::info(_("Enabling server")." $idServer");
 
 		$serverNode = new Server($idServer);
 		$serverNode->set('ActiveForPumping',1);

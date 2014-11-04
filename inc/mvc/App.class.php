@@ -36,7 +36,7 @@ require_once(XIMDEX_ROOT_PATH . '/inc/patterns/Factory.class.php');
  * 
  * @brief Actions global app object who stores some common objects to all actions
  *
- * Global object who stores some common objects to all actions like Messages, QueryManager, DB and XMD_Log
+ * Global object who stores some common objects to all actions like Messages, QueryManager, DB and \XMD_Log
  * actually is pretty deprecated
  */
 class App {

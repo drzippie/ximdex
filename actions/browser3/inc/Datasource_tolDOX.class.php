@@ -82,7 +82,7 @@ class Datasource_tolDOX extends Datasource_XVFS implements IDatasource {
 				if (!is_object($child)) {
 			
 					// Probably a socket file or something like that
-					XMD_Log::info(_("The path cannot be read") . $childPath);
+					\\XMD_Log::info(_("The path cannot be read") . $childPath);
 				
 				} else {
 			

@@ -149,7 +149,7 @@ class ParsingMail2News {
 		$xml = Config::GetValue('EncodingTag') . $this->getBody();
 
 		if (!$doc->LoadXML($xml)) {
-			XMD_Log::error('Incorrect xml schema');
+			\XMD_Log::error('Incorrect xml schema');
 			exit();
 		}
 

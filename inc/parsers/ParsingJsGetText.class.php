@@ -78,7 +78,7 @@ class ParsingJsGetText {
 	public function setFile($_js = null) {
 		if($_js != null) {
 			if(!file_exists(XIMDEX_ROOT_PATH.$_js) ) {
-				XMD_Log::error('The file ' . $_js . 'could not be included because of it is not existing in the path: ' . XIMDEX_ROOT_PATH . $_js);
+				\XMD_Log::error('The file ' . $_js . 'could not be included because of it is not existing in the path: ' . XIMDEX_ROOT_PATH . $_js);
 				return null;
 			}
 			$this->_file_orig = $_js;
@@ -111,7 +111,7 @@ class ParsingJsGetText {
 
 		//If there is not source file we quit
 		if($this->_file_orig == null) {
-			XMD_Log::warning("ERROR, file_orig not stablished");
+			\XMD_Log::warning("ERROR, file_orig not stablished");
 			return null;
 		}
 
@@ -119,7 +119,7 @@ class ParsingJsGetText {
 		$file_in = @fopen(XIMDEX_ROOT_PATH.$this->_file_orig, "r");
 
 		if(!$file_in) {
-			XMD_Log::warning("ERROR, the file ".XIMDEX_ROOT_PATH.$this->_file_orig." could not be opened");
+			\XMD_Log::warning("ERROR, the file ".XIMDEX_ROOT_PATH.$this->_file_orig." could not be opened");
 			return null;
 		}
 
@@ -127,10 +127,10 @@ class ParsingJsGetText {
 		$file_out = @fopen(XIMDEX_ROOT_PATH.self::PATH_CACHE.$this->_lang."/".$this->_file, "w");
 
 		if(!$file_out) {
-			XMD_Log::warning("ERROR, you have not permits, or the language directory is not existing. Review permits in \'data/tmp/js\'. Error opening the file " . XIMDEX_ROOT_PATH.self::PATH_CACHE.$this->_lang."/".$this->_file);
+			\XMD_Log::warning("ERROR, you have not permits, or the language directory is not existing. Review permits in \'data/tmp/js\'. Error opening the file " . XIMDEX_ROOT_PATH.self::PATH_CACHE.$this->_lang."/".$this->_file);
 			return null;
 		}
-		XMD_Log::warning("Caching: ".XIMDEX_ROOT_PATH.$this->_file_orig." --> ".XIMDEX_ROOT_PATH.self::PATH_CACHE.$this->_lang."/".$this->_file );
+		\XMD_Log::warning("Caching: ".XIMDEX_ROOT_PATH.$this->_file_orig." --> ".XIMDEX_ROOT_PATH.self::PATH_CACHE.$this->_lang."/".$this->_file );
 
 		if($file_in && $file_out) {
 			while (!feof($file_in)) {
@@ -141,7 +141,7 @@ class ParsingJsGetText {
 
 			fclose($file_in);
 			fclose($file_out);
-			XMD_Log::info('Js Cache generated ' . Config::getValue('UrlRoot').self::PATH_CACHE.$this->_lang."/".$this->_file);
+			\XMD_Log::info('Js Cache generated ' . Config::getValue('UrlRoot').self::PATH_CACHE.$this->_lang."/".$this->_file);
 			return Config::getValue('UrlRoot').self::PATH_CACHE.$this->_lang."/".$this->_file;
 		}
 

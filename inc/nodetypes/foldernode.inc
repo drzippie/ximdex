@@ -31,7 +31,7 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 include_once XIMDEX_ROOT_PATH . "/inc/persistence/Config.class.php";
 require_once (XIMDEX_ROOT_PATH . "/inc/nodetypes/root.inc");
 require_once (XIMDEX_ROOT_PATH . "/services/NodetypeService.class.php");
-include_once (XIMDEX_ROOT_PATH . "/inc/fsutils/FsUtils.class.php");
+
 
 /**
 *  @brief Handles directories.
@@ -97,7 +97,7 @@ class FolderNode extends Root {
 		$xmlFolderId =	$this->parent->GetChildByName($folderType);
 
 		if (!($xmlFolderId > 0)) {
-			XMD_Log::error('xml folder not found');
+			\XMD_Log::error('xml folder not found');
 			return NULL;
 		}
 

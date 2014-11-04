@@ -47,7 +47,7 @@ class Connection_Solr implements I_Connector {
     * @return boolean
     */
    public function connect($host = NULL, $port = NULL) {
-      XMD_Log::info("CONNECT $host $port");
+      \XMD_Log::info("CONNECT $host $port");
       $this->config = array(
           'adapteroptions' => array(
               'host' => $host,
@@ -150,7 +150,7 @@ class Connection_Solr implements I_Connector {
     * @return boolean
     */
    public function rename($renameFrom, $renameTo) {
-      XMD_Log::info("RENAME $renameFrom -> $renameTo");
+      \XMD_Log::info("RENAME $renameFrom -> $renameTo");
       return true;
    }
 
@@ -187,7 +187,7 @@ class Connection_Solr implements I_Connector {
     * @return boolean
     */
    public function rm($path) {
-      XMD_Log::info("RM $path");
+      \XMD_Log::info("RM $path");
 
       // guess idnode from server path
       $pathParts = explode("/", $path);
@@ -203,7 +203,7 @@ class Connection_Solr implements I_Connector {
       $result = $node->find('idnode', "Path REGEXP %s", array($partialTablePath), MONO);
 
       if (!isset($result[0])) {
-         XMD_Log::error("unexpected result, document may have not been deleted");
+         \XMD_Log::error("unexpected result, document may have not been deleted");
          return false;
       }
 
@@ -215,11 +215,11 @@ class Connection_Solr implements I_Connector {
       $solrResp = $client->update($update);
 
       if ($solrResp->getStatus() !== 0) {
-         XMD_Log::error("solr error deleting doc id: {$result[0]}");
+         \XMD_Log::error("solr error deleting doc id: {$result[0]}");
          return false;
       }
 
-      XMD_Log::info("solr doc id: {$result[0]} was deleted");
+      \XMD_Log::info("solr doc id: {$result[0]} was deleted");
       return true;
    }
 
@@ -234,7 +234,7 @@ class Connection_Solr implements I_Connector {
     * @return boolean
     */
    public function get($sourceFile, $targetFile, $mode = 0755) {
-      XMD_Log::info("GET $sourceFile, $targetFile");
+      \XMD_Log::info("GET $sourceFile, $targetFile");
       return false;
    }
 
@@ -249,20 +249,20 @@ class Connection_Solr implements I_Connector {
     * @return boolean
     */
    public function put($localFile, $targetFile, $mode = 0755) {
-      XMD_Log::info("PUT $localFile TO $targetFile");
+      \XMD_Log::info("PUT $localFile TO $targetFile");
       $core = array_shift(explode("/", $targetFile));
       $this->config['adapteroptions']['core'] = $core;
 
       $xml = simplexml_load_file($localFile);
       if (!$xml) {
-         XMD_Log::error("invalid xml file: $localFile");
+         \XMD_Log::error("invalid xml file: $localFile");
          return false;
       }
 
       //Adapt xml to Solarium
       $client = new Solarium_Client($this->config);
       if (!$client) {
-         XMD_Log::error("fail to create a Solarium_Client instance");
+         \XMD_Log::error("fail to create a Solarium_Client instance");
          return false;
       }
       $update = $client->createUpdate();
@@ -359,15 +359,15 @@ class Connection_Solr implements I_Connector {
       try {
          $result = $client->update($update);
       } catch (Exception $e) {
-         XMD_Log::error("Exception: {$e->getMessage()}");
+         \XMD_Log::error("Exception: {$e->getMessage()}");
          return false;
       }
 
       if ($result->getStatus() !== 0) {
-         XMD_Log::error("<< Solr update error - status: {$result->getStatus()} >>");
+         \XMD_Log::error("<< Solr update error - status: {$result->getStatus()} >>");
          return false;
       }
-      XMD_Log::info("<< Solr update ok >>");
+      \XMD_Log::info("<< Solr update ok >>");
       return true;
    }
 

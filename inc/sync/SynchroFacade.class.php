@@ -50,13 +50,13 @@
 			
 			$targetNode = new Node(($idTargetNode));
 			if (!($targetNode->get('IdNode') > 0)) {
-				XMD_Log::error(_('No correct node received'));
+				\XMD_Log::error(_('No correct node received'));
 				return NULL;
 			}
 
 			$server = new Server($idServer);
 			if (!($server->get('IdServer') > 0)) {
-				XMD_Log::error(_('No correct server received'));
+				\XMD_Log::error(_('No correct server received'));
 				return NULL;
 			}
 			
@@ -68,7 +68,7 @@
 				$frameID = $targetFrame->getCurrent($idTargetNode, $idTargetChannel); // esto es un idSync
 				
 				if (!($frameID > 0)) {
-					XMD_Log::error(_("No target frame available")." FACADE - $idTargetNode - $idTargetChannel - $idServer");
+					\XMD_Log::error(_("No target frame available")." FACADE - $idTargetNode - $idTargetChannel - $idServer");
 					return NULL;
 				}
 				
@@ -76,7 +76,7 @@
 				$physicalTargetServers = $targetFrame->getCompleteServerList($idTargetNode, $idTargetChannel);
                 
                 if (count($physicalTargetServers) == 0) {
-					XMD_Log::error(_("No physical target server available"));
+					\XMD_Log::error(_("No physical target server available"));
 					return NULL;
 				}
 
@@ -93,14 +93,14 @@
 			$idFrame = $syncro->GetCurrentFrame($idTargetChannel);
 			
 			if (!($idFrame > 0)) {
-				XMD_Log::error(_("Not target frame available")." FACADE (2)");
+				\XMD_Log::error(_("Not target frame available")." FACADE (2)");
 				return NULL;
 			}
 			
 			$physicalTargetServers = $syncro->GetServerListOnFrame($idFrame, $idTargetChannel);
 			
 			if (count($physicalTargetServers) == 0) {
-				XMD_Log::info(_("No physical target server available"));
+				\XMD_Log::info(_("No physical target server available"));
 				return NULL;
 			}
 			
@@ -128,9 +128,9 @@
 			$dbObj->Execute($sql);
 
 			if ($dbObj->numRows > 0) {
-				XMD_Log::info(sprinf(_("Deleting frames in table %s - server %s"), $table, $physicalServerID));
+				\XMD_Log::info(sprinf(_("Deleting frames in table %s - server %s"), $table, $physicalServerID));
 			} else {
-				XMD_Log::info(sprinft(_("No deletion in table %s - server %s"), $table, $physicalServerID));
+				\XMD_Log::info(sprinft(_("No deletion in table %s - server %s"), $table, $physicalServerID));
 			}
 
 		}
@@ -318,7 +318,7 @@
 		function getFrameState($idFrame){
 
 			if (is_null($idFrame)) {
-				XMD_Log::error(_('Void param idFrame'));
+				\XMD_Log::error(_('Void param idFrame'));
 				return NULL;
 			}
 
@@ -346,7 +346,7 @@
 		function getFramePath($idFrame){
 
 			if (is_null($idFrame)) {
-				XMD_Log::error(_('Void param idFrame'));
+				\XMD_Log::error(_('Void param idFrame'));
 				return NULL;
 			}
 
@@ -374,7 +374,7 @@
 		function getFrameName($idFrame){
 
 			if (is_null($idFrame)) {
-				XMD_Log::error(_('Void param idFrame'));
+				\XMD_Log::error(_('Void param idFrame'));
 				return NULL;
 			}
 
@@ -402,7 +402,7 @@
 		function getFrameServer($idFrame){
 
 			if (is_null($idFrame)) {
-				XMD_Log::error(_('Void param idFrame'));
+				\XMD_Log::error(_('Void param idFrame'));
 				return NULL;
 			}
 
@@ -430,7 +430,7 @@
 		function getFrameChannel($idFrame){
 
 			if (is_null($idFrame)) {
-				XMD_Log::error(_('Void param idFrame'));
+				\XMD_Log::error(_('Void param idFrame'));
 				return NULL;
 			}
 
@@ -572,7 +572,7 @@
 			}
 			
 			// TODO ximnews bulletins are passing by here now
-	    	XMD_Log::info("Stablishing PUSH");
+	    	\XMD_Log::info("Stablishing PUSH");
 		    $syncMngr->setFlag('deleteOld', true);
 			$result = $syncMngr->pushDocInPublishingPool($idNode, $upDate, $downDate);
 	
@@ -647,7 +647,7 @@
 	
 		if($ximNewsBulletin->isBulletinForXimlet()){
 			$ximletID = $ximNewsBulletin->GetBulletinXimlet();
-			XMD_Log::info(_("Bulletin is of the ximlet ") . $ximletID);
+			\XMD_Log::info(_("Bulletin is of the ximlet ") . $ximletID);
 			$ximlet = new StructuredDocument($ximletID);
 			$bulletinDoc = new StructuredDocument($idNode);
 			$content = $bulletinDoc->GetContent();
@@ -682,11 +682,11 @@
 	    $nodeTypeName = $nodeType->GetName();
 	
 	    if($nodeTypeName == 'Ximlet'){
-			XMD_Log::info(_("Starting ximlet publication"));
+			\XMD_Log::info(_("Starting ximlet publication"));
 			self::publishXimNewsDocument($idNode, $dateUp, $dateDown);
 		
 			$docsToPublish = array();
-			XMD_Log::info(sprintf(_("Looking for documents associated to the ximlet %s"),$nodeID));
+			\XMD_Log::info(sprintf(_("Looking for documents associated to the ximlet %s"),$nodeID));
 			$docsToPublish = $node->class->getRefererDocs();
 		
 			//Publishing all the documents associated to the ximlet
@@ -827,7 +827,7 @@
 				$relNewsColector->set('SubVersion', $subversion);
 
 				if (!$relNewsColector->update()) {
-					XMD_Log::error(_('Updating version'));
+					\XMD_Log::error(_('Updating version'));
 				}
 
 				if($idCache > 0){
@@ -835,12 +835,12 @@
 					$ximNewsCache->set('IdVersion',$idVersion);
 
 					if (!$ximNewsCache->update()) {
-						XMD_Log::error(_('Updating cache version'));
+						\XMD_Log::error(_('Updating cache version'));
 					}
 				}
 			}
 
-			XMD_Log::info(sprintf(_("node %s version %s"), $idNode, $version));
+			\XMD_Log::info(sprintf(_("node %s version %s"), $idNode, $version));
         }
         
         return $result;

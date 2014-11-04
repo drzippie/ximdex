@@ -31,7 +31,6 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 	define ('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__) . '/../../../'));
 }
 
-require_once(XIMDEX_ROOT_PATH . '/inc/log/XMD_log.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/model/Versions.inc');
 require_once(XIMDEX_ROOT_PATH . '/inc/repository/nodeviews/Abstract_View.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/repository/nodeviews/Interface_View.class.php');
@@ -64,7 +63,7 @@ class View_XmlDocument extends Abstract_View implements Interface_View {
 		$this->retrieveContent($pointer);
 		$node = new Node($idNode);
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error("El nodo que se está intentando convertir no existe: $idNode");
+			\XMD_Log::error("El nodo que se estï¿½ intentando convertir no existe: $idNode");
 			return false;
 		}
 

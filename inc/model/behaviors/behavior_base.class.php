@@ -43,7 +43,7 @@ class BehaviorBase {
 	private function _checkFields($options) {
 		foreach ($this->required as $field) {
 			if (!array_key_exists($field ,$options)) {
-				XMD_Log::fatal(sprintf('Field %s required in behaviour %s', 
+				\XMD_Log::fatal(sprintf('Field %s required in behaviour %s',
 					$field, get_class($this)));
 			}
 		}
@@ -54,7 +54,7 @@ class BehaviorBase {
 		
 		if (count($extraFields) > 0) {
 			foreach ($extraFields as $field) {
-				XMD_Log::warning(sprintf('Field %s not expected in behaviour %s', 
+				\XMD_Log::warning(sprintf('Field %s not expected in behaviour %s',
 					$field, get_class($this)));
 			}
 		}

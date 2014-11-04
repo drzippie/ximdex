@@ -30,7 +30,7 @@
 if (!defined ("XIMDEX_ROOT_PATH"))
 	define ("XIMDEX_ROOT_PATH", realpath (dirname (__FILE__)."/../../"));
 
-include_once (XIMDEX_ROOT_PATH."/inc/fsutils/FsUtils.class.php");
+
 
 class XML{
 
@@ -40,11 +40,11 @@ class XML{
 
 	// Parser xml
 	protected $_xmlParser;
-	// Codificación
+	// Codificaciï¿½n
 	protected $encoding;
 	// Contenido del documento xml
 	protected $xmlSrc;
-	// Información parseada
+	// Informaciï¿½n parseada
 	protected $data;
 	// Resultado del parseo
 	public $result;
@@ -97,9 +97,9 @@ class XML{
 		// Opciones del parser
 		xml_parser_set_option ($this->_xmlParser, XML_OPTION_SKIP_WHITE, 1);
 		xml_parser_set_option( $this->_xmlParser, XML_OPTION_CASE_FOLDING, 0);
-		// Instancia los métodos para la gestión de los tags de apertura y de cierre
+		// Instancia los mï¿½todos para la gestiï¿½n de los tags de apertura y de cierre
 		xml_set_element_handler ($this->_xmlParser, "_tag_open", "_tag_close");
-		// Instancia el método para la gestión del contenido
+		// Instancia el mï¿½todo para la gestiï¿½n del contenido
 		xml_set_character_data_handler ($this->_xmlParser, "_tag_data");
 		// Parsea el documento xml
 
@@ -108,14 +108,14 @@ class XML{
 		// Asigna la cadena de errores
 		if (!$this->result) {
 			$this->error = "Error al parsear el XML: ".xml_error_string (xml_get_error_code ($this->_xmlParser)).
-				" - línea ".xml_get_current_line_number ($this->_xmlParser).
+				" - lï¿½nea ".xml_get_current_line_number ($this->_xmlParser).
 				" - columna ".xml_get_current_column_number ($this->_xmlParser).
 				" - byte ".xml_get_current_byte_index ($this->_xmlParser);
 		}
 
 		xml_parser_free ($this->_xmlParser);
 
-		// Devuelve un boolean que indica si la carga ha tenido éxito
+		// Devuelve un boolean que indica si la carga ha tenido ï¿½xito
 		return $this->result;
 	}
 
@@ -135,7 +135,7 @@ class XML{
 			return $domDocument;
 		}
 		
-		XMD_Log::error('El documento a cargar contiene errores');
+		\XMD_Log::error('El documento a cargar contiene errores');
 		return false;
 	}
 

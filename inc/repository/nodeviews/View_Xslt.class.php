@@ -27,7 +27,6 @@
 
 
 ModulesManager::file('/inc/model/Versions.inc');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/xml/XSLT.class.php');
 ModulesManager::file('/xslt/functions.php', 'dexT');
 ModulesManager::file('/inc/pipeline/PipeCacheTemplates.class.php');
@@ -77,17 +76,17 @@ class View_Xslt extends Abstract_View {
 				$xmlHeader = Config::getValue('EncodingTag');
 				$content = str_replace($xmlHeader, $xmlHeader . $inclusionHeader, $content);
 
-				XMD_Log::info('Render in client, return XML content + path to template');
+				\XMD_Log::info('Render in client, return XML content + path to template');
 				return $content;
 			}
 
 /*			if (is_object($this->_node)) {
 
-				XMD_Log::info("obteniendo propiedad otf para id ".$this->_node->get('IdNode'));
+				\XMD_Log::info("obteniendo propiedad otf para id ".$this->_node->get('IdNode'));
 				$isOTF = $this->_node->getSimpleBooleanProperty('otf');
 
 				if ($isOTF) {
-					XMD_Log::info('Render in server, return XML content');
+					\XMD_Log::info('Render in server, return XML content');
 					return $content;
 				}
 			}
@@ -96,7 +95,7 @@ class View_Xslt extends Abstract_View {
 
 		// XSLT Transformation
 
-		XMD_Log::info('Starting xslt transformation');
+		\XMD_Log::info('Starting xslt transformation');
 		if (!file_exists($docxap)) {
 			$project = new Node($this->_idProject);
 			$nodeProjectPath = $project->class->GetNodePath();
@@ -115,7 +114,7 @@ class View_Xslt extends Abstract_View {
 		
 		$content = $xsltHandler->process();
 		if (empty($content)) {
-		    XMD_Log::error("Error in XSLT process for $docxap ");
+		    \XMD_Log::error("Error in XSLT process for $docxap ");
 		    return NULL;
 		}
 
@@ -164,17 +163,17 @@ class View_Xslt extends Abstract_View {
 		if(!is_null($idVersion)) {
 			$version = new Version($idVersion);
 			if (!($version->get('IdVersion') > 0)) {
-				XMD_Log::error('VIEW XSLT: Se ha cargado una versi�n incorrecta (' . $idVersion . ')');
+				\XMD_Log::error('VIEW XSLT: Se ha cargado una versi�n incorrecta (' . $idVersion . ')');
 				return NULL;
 			}
 
 			$this->_node = new Node($version->get('IdNode'));
 			if (!($this->_node->get('IdNode') > 0)) {
-				XMD_Log::error('VIEW XSLT: El nodo que se est� intentando convertir no existe: ' . $version->get('IdNode'));
+				\XMD_Log::error('VIEW XSLT: El nodo que se est� intentando convertir no existe: ' . $version->get('IdNode'));
 				return NULL;
 			}
 		}else{
-        	XMD_Log::info("VIEW XSLT: Se instancia vista xslt sin idVersion");
+        	\XMD_Log::info("VIEW XSLT: Se instancia vista xslt sin idVersion");
         }
 
 		return true;
@@ -188,7 +187,7 @@ class View_Xslt extends Abstract_View {
 
 		// Check Params:
 		if (!isset($this->_idChannel) || !($this->_idChannel > 0)) {
-			XMD_Log::error('VIEW XSLT: No se ha especificado el canal del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
+			\XMD_Log::error('VIEW XSLT: No se ha especificado el canal del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
 			return NULL;
 		}
 
@@ -206,7 +205,7 @@ class View_Xslt extends Abstract_View {
 
 			// Check Params:
 			if (!isset($this->_idSection) || !($this->_idSection > 0)) {
-				XMD_Log::error('VIEW XSLT: No se ha especificado la secci�n del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
+				\XMD_Log::error('VIEW XSLT: No se ha especificado la secci�n del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
 				return NULL;
 			}
 		}
@@ -225,7 +224,7 @@ class View_Xslt extends Abstract_View {
 
 			// Check Params:
 			if (!isset($this->_idProject) || !($this->_idProject > 0)) {
-				XMD_Log::error('VIEW XSLT: No se ha especificado el proyecto del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
+				\XMD_Log::error('VIEW XSLT: No se ha especificado el proyecto del nodo ' . $args['NODENAME'] . ' que quiere renderizar');
 				return NULL;
 			}
 		}

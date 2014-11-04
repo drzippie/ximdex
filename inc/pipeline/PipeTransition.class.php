@@ -35,7 +35,6 @@ require_once(XIMDEX_ROOT_PATH . '/inc/pipeline/PipeProcess.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/pipeline/iterators/I_PipeProperties.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/patterns/Factory.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/model/orm/PipeTransitions_ORM.class.php');
-require_once(XIMDEX_ROOT_PATH . '/inc/log/XMD_log.class.php');
 require_once(XIMDEX_ROOT_PATH . '/inc/mvc/App.class.php');
 require_once(XIMDEX_ROOT_PATH . "/inc/helper/Timer.class.php");
 require_once(XIMDEX_ROOT_PATH . '/inc/graphs/GraphManager.class.php');
@@ -100,7 +99,7 @@ class PipeTransition extends PipeTransitions_ORM {
 		$idNewTransition = $pipeTransition->add();
 		
 		if (!($idNewTransition > 0)) {
-			$this->messages->add(_('No se ha podido generar la nueva transición'), MSG_TYPE_ERROR);
+			$this->messages->add(_('No se ha podido generar la nueva transiciï¿½n'), MSG_TYPE_ERROR);
 			$this->messages->mergeMessages($pipeTransition->messages);
 			return NULL;
 		}
@@ -118,13 +117,13 @@ class PipeTransition extends PipeTransitions_ORM {
 	 * @return integer
 	 */
 	function getPreviousTransition() {
-		//Obtenemos la transición anterior
+		//Obtenemos la transiciï¿½n anterior
 		$result = $this->find('id', 'IdPipeProcess = %s AND IdStatusTo = %s',
 					array($this->get('IdPipeProcess'), $this->get('IdStatusFrom')), MONO);
 		$resultsCount = count($result);
 		//Si son muchas error (No previsto, creo que ni siquiera lo soporta el modelo)
 		if ($resultsCount > 1) {
-			XMD_Log::fatal('No se ha podido determinar la transicion anterior a una dada');
+			\XMD_Log::fatal('No se ha podido determinar la transicion anterior a una dada');
 			return false;
 		}
 		
@@ -194,19 +193,19 @@ class PipeTransition extends PipeTransitions_ORM {
 			$transformedPointer = $object->$function($idVersion, $pointer, $args);
 		} else {
 			$idTransition = $this->get('id');
-			XMD_Log::warning("No se ha encontrado el método $function al llamar a una vista: IdVersion $idVersion transición $idTransition");
+			\XMD_Log::warning("No se ha encontrado el mï¿½todo $function al llamar a una vista: IdVersion $idVersion transiciï¿½n $idTransition");
 			$transformedPointer = $pointer;		
 		}
 		$timer->stop();
 
-		XMD_Log::info("PIPETRANSITION: View_$callback time: " . $timer->display());
+		\XMD_Log::info("PIPETRANSITION: View_$callback time: " . $timer->display());
 
 		if(isset($args['DISABLE_CACHE']) && $args['DISABLE_CACHE'] === true) {
-			XMD_Log::info('DISABLE_CACHE activo, aunque la transición es cacheable, no se almacenará la caché.');
+			\XMD_Log::info('DISABLE_CACHE activo, aunque la transiciï¿½n es cacheable, no se almacenarï¿½ la cachï¿½.');
 		} else {
 			$cache = new PipeCache();
 			if (!$cache->store($idVersion, $this->get('id'), $transformedPointer, $args)) {
-				XMD_Log::error('No se ha podido almacenar la cache para la transición ');
+				\XMD_Log::error('No se ha podido almacenar la cache para la transiciï¿½n ');
 			}
 		}
 		

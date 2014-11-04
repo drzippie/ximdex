@@ -29,7 +29,6 @@
 
 ModulesManager::file('/inc/filters/Filter.class.php');
 ModulesManager::component('/formpdf/parser/parser.class.php', 'filters');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/helper/Languages.class.php');
 
 class Filter_formpdf extends Filter {

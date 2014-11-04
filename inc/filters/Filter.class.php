@@ -31,7 +31,6 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 }
 
 include_once(XIMDEX_ROOT_PATH . "/inc/lang/AssociativeArray.class.php");
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 
 //require_once("FilterDB.class.php");
 

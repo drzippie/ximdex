@@ -38,7 +38,6 @@
 ModulesManager::file('/inc/db/db.inc');
 ModulesManager::file('/inc/io/BaseIOConstants.php');
 ModulesManager::file('/inc/fsutils/TarArchiver.class.php');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/workflow/Workflow.class.php');
 ModulesManager::file('/actions/workflow_forward/baseIO.php');
 ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
@@ -55,7 +54,7 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
 		var $revision = '';
 		
 		/**
-		 * Objeto de interacción con la base de datos
+		 * Objeto de interacciï¿½n con la base de datos
 		 *
 		 * @var $dbObj DB
 		 */
@@ -67,8 +66,8 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
 		
 		function updateFiles ($mode = true) {
 			// Estimamos las rutas que vamos a usar dependiendo del uso que le estemos dando a la clase
-			// Revisión == 0  Estamos haciendo una copia
-			// Revisión != 0  Estamos haciendo una importación
+			// Revisiï¿½n == 0  Estamos haciendo una copia
+			// Revisiï¿½n != 0  Estamos haciendo una importaciï¿½n
 			if (!strcmp($this->revision, REVISION_COPY)) {
 				$routeToFiles = sprintf('%s/data/files/', XIMDEX_ROOT_PATH);
 			} else {
@@ -77,8 +76,8 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
 				// TODO esto esta un poco cutre, hay que arreglar la extension doble
 				$compressedFile = sprintf('%s/files.tar.', $routeToBackupFolder);
 				// Descomprimimos los archivos
-				//TODO estas dos líneas van descomentadas (solo las comento para hacer pruebas rápidas)
-				XMD_Log::info(_("Starting the decompression of files of the package")." {$this->revision}");
+				//TODO estas dos lï¿½neas van descomentadas (solo las comento para hacer pruebas rï¿½pidas)
+				\XMD_Log::info(_("Starting the decompression of files of the package")." {$this->revision}");
 				$tarArchiver = new TarArchiver($compressedFile);
 				$tarArchiver->unpack($routeToFiles);
 				unset($compressedFile, $routeToBackupFolder);
@@ -106,7 +105,7 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
   				
   				
   				if (!is_file($filePath)) {
-  					XMD_Log::info(_("Ignoring unexisting file")." $filePath");
+  					\XMD_Log::info(_("Ignoring unexisting file")." $filePath");
 	  				$dbObj->Next();
 	  				continue;
   				}
@@ -116,7 +115,7 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
   				} elseif ($mode == UPDATE_LINKS) {
   					$node = new Node($idImportationNode);
   					if (!($node->GetID() > 0)) {
-	  					XMD_Log::info(sprintf(_("The document %s with id %s could not been imported due to it could not been loaded"), $filePath, $idImportationNode));
+	  					\XMD_Log::info(sprintf(_("The document %s with id %s could not been imported due to it could not been loaded"), $filePath, $idImportationNode));
   						$dbObj->Next();
   						continue;
   					}
@@ -127,7 +126,7 @@ ModulesManager::file('/inc/parsers/ParsingDependences.class.php');
   				
 				if (empty($contents)) {
 					//File without content, continue
-					XMD_Log::info(sprintf(_("Content of document %s with filepath %s could not been obtained"), $idImportationNode, $filePath));
+					\XMD_Log::info(sprintf(_("Content of document %s with filepath %s could not been obtained"), $idImportationNode, $filePath));
 					$dbObj->Next();
 					continue;
 				}

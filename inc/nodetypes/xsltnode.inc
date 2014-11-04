@@ -30,7 +30,6 @@ if (!defined('XIMDEX_ROOT_PATH')) {
 }
 
 require_once(XIMDEX_ROOT_PATH . "/inc/nodetypes/filenode.inc");
-require_once(XIMDEX_ROOT_PATH . '/inc/fsutils/FsUtils.class.php');
 
 class xsltnode extends FileNode {
 
@@ -64,7 +63,7 @@ class xsltnode extends FileNode {
 			$xslSourcePath = Config::GetValue('AppRoot') . Config::getValue('TempRoot') . '/' . $parentID . $xsltName;
 	
 			if (!FsUtils::file_put_contents($xslSourcePath, $xslContent)) {
-				XMD_Log::error("Error saving xslt file");
+				\XMD_Log::error("Error saving xslt file");
 			}
 		}
 		parent::CreateNode($xsltName, $parentID, $nodeTypeID, $stateID, $xslSourcePath);
@@ -148,7 +147,7 @@ class xsltnode extends FileNode {
 			}
 
 		}else{
-			XMD_Log::info("templates_include.xsl wont be include in itself.");
+			\XMD_Log::info("templates_include.xsl wont be include in itself.");
 		}
 	}
 
@@ -175,7 +174,7 @@ class xsltnode extends FileNode {
 
 			// Creating include file
 
-			XMD_Log::info("Creating unexisting include xslt file at folder $ximPtdId");
+			\XMD_Log::info("Creating unexisting include xslt file at folder $ximPtdId");
 
 			$includeContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 			<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\">
@@ -191,7 +190,7 @@ class xsltnode extends FileNode {
 				</dext:root>";
 
 			if (!FsUtils::file_put_contents($xslSourcePath, $dummyXml)) {
-				XMD_Log::error("Error saving xslt file");
+				\XMD_Log::error("Error saving xslt file");
 				return false;
 			}
 
@@ -210,7 +209,7 @@ class xsltnode extends FileNode {
 
 			if (preg_match("/include\shref=\"$templateName\"/i", $includeContent, $matches) == 0) {
 
-				XMD_Log::info("Adding include at end");
+				\XMD_Log::info("Adding include at end");
 
 				$pattern = "/<\/xsl:stylesheet>/i";
 				$replacement = $includeString . "\n</xsl:stylesheet>";
@@ -270,7 +269,7 @@ class xsltnode extends FileNode {
 		$depsMngr = new DepsManager();
 		$depsMngr->deleteByTarget(DepsManager::STRDOC_TEMPLATE, $this->parent->get('IdNode'));
 
-		XMD_Log::info('Xslt dependencies deleted');
+		\XMD_Log::info('Xslt dependencies deleted');
 	}
 
 	/**
@@ -291,7 +290,7 @@ class xsltnode extends FileNode {
 			$includeNode = new Node($includeId);
 			$includeContent = $includeNode->getContent();
 			$pattern = "/<xsl:include\shref=\"$templateName\"\/>/i";
-			XMD_Log::info("Removing include");
+			\XMD_Log::info("Removing include");
 			$replacement = "";
 			$includeContent = preg_replace($pattern, $replacement, $includeContent);	
 				
@@ -311,14 +310,14 @@ class xsltnode extends FileNode {
 
 	private function sanitizeContent($content) {
 		if (empty($content)) {
-			XMD_Log::info('Se ha creado/editado un documento con contenido vacio');
+			\XMD_Log::info('Se ha creado/editado un documento con contenido vacio');
 			return $content;
 		}
 
 		$xsldom = new DOMDocument();
 		$result = $xsldom->loadXML($content);
 		if (!$result) {
-			XMD_Log::info('Se ha creado/editado un documento cuyo contenido no es xml valido');
+			\XMD_Log::info('Se ha creado/editado un documento cuyo contenido no es xml valido');
 			return $content;
 		}
 		$xpath = new DOMXPath($xsldom);

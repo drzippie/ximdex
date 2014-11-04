@@ -46,7 +46,7 @@ class StateNode extends Root {
 	function CreateNode($name = null, $parentID = null, $nodeTypeID = null, $stateID = null, $description='', $idTransition=null) {
 		$currentTransition = new PipeTransition($idTransition);
 		if (!$currentTransition->get('id') > 0) {
-			$this->messages->add(_('No se ha podido encontrar la transacción, consulte con su administrador'), MSG_TYPE_ERROR);
+			$this->messages->add(_('No se ha podido encontrar la transacciï¿½n, consulte con su administrador'), MSG_TYPE_ERROR);
 			$this->messages->mergeMessages($currentTransition->messages);
 			return NULL;
 		}
@@ -83,8 +83,8 @@ class StateNode extends Root {
 		$idStatus = $pipeStatus->get('id');
 
 		if ($pipeProcess->isStatusFirst($idStatus) || $pipeProcess->isStatusLast($idStatus)) {
-			$this->messages->add(_('No se pueden eliminar los estados primero y último del workflow'), MSG_TYPE_ERROR);
-			XMD_Log::warning('Imposible eliminar estado primero y último de workflow');
+			$this->messages->add(_('No se pueden eliminar los estados primero y ï¿½ltimo del workflow'), MSG_TYPE_ERROR);
+			\XMD_Log::warning('Imposible eliminar estado primero y ï¿½ltimo de workflow');
 			return true;
 		}
 

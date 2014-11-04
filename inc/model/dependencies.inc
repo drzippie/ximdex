@@ -309,7 +309,7 @@ class dependencies extends Dependencies_ORM{
 	function deleteByMasterAndDependent($nodeMaster, $nodeDependent, $type) {
 
 		if (is_null($nodeMaster) || is_null($nodeDependent) || is_null($type)) {
-			XMD_Log::info('Params required');
+			\XMD_Log::info('Params required');
 			return false;
 		}
 
@@ -321,7 +321,7 @@ class dependencies extends Dependencies_ORM{
 		$result = $dbObj->Execute($sql);
 
 		if (!($result > 0)) {
-			XMD_Log::info(_('No dependencies deleted'));
+			\XMD_Log::info(_('No dependencies deleted'));
 			return false;
 		}
 

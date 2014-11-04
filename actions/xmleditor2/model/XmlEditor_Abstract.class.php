@@ -58,7 +58,7 @@ abstract class XmlEditor_Abstract {
 	public function getXmlFile($idnode) {
     	$node = new Node($idnode);
     	if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error(_("A non-existing node cannot be obtained: ") . $node->get('IdNode'));
+			\XMD_Log::error(_("A non-existing node cannot be obtained: ") . $node->get('IdNode'));
 			return null;
 		}
 
@@ -105,7 +105,7 @@ abstract class XmlEditor_Abstract {
 			
 		} else {
 			$msg = "docxap.xsl was not found for node $idnode";
-			XMD_Log::error(_($msg));
+			\XMD_Log::error(_($msg));
 //			$content = array('error' => array($msg));
 		}
 
@@ -116,7 +116,7 @@ abstract class XmlEditor_Abstract {
 
     	$node = new Node($idnode);
     	if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error(_("A non-existing node cannot be obtained: " ) . "$idnode");
+			\XMD_Log::error(_("A non-existing node cannot be obtained: " ) . "$idnode");
 			return null;
 		}
 

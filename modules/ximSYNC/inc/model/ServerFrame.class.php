@@ -29,11 +29,10 @@
 ModulesManager::file('/inc/model/orm/ServerFrames_ORM.class.php', 'ximSYNC');
 ModulesManager::file('/inc/model/ChannelFrame.class.php', 'ximSYNC');
 ModulesManager::file('/conf/synchro.conf', 'ximSYNC');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file('/inc/repository/nodeviews/View_FilterMacros.class.php');
 ModulesManager::file('/inc/repository/nodeviews/View_UnpublishOTF.class.php');
 ModulesManager::file('/inc/persistence/datafactory.inc');
-ModulesManager::file('/inc/log/XMD_log.class.php');
+
 ModulesManager::file('/inc/xml/XmlBase.class.php');
 ModulesManager::file('/inc/model/PublishingReport.class.php', 'ximSYNC'); 
 
@@ -294,7 +293,7 @@ class ServerFrame extends ServerFrames_ORM {
 		$isHybrid = $node->getSimpleBooleanProperty('hybridColector');
 
 		if (!($idNode > 0)) {
-			XMD_Log::error("Unexisting node for serverframe $frameID");
+			\XMD_Log::error("Unexisting node for serverframe $frameID");
 			return NULL;
 		}
 
@@ -331,7 +330,7 @@ class ServerFrame extends ServerFrames_ORM {
 					$db->Query($sql);
 					$encodingServer = $db->GetValue("idEncode");
 
-					XMD_Log::info("Codificando contenido a " . $encodingServer . 'con server=' . $server);
+					\XMD_Log::info("Codificando contenido a " . $encodingServer . 'con server=' . $server);
 					$content = XmlBase::recodeSrc($content, $encodingServer);
 				}
 

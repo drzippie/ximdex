@@ -71,7 +71,7 @@ class NodeFrame extends NodeFrames_ORM {
 			return $idNodeFrame;
 		}
 
-		XMD_Log::info("ERROR: Creating nodeframe");
+		\XMD_Log::info("ERROR: Creating nodeframe");
 		return NULL;
     	}
 
@@ -228,7 +228,7 @@ class NodeFrame extends NodeFrames_ORM {
 				$sf = new ServerFrame();
 				$sfResult = $sf->find('IdChannelFrame', 'IdNodeFrame = %s', array($idNodeFrame), MONO);
 				if (empty($sfResult)) {
-					XMD_Log::error('ServerFrame not found for NodeFrame ' . $idNodeFrame);
+					\XMD_Log::error('ServerFrame not found for NodeFrame ' . $idNodeFrame);
 					return false;
 				}
 				foreach($sfResult as $idChannelFrame) {
@@ -286,7 +286,7 @@ class NodeFrame extends NodeFrames_ORM {
 		$node = new Node($nodeId);
 
 		if ($node->get('Name') != $name) {
-			XMD_Log::info("Document's name changed: rep. ancestors");
+			\XMD_Log::info("Document's name changed: rep. ancestors");
 			return true;
 		}
 
@@ -296,7 +296,7 @@ class NodeFrame extends NodeFrames_ORM {
 		$path = $result[0];
 
 		if ($path != $node->GetPublishedPath()) {
-			XMD_Log::info("Document's path changed: rep. ancestors");
+			\XMD_Log::info("Document's path changed: rep. ancestors");
 			return true;
 		}
 

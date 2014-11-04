@@ -54,7 +54,7 @@ class QueryHandler_TOL extends QueryHandler_SQL {
 		$this->conn = oci_connect($config['username'], $config['password'], $str);
 		if (!$this->conn) {
 		    $e = oci_error();
-		    XMD_Log::fatal($e['message']);
+		    \XMD_Log::fatal($e['message']);
 		}
 		
 	}
@@ -65,14 +65,14 @@ class QueryHandler_TOL extends QueryHandler_SQL {
 		$this->queryResult = oci_parse($this->conn, $query);
 		if (!$this->queryResult) {
 		    $e = oci_error($this->conn);
-		    XMD_Log::fatal($e['message']);
+		    \XMD_Log::fatal($e['message']);
 		}
 		
 		// Perform the logic of the query
 		$r = oci_execute($this->queryResult);
 		if (!$r) {
 		    $e = oci_error($this->queryResult);
-		    XMD_Log::fatal($e['message']);
+		    \XMD_Log::fatal($e['message']);
 		}
 	}
 	

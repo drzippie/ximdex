@@ -40,7 +40,7 @@ ModulesManager::file('/inc/i18n/I18N.class.php');
 
 
 // Main Logger
-ModulesManager::file('/inc/log/XMD_log.class.php');
+
 
 // MVC
 ModulesManager::file('/inc/mvc/mvc.php');

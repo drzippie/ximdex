@@ -5,6 +5,12 @@
       "werkint/jsmin": "dev-master"
   
    },
+
+    "autoload": {
+        "psr-0": { "Ximdex": "lib" }
+    },
+
+
    "config": {
       "vendor-dir": "extensions/vendors/"
   } 

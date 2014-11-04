@@ -178,7 +178,7 @@ class WorkFlow {
 		$pipeNodeTypes = new PipeNodeTypes();
 		$result = $pipeNodeTypes->find('id, IdPipeline', 'IdNodeType = %s', array($idNodeType));
 		if (count($result) > 0) {
-			XMD_Log::warning(_('This nodetype is already associated to other workflow'));
+			\XMD_Log::warning(_('This nodetype is already associated to other workflow'));
 			return false;
 		}
 		$this->pipeline->set('IdNodeType', $idNodeType);

@@ -87,7 +87,7 @@ class RelXimletNode extends RelXimletNode_ORM {
 	function delete($idXimletLanguage, $idSection) {
 
 		if (is_null($idXimletLanguage) || is_null($idSection)) {
-			XMD_Log::error('Params section and ximlet are mandaries');
+			\XMD_Log::error('Params section and ximlet are mandaries');
 			return false;
 		}
 
@@ -117,14 +117,14 @@ class RelXimletNode extends RelXimletNode_ORM {
 
 	function deleteBySection($idSection) {
 		if (is_null($idSection)) {
-			XMD_Log::error('Param section not found');
+			\XMD_Log::error('Param section not found');
 			return false;
 		}
 
 		$result = $this->find('IdRel', 'IdSectionNode = %s', array($idSection), MULTI);
 
 		if (!(count($result) > 0)) {
-			XMD_Log::info("Section $idSection hasnt any ximlet dependency");
+			\XMD_Log::info("Section $idSection hasnt any ximlet dependency");
 			return false;
 		}
 

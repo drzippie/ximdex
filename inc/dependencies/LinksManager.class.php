@@ -67,7 +67,7 @@ class LinksManager {
 		$linkNode = new Node($nodeId);
 
 		if (!($linkNode->get('IdNode') > 0)) {
-			XMD_Log::info("Link to unexisting node $nodeId");
+			\XMD_Log::info("Link to unexisting node $nodeId");
 			return '#';
 		}
 
@@ -98,7 +98,7 @@ class LinksManager {
 		$linkNode = new Node($nodeId);
 
 		if (!($linkNode->get('IdNode') > 0)) {
-			XMD_Log::info("Link to unexisting node $nodeId");
+			\XMD_Log::info("Link to unexisting node $nodeId");
 			return '#';
 		}
 

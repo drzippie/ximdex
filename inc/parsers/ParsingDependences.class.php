@@ -109,7 +109,7 @@ class ParsingDependences {
 					case 'css':
 						$id = $cssNode->GetChildByName(substr($matches[2][$n], 1));
 						if (!($id > 0)) {
-							XMD_Log::error("Css file {$matches[2][$n]} not found");
+							\XMD_Log::error("Css file {$matches[2][$n]} not found");
 						} else {
 							$css[] = $id;
 						}
@@ -117,7 +117,7 @@ class ParsingDependences {
 					case 'common':
 						$id = $commonNode->GetChildByName(substr($matches[2][$n], 1));
 						if (!($id > 0)) {
-							XMD_Log::error("Common file {$matches[2][$n]} not found");
+							\XMD_Log::error("Common file {$matches[2][$n]} not found");
 						} else {
 							$common[] = $id;
 						}
@@ -216,7 +216,7 @@ class ParsingDependences {
 				$replacement = "\${1}\${2}\${3}${4}".$contentTag['value']."\${5}";
 	    		}
 	    		else{
-				XMD_Log::info("Not supported type.");
+				\XMD_Log::info("Not supported type.");
 	    		}
 
 	    		$xmlPvd = preg_replace($pattern,$replacement,$xmlPvd);
@@ -237,12 +237,12 @@ class ParsingDependences {
 
 		$node = new Node($idNode);
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error('Error while node loading.');
+			\XMD_Log::error('Error while node loading.');
 			return false;
 		}
 
 		if (!($node->nodeType->get('IsStructuredDocument') == 1)) {
-			XMD_Log::info('This node is not a structured document');
+			\XMD_Log::info('This node is not a structured document');
 			return false;
 		}
 
@@ -415,7 +415,7 @@ class ParsingDependences {
 
 		$node = new Node($idNode);
 		if (!($node->get('IdNode') > 0)) {
-			XMD_Log::error('Error while node loading.');
+			\XMD_Log::error('Error while node loading.');
 			return false;
 		}
 		$version = $node->getVersion();

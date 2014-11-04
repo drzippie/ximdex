@@ -202,7 +202,7 @@ class RelNewsColector extends RelNewsColector_ORM  {
 	    	$result = array();
 
 		if (!($dbObj->numRows > 0)) {			
-			XMD_Log::info("Colector $idColector void");
+			\XMD_Log::info("Colector $idColector void");
 			return NULL;
 		}
 
@@ -228,13 +228,13 @@ class RelNewsColector extends RelNewsColector_ORM  {
 	function getNewsFromColector($idColector){
 		$dbObj = new DB();
 		$query = sprintf("SELECT IdNew FROM RelNewsColector WHERE IdColector = %s",$dbObj->sqlEscapeString($idColector));
-	    	XMD_Log::info($query);
+	    	\XMD_Log::info($query);
 	    	$dbObj->Query($query);
 	    
 	    	$result = array();
 
 		if (!($dbObj->numRows > 0)) {			
-			XMD_Log::info(sprintf(_("Colector %s void"), $idColector));
+			\XMD_Log::info(sprintf(_("Colector %s void"), $idColector));
 			return NULL;
 		}
 
@@ -257,7 +257,7 @@ class RelNewsColector extends RelNewsColector_ORM  {
 
 		$dbObj->Execute("UPDATE RelNewsColector SET State='publishable' WHERE FechaIn <= $timeStamp AND State = 'pending'");
 
-		XMD_Log::info(sprintf(_("Update %s pending to publishable from relNewsColectors"), $dbObj->numRows));
+		\XMD_Log::info(sprintf(_("Update %s pending to publishable from relNewsColectors"), $dbObj->numRows));
 		return $dbObj->numRows;
 	}
 
@@ -273,7 +273,7 @@ class RelNewsColector extends RelNewsColector_ORM  {
 			WHERE FechaOut < $timeStamp AND FechaOut IS NOT NULL AND State!='removed'";
 		$dbObj->Execute($sql);
 
-		XMD_Log::info(sprintf(_("Update %s states to removed from relNewsColectors"), $dbObj->numRows));
+		\XMD_Log::info(sprintf(_("Update %s states to removed from relNewsColectors"), $dbObj->numRows));
 		return $dbObj->numRows;
 	}
 
@@ -577,7 +577,7 @@ class RelNewsColector extends RelNewsColector_ORM  {
 	    $dbObj->Query($query);
 	
 	    if(!($dbObj->numRows > 0)) {
-			XMD_Log::info(_("Obtaining maxPage for colector").$idColector);
+			\XMD_Log::info(_("Obtaining maxPage for colector").$idColector);
 			return 0;
 	    }
 	
@@ -788,14 +788,14 @@ class RelNewsColector extends RelNewsColector_ORM  {
 		//		They're post-automatic states but... It's necessary to notify user about them?
 		
 		if(is_null($idNew) || !($idNew > 0)) {
-			XMD_Log::error(_('Cannot get Pending relations. IdNew is null or not positive integer.'));
+			\XMD_Log::error(_('Cannot get Pending relations. IdNew is null or not positive integer.'));
 			return NULL;
 		}
 		
 		$relations = $this->find('IdRel, IdColector', 'IdNew = %s AND (State = %s OR FechaOut IS NOT NULL)', array($idNew, 'pending'), MULTI);
 
 		if (!(sizeof($relations) > 0)) {
-			XMD_Log::info(_('No pending relations found for new ') . $idNew);
+			\XMD_Log::info(_('No pending relations found for new ') . $idNew);
 			return NULL;
 		}
 

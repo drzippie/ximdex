@@ -143,7 +143,7 @@ class ChannelProperty extends InheritableProperty {
 		$db = new DB();
 		$db->execute($sql);
 		if ($db->numErr != 0) {
-	 		XMD_Log::error($this->desErr);
+	 		\\XMD_Log::error($this->desErr);
 		}
 
 		return array('affectedNodes' => $affectedNodes, 'messages' => array());
@@ -172,7 +172,7 @@ class ChannelProperty extends InheritableProperty {
 			$nodeId = $db->getValue('IdNode');
 			$node = new StructuredDocument($nodeId);
 			if (!($node->get('IdDoc') > 0)) {
-				XMD_Log::error(_('StructuredDocument cannot be instantiate with ID ') . $nodeID);
+				\\XMD_Log::error(_('StructuredDocument cannot be instantiate with ID ') . $nodeID);
 				continue;
 			}
 

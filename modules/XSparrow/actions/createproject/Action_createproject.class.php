@@ -28,7 +28,6 @@ ModulesManager::file('/inc/modules/Module.class.php');
 ModulesManager::file('/inc/cli/CliParser.class.php');
 ModulesManager::file('/inc/cli/CliReader.class.php');
 ModulesManager::file('/inc/io/BaseIO.class.php');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::file(MODULE_XSPARROW_PATH . '/BuildParser.class.php');
 ModulesManager::file('/inc/helper/DebugLog.class.php');
 ModulesManager::file('/actions/addximlet/Action_addximlet.class.php');

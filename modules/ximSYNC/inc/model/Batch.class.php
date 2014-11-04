@@ -75,7 +75,7 @@ class Batch extends Batchs_ORM {
 			return $idBatch;
 		}
 
-		XMD_Log::info(_("ERROR batch type $type for node $idNodeGenerator"));
+		\XMD_Log::info(_("ERROR batch type $type for node $idNodeGenerator"));
 		return null;
     }
 
@@ -195,7 +195,7 @@ class Batch extends Batchs_ORM {
 			}
 		} else {
 
-		    XMD_Log::info(_("Error in DB: ") . $dbObj->desErr);
+		    \XMD_Log::info(_("Error in DB: ") . $dbObj->desErr);
 		}
 		return false;
     }
@@ -281,7 +281,7 @@ class Batch extends Batchs_ORM {
 			}
 		} else {
 
-		    XMD_Log::info("Error en BD: " . $dbObj->desErr);
+		    \XMD_Log::info("Error en BD: " . $dbObj->desErr);
 		}
 		return false;
     }
@@ -351,7 +351,7 @@ class Batch extends Batchs_ORM {
 			return true;
 		} else {
 
-		    XMD_Log::info("Error en BD: " . $dbObj->desErr);
+		    \XMD_Log::info("Error en BD: " . $dbObj->desErr);
 		}
 		return false;
     }
@@ -397,7 +397,7 @@ class Batch extends Batchs_ORM {
 			return true;
 		} else {
 
-		    XMD_Log::info(_("Error in BD: ") . $dbObj->desErr);
+		    \XMD_Log::info(_("Error in BD: ") . $dbObj->desErr);
 		}
 		return false;
     }

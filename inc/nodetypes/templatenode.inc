@@ -25,7 +25,6 @@
  ******************************************************************************/
 
 ModulesManager::file('/inc/nodetypes/filenode.inc');
-ModulesManager::file('/inc/fsutils/FsUtils.class.php');
 ModulesManager::component('/xslt/functions.php', 'dexT');
 ModulesManager::file('/inc/io/BaseIO.class.php');
 ModulesManager::file('/inc/xml/XSLT.class.php');
@@ -37,7 +36,7 @@ class templatenode extends FileNode {
 		// Checks if ptd is compatible with XSLT
 
 		if (!$this->checkXslCompliance($sourcePath, $name)) {
-			XMD_Log::error("Ptd $name not compatible with XSLT");
+			\XMD_Log::error("Ptd $name not compatible with XSLT");
 			return NULL;
 		}
 
@@ -173,7 +172,7 @@ class templatenode extends FileNode {
 			$xsltNode = new Node($xsltId);
 
 			if (is_null($xslContent)) {
-				XMD_Log::error("Error updating xsl template for ptd $name");
+				\XMD_Log::error("Error updating xsl template for ptd $name");
 			} else {
 				$xsltNode->setContent($xslContent);
 			}
@@ -210,7 +209,7 @@ class templatenode extends FileNode {
 		foreach ($tablesToTruncate as $table) {
 			$query = sprintf('TRUNCATE %s', $table);
 			if (!$db->execute($query)) {
-				XMD_Log::error("Error al vaciar la tabla $table no se ha vaciado correctamente la cache");
+				\XMD_Log::error("Error al vaciar la tabla $table no se ha vaciado correctamente la cache");
 			}
 		}
 
@@ -220,7 +219,7 @@ class templatenode extends FileNode {
 		    		continue;
 		    	}
 		        if (!FsUtils::delete($cacheFolder . $file)) {
-		        	XMD_Log::error("No se ha podido eliminar el archivo de cache $file");
+		        	\XMD_Log::error("No se ha podido eliminar el archivo de cache $file");
 		        }
 		    }
 		    closedir($handler);
@@ -247,7 +246,7 @@ class templatenode extends FileNode {
 
 		if (!$result) {
 			$this->parent->messages->add(_('XML incorrecto, la xsl equivalente no se ha creado'), MSG_TYPE_NOTICE);
-			XMD_Log::info("Incorrect XML in Ptd $fileName");
+			\XMD_Log::info("Incorrect XML in Ptd $fileName");
 			return false;
 		}
 
@@ -262,7 +261,7 @@ class templatenode extends FileNode {
 		// Checks if root tag is equal to ptd name
 
 		if ($rootNode != $ptdName) {
-			XMD_Log::error("Root tag not equal to name $ptdName");
+			\XMD_Log::error("Root tag not equal to name $ptdName");
 			$this->parent->messages->add(_('El nombre del archivo no coincide con el de su etiqueta inicial'),
 				MSG_TYPE_ERROR);
 			return false;

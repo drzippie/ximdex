@@ -84,8 +84,8 @@ class Pipeline extends Pipelines_ORM {
 		
 		$nodeType = new NodeType($idNodeType);
 		if (!($nodeType->get('IdNodeType') > 0)) {
-			XMD_Log::error('El nodetype especificado para el pipeline no existe: ' . $idNodeType);
-			$this->messages->add(_('Ha ocurrido un error en la transformación del documento y no se puede continuar'), MSG_TYPE_ERROR);			
+			\XMD_Log::error('El nodetype especificado para el pipeline no existe: ' . $idNodeType);
+			$this->messages->add(_('Ha ocurrido un error en la transformaciï¿½n del documento y no se puede continuar'), MSG_TYPE_ERROR);			
 			return false;
 		}
 		
@@ -95,7 +95,7 @@ class Pipeline extends Pipelines_ORM {
 			return $this->get('id');
 		}
 		$error = sprintf(_("Ha ocurrido un error inesperado al intentar transformar el nodeType %s"), $idNodeType);
-		XMD_Log::error($error);
+		\XMD_Log::error($error);
 		$this->messages->add($error, MSG_TYPE_ERROR);
 		return false;
 	}
@@ -111,13 +111,13 @@ class Pipeline extends Pipelines_ORM {
 		
 		$result = $this->find('id', 'IdNode = %s', array($idNode), MONO);
 		if (count($result) > 1) {
-			XMD_Log::warning("Se ha intentado cargar el pipeline con el idnode $idNode y se han encontrado multiples resultados, abortando operación");
-			$this->messages->add(_("Se ha intentado cargar el pipeline con el idnode $idNode y se han encontrado multiples resultados, abortando operación"), MSG_TYPE_WARNING);
+			\XMD_Log::warning("Se ha intentado cargar el pipeline con el idnode $idNode y se han encontrado multiples resultados, abortando operaciï¿½n");
+			$this->messages->add(_("Se ha intentado cargar el pipeline con el idnode $idNode y se han encontrado multiples resultados, abortando operaciï¿½n"), MSG_TYPE_WARNING);
 			return NULL;
 		}
 		if (count($result) === 0) {
-			XMD_Log::warning("Se ha intentado cargar el pipeline con el idnode $idNode y no se han encontrado resultados, abortando operación");
-			$this->messages->add(_("Se ha intentado cargar el pipeline con el idnode $idNode y no se han encontrado resultados, abortando operación"), MSG_TYPE_WARNING);
+			\XMD_Log::warning("Se ha intentado cargar el pipeline con el idnode $idNode y no se han encontrado resultados, abortando operaciï¿½n");
+			$this->messages->add(_("Se ha intentado cargar el pipeline con el idnode $idNode y no se han encontrado resultados, abortando operaciï¿½n"), MSG_TYPE_WARNING);
 			return NULL;
 		}
 		$this->Pipeline($result[0]);
