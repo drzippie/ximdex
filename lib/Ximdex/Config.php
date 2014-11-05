@@ -6,5 +6,5 @@ namespace Ximdex ;
 class Config {
 
 
-    
+
 }
