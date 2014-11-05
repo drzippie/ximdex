@@ -30,8 +30,6 @@ include_once 'bootstrap/start.php' ;
 
 
 
-
-
 print_R( App::config() ) ;
 
 

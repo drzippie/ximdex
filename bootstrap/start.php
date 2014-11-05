@@ -11,9 +11,7 @@ include_once 'extensions/vendors/autoload.php';
 class_alias('Ximdex\Runtime\App', 'App');
 
 
-
-
-App::setValue('XIMDEX_ROOT_PATH', dirname(dirname(__FILE__))) ;
+App::setValue('XIMDEX_ROOT_PATH', dirname(dirname(__FILE__)));
 
 
 // get Config
@@ -22,17 +20,25 @@ foreach ($conf as $key => $value) {
     App::setValue($key, $value);
 }
 
-
 // read install-modules.conf
-$modulesConfString = file_get_contents( App::getValue('XIMDEX_ROOT_PATH') . '/conf/install-modules.conf' ) ;
+$modulesConfString = file_get_contents(App::getValue('XIMDEX_ROOT_PATH') . '/conf/install-modules.conf');
 $matches = array();
-preg_match_all( '/define\(\'(.*)\',(.*)\);/iUs' , $modulesConfString, $matches );
-foreach( $matches[1] as $key => $value ) {
-    App::setValue( $value  , str_replace( '\'', '', $matches[2][$key ]));
+preg_match_all('/define\(\'(.*)\',(.*)\);/iUs', $modulesConfString, $matches);
+foreach ($matches[1] as $key => $value) {
+    App::setValue($value, str_replace('\'', '', $matches[2][$key]));
 }
 
 // use config values
 define('DEFAULT_LOCALE', App::getValue('locale'));
 date_default_timezone_set(App::getValue('timezone'));
+
+
+// get Persistent Config
+
+$stm = App::Db()->prepare( 'select * from Config') ;
+$stm->execute() ;
+foreach( $stm as $row ) {
+    App::setValue( $row['ConfigKey'], $row['ConfigValue']);
+}
 
 
