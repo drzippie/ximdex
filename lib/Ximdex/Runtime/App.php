@@ -61,6 +61,8 @@ Class App
 
     public function getRuntimeValue($key, $default = null)
     {
+
+
         if (isset($this->config[$key])) {
             return $this->config[$key];
         } else {
@@ -70,17 +72,27 @@ Class App
 
     public static function setValue($key, $value, $persistent = false)
     {
-        return self::getInstance()->setRuntimeValue($key, $value);
+        return self::getInstance()->setRuntimeValue($key, $value, $persistent);
     }
 
-    public function setRuntimeValue($key, $value)
+    public function setRuntimeValue($key, $value, $persistent = false)
     {
+        if ($persistent === true) {
+
+            $stm = self::db()->prepare('delete from Config  where ConfigKey = :key');
+            $stm->execute(array(
+                'key' => $key,
+            ));
+            $stm = self::db()->prepare('insert into Config (ConfigValue, ConfigKey ) values ( :value ,:key ) ');
+            $stm->execute(array(
+                'key' => $key,
+                'value' => $value,
+            ));
+        }
         $this->config[$key] = $value;
         return $this;
     }
-
-
-    public function Db($conf = null)
+    public static function Db($conf = null)
     {
         if (is_null($conf)) {
             $conf = self::getInstance()->getValue('default.db', 'db');
@@ -94,6 +106,22 @@ Class App
 
         }
         return self::$DBInstance[$conf];
+    }
+    /**
+     * Legacy: Compability
+     */
+    public static function get( $key ) {
+
+        $value = self::getInstance()->getRuntimeValue($key,  null );
+        if ( !is_null( $value )) {
+            return $value ;
+        }
+        $objectData =  self::getInstance()->getRuntimeValue( 'class::definition::' . $key, null );
+        if ( is_null( $objectData )) {
+            return null ;
+        }
+        require_once( App::getValue('XIMDEX_ROOT_PATH') .  $objectData  ) ;
+        return self::getObject( $key ) ;
     }
 
 }

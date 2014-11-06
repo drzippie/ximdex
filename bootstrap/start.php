@@ -6,7 +6,7 @@ if (!defined('XIMDEX_ROOT_PATH')) {
     define('XIMDEX_ROOT_PATH', dirname(dirname(__FILE__)));
 }
 
-include_once 'extensions/vendors/autoload.php';
+include_once dirname(dirname(__FILE__)) . '/extensions/vendors/autoload.php';
 
 class_alias('Ximdex\Runtime\App', 'App');
 
@@ -34,11 +34,16 @@ date_default_timezone_set(App::getValue('timezone'));
 
 
 // get Persistent Config
-
 $stm = App::Db()->prepare( 'select * from Config') ;
 $stm->execute() ;
 foreach( $stm as $row ) {
     App::setValue( $row['ConfigKey'], $row['ConfigValue']);
 }
 
+// special objects (pseudo-DI)
+
+App::setValue( 'class::definition::Messages',       '/inc/helper/Messages.class.php' );
+App::setValue( 'class::definition::QueryManager',   '/inc/helper/QueryManager.class.php' );
+App::setValue( 'class::definition::DB',             '/inc/db/DB.class.php' );
+App::setValue( 'class::definition::XMD_log',        '/inc/log/XMD_log.class.php' );
 

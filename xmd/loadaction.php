@@ -25,10 +25,8 @@
  */
 
 
+include_once '../bootstrap/start.php' ;
 
-// Defines root directory
-if (!defined('XIMDEX_ROOT_PATH'))
-	define("XIMDEX_ROOT_PATH", realpath(dirname(__FILE__) . "/../"));
 
 //General class
 include_once(XIMDEX_ROOT_PATH."/inc/modules/ModulesManager.class.php");
@@ -55,4 +53,4 @@ I18N::setup($locale);
 // FrontController dipatches HTTP requests
 $frontController = new FrontController();
 $frontController->dispatch();
-?>
+

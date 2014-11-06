@@ -3,7 +3,9 @@
         "solarium/solarium": "3.2.0",
         "stolz/assets": "dev-master",
         "werkint/jsmin": "dev-master",
-        "mnapoli/php-di": "~4.0"
+        "mnapoli/php-di": "~4.0",
+        "phpunit/phpunit": "3.7.21",
+        "mockery/mockery": "0.8.0"
     },
 
     "autoload": {

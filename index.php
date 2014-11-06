@@ -24,13 +24,9 @@
  *  @version $Revision$
  */
 
-//phpinfo();
 
-/**
- * XIMDEX_ROOT_PATH
- */
-if (!defined('XIMDEX_ROOT_PATH'))
-        define('XIMDEX_ROOT_PATH', realpath(dirname(__FILE__)));
+include_once 'bootstrap/start.php' ;
+
 
 //General class
 if(file_exists(XIMDEX_ROOT_PATH . '/conf/install-params.conf.php') )
