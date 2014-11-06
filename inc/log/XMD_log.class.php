@@ -29,7 +29,7 @@
 
 require_once( XIMDEX_ROOT_PATH . '/inc/log/Loggeable.class.php' );
 
-class XMD_Log {
+class XMD_Log_old {
 	
 	/**
 	 * 

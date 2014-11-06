@@ -5,7 +5,9 @@
         "werkint/jsmin": "dev-master",
         "mnapoli/php-di": "~4.0",
         "phpunit/phpunit": "3.7.21",
-        "mockery/mockery": "0.8.0"
+        "mockery/mockery": "0.8.0",
+        "monolog/monolog": "~1.11" 
+
     },
 
     "autoload": {
@@ -15,4 +17,3 @@
       "vendor-dir": "extensions/vendors/"
   }
 }
-

@@ -16,6 +16,7 @@ return array(
     'Symfony\\Component\\EventDispatcher\\' => array($vendorDir . '/symfony/event-dispatcher'),
     'Stolz\\Assets' => array($vendorDir . '/stolz/assets/src'),
     'Solarium\\' => array($vendorDir . '/solarium/solarium/library'),
+    'Psr\\Log\\' => array($vendorDir . '/psr/log'),
     'ProxyManager\\' => array($vendorDir . '/ocramius/proxy-manager/src'),
     'PhpDocReader' => array($vendorDir . '/mnapoli/phpdocreader/src'),
     'MyCLabs' => array($vendorDir . '/myclabs/php-enum/src'),

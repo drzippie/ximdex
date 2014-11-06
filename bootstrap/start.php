@@ -1,6 +1,9 @@
 <?php
 
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
 // for legacy compatibility
 if (!defined('XIMDEX_ROOT_PATH')) {
     define('XIMDEX_ROOT_PATH', dirname(dirname(__FILE__)));
@@ -14,11 +17,24 @@ class_alias('Ximdex\Runtime\App', 'App');
 App::setValue('XIMDEX_ROOT_PATH', dirname(dirname(__FILE__)));
 
 
+
+
+
+
+
 // get Config
 $conf = require_once(App::getValue('XIMDEX_ROOT_PATH') . '/conf/config.php');
 foreach ($conf as $key => $value) {
     App::setValue($key, $value);
 }
+
+
+// setup log
+class_alias('Ximdex\Logger', 'XMD_Log');
+$log = new Logger('XMD');
+$log->pushHandler(new StreamHandler(App::getValue('XIMDEX_ROOT_PATH') .'/logs/xmd.log', Logger::DEBUG));
+new XMD_Log( $log ) ;
+
 
 // read install-modules.conf
 $modulesConfString = file_get_contents(App::getValue('XIMDEX_ROOT_PATH') . '/conf/install-modules.conf');

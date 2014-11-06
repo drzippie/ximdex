@@ -29,11 +29,7 @@ include_once 'bootstrap/start.php' ;
 
 
 
-
-print_R(  App::get('Messages')  ) ;
-
-
-
+XMD_log::error( 'prueba de error', array(  App::Db() )   );
 die();
 
 
