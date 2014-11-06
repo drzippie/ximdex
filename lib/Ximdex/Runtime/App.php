@@ -88,7 +88,7 @@ Class App
             $stm->execute(array(
                 'key' => $key,
             ));
-            $stm = self::db()->prepare('insert into Config (ConfigValue, ConfigKey ) values ( :value ,:key ) ');
+            $stm = self::db()->prepare('insert into Config (ConfigValue, ConfigKey ) values ( :value ,:key )');
             $stm->execute(array(
                 'key' => $key,
                 'value' => $value,

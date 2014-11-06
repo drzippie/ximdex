@@ -81,13 +81,15 @@ class RuntimeAppTest extends PHPUnit_Framework_TestCase
 
     public function testAddDefaultDbConnection()
     {
-        $pdo = $this->getMockBuilder('PDOMock')
+        $stub = $this->getMockBuilder('PDOMock')
             ->getMock();
 
-        App::getInstance()->addDbConnection($pdo);
+        App::getInstance()->addDbConnection($stub);
 
 
-        $this->assertEquals($pdo, App::Db());
+        $this->assertEquals($stub, App::Db());
+
+
 
     }
 
@@ -99,6 +101,40 @@ class RuntimeAppTest extends PHPUnit_Framework_TestCase
 
 
     }
+    public function testSetValuePersistent()
+    {
+
+        $stub = $this->getMock('PDOMock' , array( 'prepare'));
+        $stubStm = $this->getMock('PDOPreparedStatement' , array( 'execute'));
+
+        $stub->expects($this->at(0))
+            ->method('prepare')
+            ->with($this->equalTo('delete from Config  where ConfigKey = :key'))
+            ->will($this->returnValue( $stubStm ) );
+
+
+        $stubStm->expects($this->at(0))
+            ->method('execute')
+            ->with($this->equalTo( array( 'key' => 'key')));
+
+        $stub->expects( $this->at(1) )
+            ->method('prepare')
+            ->with($this->equalTo('insert into Config (ConfigValue, ConfigKey ) values ( :value ,:key )'))
+            ->will( $this->returnValue( $stubStm ) );
+
+        $stubStm->expects($this->at(1))
+            ->method('execute')
+            ->with($this->equalTo( array( 'key' => 'key', 'value' => 'value')));
+
+
+        App::getInstance()->addDbConnection($stub);
+
+
+
+        $this->assertEquals($stub, App::Db());
+        App::setValue( 'key', 'value', true ) ;
+
+    }
 }
 
 class PDOMock extends \PDO
@@ -106,4 +142,6 @@ class PDOMock extends \PDO
     public function __construct()
     {
     }
+
+
 }
