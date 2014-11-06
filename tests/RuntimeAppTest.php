@@ -2,6 +2,7 @@
 
 use Ximdex\Runtime\App;
 
+
 class RuntimeAppTest extends PHPUnit_Framework_TestCase
 {
 
@@ -76,5 +77,33 @@ class RuntimeAppTest extends PHPUnit_Framework_TestCase
     {
         $this->assertEquals($app, App::getInstance());
         return $app;
+    }
+
+    public function testAddDefaultDbConnection()
+    {
+        $pdo = $this->getMockBuilder('PDOMock')
+            ->getMock();
+
+        App::getInstance()->addDbConnection($pdo);
+
+
+        $this->assertEquals($pdo, App::Db());
+
+    }
+
+    public function testExceptionNoDbConfig()
+    {
+        $this->setExpectedException('Exception', '-1');
+
+        App::Db('non-exist');
+
+
+    }
+}
+
+class PDOMock extends \PDO
+{
+    public function __construct()
+    {
     }
 }
