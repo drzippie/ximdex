@@ -33,6 +33,19 @@ define('DEFAULT_LOCALE', App::getValue('locale'));
 date_default_timezone_set(App::getValue('timezone'));
 
 
+// set DB Connection
+
+$dbConfig = App::getValue('db');
+$dbConn = new \PDO("{$dbConfig['type']}:host={$dbConfig['host']};port={$dbConfig['port']};dbname={$dbConfig['db']}",
+    $dbConfig['user'], $dbConfig['password']);
+$dbConn->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
+
+App::addDbConnection( $dbConn ) ;
+
+
+
+
+
 // get Persistent Config
 $stm = App::Db()->prepare( 'select * from Config') ;
 $stm->execute() ;

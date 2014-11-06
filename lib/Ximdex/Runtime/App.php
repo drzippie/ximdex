@@ -20,6 +20,11 @@ Class App
         $this->DIBuilder->setDefinitionCache(new \Doctrine\Common\Cache\ArrayCache());
         $this->DIContainer = $this->DIBuilder->build();
         $this->config = array();
+        if (self::$instance instanceof self) {
+            throw new \Exception('-10, Cannot be instantiated more than once');
+        } else {
+            self::$instance = $this ;
+        }
     }
 
     public static function getInstance()
@@ -92,18 +97,20 @@ Class App
         $this->config[$key] = $value;
         return $this;
     }
+    public static function addDbConnection( \PDO $connection, $name = null ) {
+        if (is_null($name)) {
+            $name  = self::getInstance()->getValue('default.db', 'db');
+        }
+        self::$DBInstance[$name] = $connection ;
+    }
     public static function Db($conf = null)
     {
         if (is_null($conf)) {
             $conf = self::getInstance()->getValue('default.db', 'db');
         }
         if (!isset(self::$DBInstance[$conf])) {
-
-            $dbConfig = self::getValue($conf);
-            self::$DBInstance[$conf] = new \PDO("{$dbConfig['type']}:host={$dbConfig['host']};port={$dbConfig['port']};dbname={$dbConfig['db']}",
-                $dbConfig['user'], $dbConfig['password']);
-            self::$DBInstance[$conf]->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
-
+            throw new \Exception( '-1,Unknown DB Connection');
+            return null ;
         }
         return self::$DBInstance[$conf];
     }
