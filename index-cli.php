@@ -28,9 +28,16 @@
 include_once 'bootstrap/start.php' ;
 
 
+$log = new Logger('sss');
+$log->pushHandler(new StreamHandler(App::getValue('XIMDEX_ROOT_PATH') .'/logs/sss.log', Logger::DEBUG));
 
-XMD_log::error( 'prueba de error', array(  App::Db() )   );
-die();
+Ximdex\Logger::addLog( $log , 'sss' ) ;
+
+
+XMD_Log::setActiveLog( 'sss') ;
+
+App::getValue( '')
+
 
 
 

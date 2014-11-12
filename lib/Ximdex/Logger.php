@@ -10,37 +10,58 @@ namespace Ximdex ;
 
 
 Class Logger  {
-    private static $instance = null;
-
+    private static $instances = array();
+    private static $active = '';
     private $logger = null;
-    public function __construct( $logger ) {
+
+    public function __construct( $logger  ) {
         $this->logger = $logger ;
-        if (self::$instance instanceof self) {
-            throw new \Exception('-10, Cannot be instantiated more than once');
-        } else {
-            self::$instance = $this ;
+    }
+    /**
+     * @param $logger
+     * @param string $loggerInstance
+     */
+    public static function addLog( $logger , $loggerInstance = 'default' ) {
+        self::$instance[ $loggerInstance ] = new Logger( $logger) ;
+        if ( count( self::$instances ) == 1 ) {
+            self::$active = $loggerInstance;
         }
     }
-    public static function getInstance()
+    public static function get( )
     {
-        if (!self::$instance instanceof self) {
+        $loggerInstance = self::$active ;
+        if ( !isset( self::$instances[ $loggerInstance ] ) || !self::$instances[ $loggerInstance ] instanceof self) {
             throw \Exception( 'Logger need to be initilized') ;
             return  ;
         }
-        return self::$instance;
+        return self::$instances[ $loggerInstance ];
+    }
+
+    /**
+     * @param string $loggerInstance
+     * @return Logger
+     * @throws
+     */
+    public static function setActiveLog( $loggerInstance = 'default') {
+        if ( !isset( self::$instances[ $loggerInstance ] )  ) {
+            throw \Exception( 'Logger Instance not found') ;
+            return  ;
+        }
+        self::$active = $loggerInstance;
+        return self::$instances[ $loggerInstance ];
     }
 
     public static function error( $string , $object = null ) {
-        return self::getInstance()->logger->addError( $string , $object  ) ;
+        return self::get()->logger->addError( $string , $object  ) ;
     }
     public static function warning( $string ) {
-        return self::getInstance()->logger->addWarning( $string ) ;
+        return self::get()->logger->addWarning( $string ) ;
     }
     public static function debug( $string ) {
-        return self::getInstance()->logger->addDebug( $string ) ;
+        return self::get()->logger->addDebug( $string ) ;
     }
     public static function fatal( $string ) {
-        return self::getInstance()->logger->addFatal( $string ) ;
+        return self::get()->logger->addFatal( $string ) ;
     }
 
 }
